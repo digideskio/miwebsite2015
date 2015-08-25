@@ -1,7 +1,7 @@
-<?php include 'assets/php/functions.php'; ?>
-<?php $containers = get_blog_container($site, $pages, $page, 200); ?>
-<?php snippet(get_organism("header")); ?>
+<?php $containers = additionalhelper::get_blog_container($site, $pages, $page, 200); ?>
+<?php atomicdesign::output("organism", "header"); ?>
 
+<!-- Template: container--blog -->
 <section class="container">
 <?php foreach($containers as $container): ?>
 	<div class="row">
@@ -9,8 +9,8 @@
 			<?php
 				
 			// Snip holen
-			$template = get_snip( $container->uid(), "default"); 
-			$template = get_snip( $container->intendedTemplate(), $template);
+			$template = atomicdesign::get_snip( $container->uid(), "default"); 
+			$template = atomicdesign::get_snip( $container->intendedTemplate(), $template);
 		
 			snippet($template, array(
 				'content' => $container, 
@@ -24,4 +24,4 @@
 <?php endforeach ?>
 </section>
 
-<?php snippet(get_organism("footer")); ?>
+<?php atomicdesign::output("organism", "footer"); ?>

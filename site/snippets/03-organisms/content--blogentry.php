@@ -3,7 +3,7 @@
 <?php 
 	if(!isset($docs)){ $docs = false; }
 	
-	snippet(get_molecule("article"), array(
+	atomicdesign::output("molecule", "article", array(
 		"content" 	=> $content,
 		"docs"		=> $docs
 	));

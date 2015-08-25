@@ -1,18 +1,14 @@
 <!-- Organism: Rows -->
 
 <?php 
-	if(isset($content)){
-		$heading_content = $content;
-	}else{
-		$heading_content = $page;
-	}
+	$heading_content = isset($content) ? $content: $page;
 ?>
 
 <?php if($heading_content->headline_zeigen() == "true"): ?>
 <div class="row">
 	<div class="col-md-8">
 		<?php
-			snippet(get_molecule("heading"), array("content" => $heading_content, "class" => "h--hero" ));
+			atomicdesign::output("molecule", "heading", array("content" => $heading_content, "class" => "h--hero" ));
 		?>
 	</div>
 </div>
@@ -33,14 +29,14 @@
 	<?php
 	
 	// Bilder holen
-	$bilder = get_images_from_article( $container );
+	$bilder = structhelper::get_images_from_article( $container );
 	
 	// Dokumente holen
-	$docs = get_documents_from_article( $container );	
+	$docs = structhelper::get_documents_from_article( $container );	
 	
 	// Snip holen
-	$template = get_snip( $container->uid(), "default"); 			
-	$template = get_snip( $container->intendedTemplate(), $template);
+	$template = atomicdesign::get_snip( $container->uid(), "default"); 			
+	$template = atomicdesign::get_snip( $container->intendedTemplate(), $template);
 
 	snippet($template, array(
 		'content' 	=> $container, 

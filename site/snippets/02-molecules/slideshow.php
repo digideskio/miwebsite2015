@@ -4,7 +4,7 @@
 // Falls es nur ein Bild gibt, zeigen wir es an
 ########################################
 if(count($bilder["all"]) == 1):
-	snippet(get_atom("image"), array("bild" => $bilder["all"][0]));	
+	atomicdesign::output("atom", "image", array("bild" => $bilder["all"][0]));	
 else:
 
 	if(!isset($class)){ $class = ""; } 

@@ -16,8 +16,6 @@ require_once "assets/lib/less.php/Less.php";
 
 
 try{
-	$parser = new Less_Parser();
-	
 	$less_files = array( 'assets/css/less/above-the-fold.less' => '/' );
 	$options = array( 
 		'compress'=>true,
@@ -27,7 +25,7 @@ try{
 		'cache_dir' 		=> c::get('cachedir')
 	);
 
-	$css_file_name = Less_Cache::Get( $less_files, $options );
+	$css_file_name = Less_Cache::get( $less_files, $options );
 	echo file_get_contents( c::get('cachedir')."/".$css_file_name );
 
 }catch(Exception $e){
@@ -56,7 +54,7 @@ var init_actions = new Array();
 			<div class="logo">
 				<a href="<?php echo $site->homePage()->url(); ?>">
 			<?php
-				snippet(get_molecule("heading"), array("content" => $site ));
+				atomicdesign::output("molecule", "heading", array("content" => $site ));
 			?>
 				</a>
 			</div>
@@ -67,8 +65,8 @@ var init_actions = new Array();
 		<div class="col-md-12">
 			<div class="main-menu">
 			<?php
-				$items = make_menu_items($pages);
-				snippet(get_molecule("menu"), array("items" => $items ));
+				$items = structhelper::make_menu_items($pages);
+				atomicdesign::output("molecule", "menu", array("items" => $items ));
 			?>
 			</div>
 		</div>

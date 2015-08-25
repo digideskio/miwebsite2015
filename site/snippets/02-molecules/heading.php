@@ -3,12 +3,10 @@
 
 if(!isset($class)){ $class = ""; }
 
-if($content->headline() == ""){
-	snippet(get_atom("headline"), array("text" => $content->title(), "class" => $class));
-}else{
-	snippet(get_atom("headline"), array("text" => $content->headline(), "class" => $class));
-}
+$headline = ($content->headline() == "") ? $content->title(): $content->headline();
+atomicdesign::output("atom", "headline", array("text" => $headline, "class" => $class));
+
 if($content->subheadline() != ""){
-	snippet(get_atom("subheadline"), array("text" => $content->subheadline(), "class" => $class));
+	atomicdesign::output("atom", "subheadline", array("text" => $content->subheadline(), "class" => $class));
 }
 ?>

@@ -3,14 +3,14 @@
 
 <div class="head">
 	<?php 
-		snippet(get_molecule("heading"), array(
+		atomicdesign::output("molecule", "heading"), array(
 			"content" 	=> $content
 		));
 	?>
 </div>
 
 <?php 
-	snippet(get_molecule("slideshow"), array(
+	atomicdesign::output("molecule", "slideshow"), array(
 		"content" 	=> $content, 
 		"bilder" 	=> $bilder,
 		"kennung"	=> $content->slug(),

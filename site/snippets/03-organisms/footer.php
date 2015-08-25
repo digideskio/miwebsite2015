@@ -2,17 +2,17 @@
 	<div class="row">
 		<div class="col-md-4">
 			<?php
-			snippet(get_organism("site--content--adresse"));
+			atomicdesign::output("organism", "site--content--adresse");
 			?>
 		</div>
 		<div class="col-md-4">
 			<?php
-			snippet(get_organism("site--content--kontakt"));
+			atomicdesign::output("organism", "site--content--kontakt");
 			?>
 		</div>
 			<div class="col-md-4">
 			<?php
-			snippet(get_organism("site--content--social"));
+			atomicdesign::output("organism", "site--content--social");
 			?>
 		</div>
 	</div>
