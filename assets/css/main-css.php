@@ -69,9 +69,6 @@ class MainCSS {
                 // Refresh less cache
                 $this->refresh_less_cache();
             }
-            else {
-                $this->not_found_response("Less Cache is still valid!");
-            }
             
             $this->refresh_lumm_cache();
             
