@@ -5,6 +5,9 @@ include_once('../../config/custom-config.php');
 // Filename for persistent cache
 $css_cached_lumm = $custom_config["cachedir"] ."/style.css";
 
+// Filename of the main less file
+$main_less_filename = "main-css.less";
+
 // Any updates?
 $changes =  max(array(filemtime("less"), filemtime("less/00-base"), filemtime("less/01-atoms"), filemtime("less/02-molecules"), filemtime("less/03-organisms")));
 
@@ -15,7 +18,7 @@ if((file_exists($css_cached_lumm)) && ($changes < filemtime($css_cached_lumm))){
 	exit;
 }
 
-if((!file_exists("main-css.less")) || ($changes > filemtime("main-css.less"))){
+if((!file_exists($main_less_filename)) || ($changes > filemtime($main_less_filename))){
 	
 	// Core variables and mixins
 	$import = array(
@@ -47,20 +50,19 @@ if((!file_exists("main-css.less")) || ($changes > filemtime("main-css.less"))){
 	$less_stack = array_merge($base_less, $atoms_less, $molecules_less, $organisms_less);
 	
 	// generate Main less file
-	$main_less = "";
-	foreach($import as $file){ 		$main_less .= "@import '" . $file . "';\n"; }
-	foreach($less_stack as $file){ 	$main_less .= "@import '" . $file . "';\n"; }
-	file_put_contents("main-css.less", $main_less);
+	$main_less_content = "";
+	foreach($import as $file){		$main_less_content .= "@import '" . $file . "';\n"; }
+	foreach($less_stack as $file){  $main_less_content .= "@import '" . $file . "';\n"; }
+	file_put_contents($main_less_filename, $main_less_content);
 	exit;
-
 }
+
 
 // Generate CSS
 require_once "../lib/less.php/Less.php";
 
 try{
-	$parser = new Less_Parser();
-	$less_files = array( 'main-css.less' => '/' );
+	$less_files = array( $main_less_filename => '/' );
 	
 	$options = array( 
 		'compress'			=>	true,
@@ -80,6 +82,9 @@ try{
 	echo $css;
 
 }catch(Exception $e){
+	$server_protocol = isset($_SERVER['SERVER_PROTOCOL']) ? $_SERVER['SERVER_PROTOCOL']: "HTTP/1.1";
+	header($server_protocol." 404 Not Found");
+
     echo $e->getMessage();
 }
 
