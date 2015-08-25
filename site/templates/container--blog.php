@@ -1,4 +1,4 @@
-<?php $containers = additionalhelper::get_blog_container($site, $pages, $page, 200); ?>
+<?php $containers = structhelper::get_blog_container($site, $pages, $page, 200); ?>
 <?php atomicdesign::output("organism", "header"); ?>
 
 <!-- Template: container--blog -->
