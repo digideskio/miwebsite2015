@@ -59,3 +59,20 @@ Cache Dir
 ---------------------------------------
 */
 c::set('cachedir', $custom_config["cachedir"]);
+
+/*
+---------------------------------------
+StructHelper - TimThumb - Params
+---------------------------------------
+*/
+c::set('sh.timthumb.urlpath', '/assets/php/timthumb/images.php');
+
+c::set('sh.timthumb.normal.width'  , 800);
+c::set('sh.timthumb.normal.height' , 600);
+c::set('sh.timthumb.normal.quality',  80);
+
+c::set('sh.timthumb.thumb.width'   ,  60);
+c::set('sh.timthumb.thumb.height'  ,  60);
+c::set('sh.timthumb.thumb.quality' ,  95);
+c::set('sh.timthumb.thumb.zoomcrop',   1);
+c::set('sh.timthumb.thumb.sharpen' ,   1);

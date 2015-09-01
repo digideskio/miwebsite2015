@@ -133,43 +133,58 @@ class structhelper {
      * @return multidimensionales array mit bildern 
      */
     public static function get_images_from_article( $article, $prop = false ){
-	    $bilder = array();
-	    $bilder["all"] = array();
-	    $bilder["svgs"] = array(); // Ehemals SVGs, wurden dann aber in PNGs konvertiert wegen Darstellungsproblemen bei Android
-	    $bilder["pixel"] = array();
-	    $bilder["lg"] = array();
-	    $bilder["thumbs"] = array();
-	
-	    // Alle Bilder abklappern
+	    $images = array();
+	    $images["all"] = array();
+	    $images["svgs"] = array(); // Ehemals SVGs, wurden dann aber in PNGs konvertiert wegen Darstellungsproblemen bei Android
+	    $images["pixel"] = array();
+	    $images["lg"] = array();
+	    $images["thumbs"] = array();
+
+	    /* For a parameter overview see http://www.binarymoon.co.uk/2012/02/complete-timthumb-parameters-guide/ */
+	    $timthumb_params = array();
+	    $timthumb_params['normal'] = array(
+            'w' => self::get_or_else( c::get('sh.timthumb.normal.width')  , 800 ),
+            'h' => self::get_or_else( c::get('sh.timthumb.normal.height') , 600 ),
+            'q' => self::get_or_else( c::get('sh.timthumb.normal.quality'),  80 )
+        );
+	    $timthumb_params['thumb'] = array(
+            'w'  => self::get_or_else( c::get('sh.timthumb.thumb.width')   , 60 ),
+            'h'  => self::get_or_else( c::get('sh.timthumb.thumb.height')  , 60 ),
+            'q'  => self::get_or_else( c::get('sh.timthumb.thumb.quality') , 95 ),
+            'zc' => self::get_or_else( c::get('sh.timthumb.thumb.zoomcrop'),  1 ),
+            's'  => self::get_or_else( c::get('sh.timthumb.thumb.sharpen') ,  1 )
+        );
+
+	    // go through each image
 	    foreach ($article->images() as $img){
 		    switch (true) {
 			    case preg_match("=/icon_=", $img):
-				    $bilder["icon"] = $img->url();
+				    $images["icon"] = $img->url();
 				    break;
 				
 			    case preg_match("=/lg_=", $img):
-				    array_push($bilder["lg"], "/assets/php/timthumb/images.php?src=".$img->url()."&w=800&q=80");
+				    $images["lg"][] = self::construct_timthumb_path_url($img->url(), $timthumb_params['normal'], array('h')); /* Exclude height */
 				    break;
 				
 			    case preg_match("=svg.png=", $img):
-				    array_push($bilder["svgs"], "/assets/php/timthumb/images.php?src=".$img->url()."&w=800&q=80");
-				    array_push($bilder["all"],"/assets/php/timthumb/images.php?src=". $img->url()."&w=800&q=80");
+				    $images["svgs"][] = self::construct_timthumb_path_url($img->url(), $timthumb_params['normal'], array('h')); /* Exclude height */
+				    $images["all"][]  = self::construct_timthumb_path_url($img->url(), $timthumb_params['normal'], array('h')); /* Exclude height */
 				    break;
 			
 			    case $prop:
-				    array_push($bilder["pixel"], "/assets/php/timthumb/images.php?src=".$img->url()."&w=800&q=80");
-				    array_push($bilder["all"], "/assets/php/timthumb/images.php?src=".$img->url()."&w=800&q=80");
-				    array_push($bilder["thumbs"], "/assets/php/timthumb/images.php?src=".$img->url() ."&w=60&h=60&q=95&zc=1&s=1");
+				    $images["pixel"][]  = self::construct_timthumb_path_url($img->url(), $timthumb_params['normal'], array('h')); /* Exclude height */
+				    $images["all"][]    = self::construct_timthumb_path_url($img->url(), $timthumb_params['normal'], array('h')); /* Exclude height */
+				    $images["thumbs"][] = self::construct_timthumb_path_url($img->url(), $timthumb_params['thumb']);
 				    break;
 			
 			    default:
-				    array_push($bilder["pixel"], "/assets/php/timthumb/images.php?src=".$img->url()."&w=800&h=600&q=80");
-				    array_push($bilder["all"], "/assets/php/timthumb/images.php?src=".$img->url()."&w=800&h=600&q=80");
-				    array_push($bilder["thumbs"], "/assets/php/timthumb/images.php?src=".$img->url() ."&w=60&h=60&q=95&zc=1&s=1");
+				    $images["pixel"][]  = self::construct_timthumb_path_url($img->url(), $timthumb_params['normal']);
+				    $images["all"][]    = self::construct_timthumb_path_url($img->url(), $timthumb_params['normal']);
+				    $images["thumbs"][] = self::construct_timthumb_path_url($img->url(), $timthumb_params['thumb']);
 		    }
 	    }
 
-	    return $bilder;
+	    return $images;
     }
 
 
@@ -184,8 +199,8 @@ class structhelper {
 	    $docs["all"] = array();
 	    $docs["pdf"] = array(); // Ehemals SVGs, wurden dann aber in PNGs konvertiert wegen Darstellungsproblemen bei Android
 	    $docs["zip"] = array();
-	
-	
+
+
 	    // Alle Bilder abklappern
 	    foreach ($article->files() as $file){
 	
@@ -212,5 +227,47 @@ class structhelper {
 	    }
 
 	    return $docs;
+    }
+
+    /**
+     * Ist der Wert gesetzt und "wahr", wird er zurückgegeben, ansonsten der Default-Wert
+     *
+     * @author
+     * @param $val      Zu überprüfender Wert
+     * @param $else_val Default-Wert auf den zurückgefallen wird
+     * @return          Gültiger Wert
+     */
+    private static function get_or_else($val, $else_val) {
+        return $val ? $val: $else_val;
+    }
+
+    /**
+     * Konstruiert den Pfadanteil der URL zum timthumb-Script samt Parameter
+     *
+     * @author
+     * @param $src_url              URL zur Grafikdatei
+     * @param $params               Assoziatives Array mit den zu übergebenden GET-Parametern, wobei Schlüssel als Parameternamen fungieren
+     * @param $exclude_param_keys   Liste von Parameternamen, die ausgeschlossen werden sollen
+     * @return                      Konstruierter Pfadanteil zum timthumb-Script
+     */
+    private static function construct_timthumb_path_url($src_url, $params = array(), $exclude_param_keys = array()) {
+        if(!c::get('sh.timthumb.urlpath')) {
+            throw new Exception("Config key 'sh.timthumb.urlpath' is not set!");
+        }
+
+        /* Exclude unneeded params  */
+        $params = array_filter( $params,
+                                function($key) use($exclude_param_keys) {
+                                    return !in_array($key, $exclude_param_keys);
+                                },
+                                ARRAY_FILTER_USE_KEY);
+
+        $concated_params_arr = array_map( function($key, $val) {
+                                             return $key . "=" . $val;
+                                          },
+                                          array_keys($params),
+                                          $params);
+
+        return c::get('sh.timthumb.urlpath') . "?src=" . $src_url . '&' . implode($concated_params_arr, '&');
     }
 }
