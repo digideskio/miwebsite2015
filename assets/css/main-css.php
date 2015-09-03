@@ -100,7 +100,7 @@ class MainCSS {
 
     private function less_cache_valid($latest_mtime) {
         return      file_exists($this->main_less_filename)
-                &&  $changes < filemtime($this->main_less_filename);
+                &&  $latest_mtime < filemtime($this->main_less_filename);
     }
 
 
