@@ -99,8 +99,10 @@ class MainCSS {
 
 
     private function less_cache_valid($latest_mtime) {
-        return      file_exists($this->main_less_filename)
-                &&  $latest_mtime < filemtime($this->main_less_filename);
+        return      (       file_exists($this->cached_css_filepath)
+                        &&  $latest_mtime < filemtime($this->cached_css_filepath))
+                &&  (       file_exists($this->main_less_filename)
+                        &&  $latest_mtime < filemtime($this->main_less_filename));
     }
 
 
