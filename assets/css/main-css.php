@@ -5,34 +5,34 @@ class MainCSS {
     // Filename for persistent cache
     private $css_cached_lumm = "style.css";
 
-    // Filename of the main less file
-    private $main_less_filename = "main-css.less";
+    // Filepath given by scss_Cache
+    private $cached_css_filepath = "main-css.css";
 
-    // Less base directory
-    private $less_base_dir = "./less";
+    // Filename of the main scss file
+    private $main_scss_filename = "main-css.scss";
+
+    // scss base directory
+    private $scss_base_dir = "./scss";
 
     // Core variables and mixins
     private $import_directories = array(
-        "./less/variables_bootstrap.less",
-        "../lib/bootstrap/less/mixins.less",
-        "./less/variables_custom.less"
+        "./scss/variables_bootstrap.scss",
+        "../lib/bootstrap/assets/stylesheets/bootstrap/mixins.scss",
+        "./scss/variables_custom.scss"
     );
 
-    // AtomicDesign level less directories with containing less files
-    private $less_level_directories = array(
-        "./less/00-base",
-        "./less/01-atoms",
-        "./less/02-molecules",
-        "./less/03-organisms"
+    // AtomicDesign level scss directories with containing scss files
+    private $scss_level_directories = array(
+        "./scss/00-base",
+        "./scss/01-atoms",
+        "./scss/02-molecules",
+        "./scss/03-organisms"
     );
 
 
     // Config array
     private $config = array();
     
-    // Filepath given by Less_Cache
-    private $cached_css_filepath = "";
-
 
     public function __construct($config = array()) {
 
@@ -44,20 +44,20 @@ class MainCSS {
         }
 
         // Removing non-existent directories
-        $this->less_level_directories = array_filter($this->less_level_directories, function($dir) {
+        $this->scss_level_directories = array_filter($this->scss_level_directories, function($dir) {
             return file_exists($dir);
         });
 
-        // We also want to check the modification time of the parent dir (./less)
-        $less_level_directories_with_parent = array_merge( array($this->less_base_dir), $this->less_level_directories );
+        // We also want to check the modification time of the parent dir (./scss)
+        $scss_level_directories_with_parent = array_merge( array($this->scss_base_dir), $this->scss_level_directories );
 
         // Get the modification time of all directories
-        $less_level_directories_mtimes = array_map(function($dir) {
+        $scss_level_directories_mtimes = array_map(function($dir) {
             return filemtime($dir);
-        }, $less_level_directories_with_parent);
+        }, $scss_level_directories_with_parent);
 
         // Any updates?
-        $latest_mtime = max($less_level_directories_mtimes);
+        $latest_mtime = max($scss_level_directories_mtimes);
 
         // Checking if a up-to-date lumm cache exists
         if( $this->lumm_cache_valid($latest_mtime) ) {
@@ -65,9 +65,9 @@ class MainCSS {
             $this->serve_lumm_cache();
         }
         else {
-            if( !$this->less_cache_valid($latest_mtime) ) {
-                // Refresh less cache
-                $this->refresh_less_cache();
+            if( !$this->scss_cache_valid($latest_mtime) ) {
+                // Refresh scss cache
+                $this->refresh_scss_cache();
             }
             
             $this->refresh_lumm_cache();
@@ -98,16 +98,16 @@ class MainCSS {
     }
 
 
-    private function less_cache_valid($latest_mtime) {
+    private function scss_cache_valid($latest_mtime) {
         return      (       file_exists($this->cached_css_filepath)
                         &&  $latest_mtime < filemtime($this->cached_css_filepath))
-                &&  (       file_exists($this->main_less_filename)
-                        &&  $latest_mtime < filemtime($this->main_less_filename));
+                &&  (       file_exists($this->main_scss_filename)
+                        &&  $latest_mtime < filemtime($this->main_scss_filename));
     }
 
 
-    private function clear_less_cache() {
-        // Clear less cache
+    private function clear_scss_cache() {
+        // Clear scss cache
         $cached_files = array_filter(glob( $this->config["cachedir"] ), 'is_file');
 
         foreach($cached_files as $file){
@@ -116,40 +116,35 @@ class MainCSS {
     }
 
 
-    private function refresh_less_cache() {
-        // Clearing the less cache
-        $this->clear_less_cache();
+    private function refresh_scss_cache() {
+        // Clearing the scss cache
+        $this->clear_scss_cache();
 
-        // Getting less files
-        $less_stack = array();
-        foreach($this->less_level_directories as $dir) {
-            $less_stack = array_merge( $less_stack, glob($dir . "/*.less") );
+        // Getting scss files
+        $scss_stack = array();
+        foreach($this->scss_level_directories as $dir) {
+            $scss_stack = array_merge( $scss_stack, glob($dir . "/*.scss") );
         }
 
-        // Generating the main less file
-        $main_less_content = "";
-        foreach($this->import_directories as $file){    $main_less_content .= "@import '" . $file . "';\n"; }
-        foreach($less_stack as $file){                  $main_less_content .= "@import '" . $file . "';\n"; }
-        file_put_contents($this->main_less_filename, $main_less_content);
+        // Generating the main scss file
+        $main_scss_content = "";
+        foreach($this->import_directories as $file){    $main_scss_content .= "@import '" . $file . "';\n"; }
+        foreach($scss_stack as $file){                  $main_scss_content .= "@import '" . $file . "';\n"; }
+        file_put_contents($this->main_scss_filename, $main_scss_content);
         
         // Generate the CSS
-        require_once "../lib/less.php/Less.php";
+        require_once '../lib/scssphp/scss.inc.php';
 
-        try{
-            $less_files = array( $this->main_less_filename => '/' );
-    
-            $options = array(
-                'compress'          => true,
-                'sourceMap'         => true,
-                'sourceMapWriteTo'  => './sourcemaps/main.map',
-                'sourceMapURL'      => './sourcemaps/main.map',
-                'cache_dir'         => $this->config["cachedir"]
-            );
-
-            $css_file_name = Less_Cache::Get( $less_files, $options );
-            $this->cached_css_filepath = $this->config["cachedir"]."/".$css_file_name;
+        $scss = new Leafo\ScssPhp\Compiler();
+        //$scss->setFormatter('Leafo\ScssPhp\Formatter\Compressed');
+        
+        try {
+            $css = $scss->compile('@import "'. $this->main_scss_filename .'";');
             
-        } catch(Exception $e){
+            $this->cached_css_filepath = $this->config["cachedir"]."/".$this->cached_css_filepath;
+            file_put_contents($this->cached_css_filepath, $css);
+        }
+        catch(Exception $e) {
             // Responding with the exception message
             $this->not_found_response($e->getMessage());
         }

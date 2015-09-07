@@ -12,26 +12,28 @@
 	
 <style>
 <?php
-require_once "assets/lib/less.php/Less.php";
+require_once "assets/lib/scssphp/scss.inc.php";
 
+$scss_filepath = "assets/css/scss/above-the-fold.scss";
+$css_cache_filepath = "assets/css/cached/above-the-fold.css";
 
 try{
-	$less_files = array( 'assets/css/less/above-the-fold.less' => '/' );
-	$options = array( 
-		'compress'=>true,
-		'sourceMap'         => true,
-	    'sourceMapWriteTo'  => 'assets/css/sourcemaps/above-the-fold.map',
-	    'sourceMapURL'      => 'assets/css/sourcemaps/above-the-fold.map',
-		'cache_dir' 		=> c::get('cachedir')
-	);
+    $scss = new Leafo\ScssPhp\Compiler();
+    $scss->setFormatter('Leafo\ScssPhp\Formatter\Compressed');
+    
+    if(     file_exists($css_cache_filepath)
+        &&  filemtime($css_cache_filepath) > filemtime($scss_filepath)) {
+        $css = file_get_contents($css_cache_filepath);
+    }
+    else {
+        $css = $scss->compile("@import '". $scss_filepath ."'");
+        file_put_contents($css_cache_filepath, $css);        
+    }
 
-	$css_file_name = Less_Cache::get( $less_files, $options );
-	echo file_get_contents( c::get('cachedir')."/".$css_file_name );
-
+    echo $css;
 }catch(Exception $e){
     echo $e->getMessage();
 }
-
 ?>
 </style>
 
