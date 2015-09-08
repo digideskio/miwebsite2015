@@ -262,12 +262,12 @@ class structhelper {
                                 },
                                 ARRAY_FILTER_USE_KEY);
 
-        $concated_params_arr = array_map( function($key, $val) {
+        $concatenated_params_arr = array_map( function($key, $val) {
                                              return $key . "=" . $val;
                                           },
                                           array_keys($params),
                                           $params);
 
-        return c::get('sh.timthumb.urlpath') . "?src=" . $src_url . '&' . implode($concated_params_arr, '&');
+        return c::get('sh.timthumb.urlpath') . "?src=" . $src_url . '&' . implode($concatenated_params_arr, '&');
     }
 }
