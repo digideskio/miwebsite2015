@@ -67,12 +67,18 @@ StructHelper - TimThumb - Params
 */
 c::set('sh.timthumb.urlpath', '/assets/php/timthumb/images.php');
 
-c::set('sh.timthumb.normal.width'  , 800);
-c::set('sh.timthumb.normal.height' , 600);
-c::set('sh.timthumb.normal.quality',  80);
+/* For a parameter overview see http://www.binarymoon.co.uk/2012/02/complete-timthumb-parameters-guide/ */
 
-c::set('sh.timthumb.thumb.width'   ,  60);
-c::set('sh.timthumb.thumb.height'  ,  60);
-c::set('sh.timthumb.thumb.quality' ,  95);
-c::set('sh.timthumb.thumb.zoomcrop',   1);
-c::set('sh.timthumb.thumb.sharpen' ,   1);
+c::set('sh.timthumb.normal', array(
+    'w' => 800,
+    'h' => 600,
+    'q' => 80
+));
+
+c::set('sh.timthumb.thumb', array(
+    'w'  => 60,
+    'h'  => 60,
+    'q'  => 95,
+    'zc' =>  1,
+    's'  =>  1
+));
