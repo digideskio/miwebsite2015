@@ -136,7 +136,7 @@ class MainCSS {
         require_once '../lib/scssphp/scss.inc.php';
 
         $scss = new Leafo\ScssPhp\Compiler();
-        //$scss->setFormatter('Leafo\ScssPhp\Formatter\Compressed');
+        $scss->setFormatter('Leafo\ScssPhp\Formatter\Compressed');
         
         try {
             $css = $scss->compile('@import "'. $this->main_scss_filename .'";');
