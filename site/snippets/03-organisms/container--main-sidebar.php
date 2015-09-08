@@ -31,14 +31,9 @@
 			
 			// Dokumente holen
 			$docs = structhelper::get_documents_from_article( $container );
-			
-			// Snip holen
-			$template = atomicdesign::get_snip( $container->uid(), "default" ); 			
-			$template = atomicdesign::get_snip( $container->intendedTemplate(), $template );
 
-			snippet($template, array(
+			atomicdesign::resolve_and_output($container, array(
 				'content' 	=> $container, 
-				'snippet' 	=> $template,
 				'class' 	=> $container->layout(),
 				'bilder' 	=> $bilder,
 				'docs'		=> $docs
@@ -55,26 +50,20 @@
 			}else{
 				$containers = $page->find("sidebar")->children()->visible();
 			}
-			foreach($containers as $container):
-			
-			// Bilder holen
-			$bilder = structhelper::get_images_from_article( $container );
-			
-			// Dokumente holen
-			$docs = structhelper::get_documents_from_article( $container );
-	
-			// Snip holen
-			$template = atomicdesign::get_snip( $container->uid(), "default"); 			
-			$template = atomicdesign::get_snip( $container->intendedTemplate(), $template);
+			foreach($containers as $container) {
+			    // Bilder holen
+			    $bilder = structhelper::get_images_from_article( $container );
 
-			snippet($template, array(
-				'content' 	=> $container, 
-				'snippet' 	=> $template,
-				'class' 	=> $container->layout(),
-				'bilder'	=> $bilder,
-				'docs'		=> $docs
-			)); 
+			    // Dokumente holen
+			    $docs = structhelper::get_documents_from_article( $container );
+
+                atomicdesign::resolve_and_output($container, array(
+				    'content' 	=> $container,
+				    'class' 	=> $container->layout(),
+				    'bilder'	=> $bilder,
+				    'docs'		=> $docs
+			    ));
+		    }
 		?>
-		<?php endforeach ?>
 	</div>
 </div>

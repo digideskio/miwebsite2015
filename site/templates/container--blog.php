@@ -8,13 +8,8 @@
 		<div class="col-md-12">
 			<?php
 				
-			// Snip holen
-			$template = atomicdesign::get_snip( $container->uid(), "default"); 
-			$template = atomicdesign::get_snip( $container->intendedTemplate(), $template);
-		
-			snippet($template, array(
-				'content' => $container, 
-				'snippet' => $template,
+			atomicdesign::resolve_and_output($container, array(
+				'content' => $container,
 				'class' => $container->layout()
 			)); 
 			?>

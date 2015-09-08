@@ -79,13 +79,8 @@ if($content->type_of_layout()=="excerpt"): ?>
 		<div class="col-md-12 <?php echo $content->type_of_layout(); ?>">
 			<?php
 				
-			// Snip holen
-			$template = atomicdesign::get_snip( $container->uid(), "default"); 
-			$template = atomicdesign::get_snip( $container->intendedTemplate(), $template);
-		
-			snippet($template, array(
+			atomicdesign::resolve_and_output($container, array(
 				'content' 	=> $container, 
-				'snippet' 	=> $template,
 				'class' 	=> $container->layout(),
 				'docs' 		=> $docs
 			)); 

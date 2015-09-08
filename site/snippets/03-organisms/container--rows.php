@@ -33,14 +33,9 @@
 	
 	// Dokumente holen
 	$docs = structhelper::get_documents_from_article( $container );	
-	
-	// Snip holen
-	$template = atomicdesign::get_snip( $container->uid(), "default"); 			
-	$template = atomicdesign::get_snip( $container->intendedTemplate(), $template);
 
-	snippet($template, array(
+	atomicdesign::resolve_and_output($container, array(
 		'content' 	=> $container, 
-		'snippet' 	=> $template,
 		'class' 	=> $container->layout(),
 		'bilder' 	=> $bilder,
 		'docs'		=> $docs

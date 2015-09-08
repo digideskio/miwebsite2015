@@ -40,9 +40,9 @@ class atomicdesign {
     }
     
     /**
-     * Übergbt der 'snippet'-Funktion den Pfad zu einem AtomicDesign-
-     * 
-     * @author 
+     * Übergibt der 'snippet'-Funktion den Pfad zu einem AtomicDesign-Level
+     *
+     * @author
      * @param $level    Name der AtomicDesign-Ebene (vereinfacht)
      * @param $uid      Eindeutiger Name eines existierenden Ebenen-Blocks
      * @param $vars     Array von Variablen, die im Snippet Verwendung finden
@@ -53,9 +53,27 @@ class atomicdesign {
         if(!isset(self::$levelmap[$level])) {
             throw new Exception("AtomicDesign-Level not found: ".$level);
         }
-        
+
         $template = self::get_snip($uid, false, self::$levelmap[$level]);
-        
+
+        return snippet($template, $vars, $return); // the function 'snippet' is introduced by kirby
+    }
+
+    /**
+     * Übergibt der 'snippet'-Funktion den Pfad zu einem AtomicDesign-
+     *
+     * @author
+     * @param $container    Kirby-Container bzw. -Page
+     * @param $vars         Array von Variablen, die im Snippet Verwendung finden
+     * @param $return       Rückgabe des konstruierten Snippet aus AtomicDesign-Ebenen-Blocks
+     * @return              Konstruiertes Snippet aus Atomic-Ebenen-Blocks
+     */
+    public static function resolve_and_output( $container, $vars = array(), $return = false ) {
+
+        // Get template name
+	    $template = self::get_snip( $container->uid(), "default");
+	    $template = self::get_snip( $container->intendedTemplate(), $template);
+
         return snippet($template, $vars, $return); // the function 'snippet' is introduced by kirby
     }
 }
