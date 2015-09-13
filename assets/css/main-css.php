@@ -94,7 +94,7 @@ class MainCSS {
         $css = @file_get_contents( $this->cached_css_filepath );
 
         // Create a more persistent cache file
-        $sucess = file_put_contents($this->css_cached_lumm, $css);
+        $success = file_put_contents($this->css_cached_lumm, $css);
 
         if(!$success) {
             $this->not_found_response("Could not refresh lumm cache: '". $this->css_cached_lumm ."'");
@@ -137,7 +137,7 @@ class MainCSS {
         foreach($scss_stack as $file){                  $main_scss_content .= "@import '" . $file . "';\n"; }
         $success = file_put_contents($this->main_scss_filename, $main_scss_content);
 
-        if(!$sucess) {
+        if(!$success) {
             $this->not_found_response("Could not update: '". $this->main_scss_filename ."'!");
             die();
         }
@@ -152,9 +152,9 @@ class MainCSS {
             $css = $scss->compile('@import "'. $this->main_scss_filename .'";');
 
             $this->cached_css_filepath = $this->config["cachedir"]."/".$this->cached_css_filepath;
-            $sucess = file_put_contents($this->cached_css_filepath, $css);
+            $success = file_put_contents($this->cached_css_filepath, $css);
 
-            if(!$sucess)
+            if(!$success)
                 throw new Exception("Could not update: '". $this->cached_css_filepath ."'");
         }
         catch(Exception $e) {
