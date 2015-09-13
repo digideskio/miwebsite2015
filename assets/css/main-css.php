@@ -111,19 +111,25 @@ class MainCSS {
     }
 
 
-    private function clear_scss_cache() {
+    private function clear_cache() {
         // Clear scss cache
-        $cached_files = array_filter(glob( $this->config["cachedir"] . '/*' ), 'is_file');
+        $cached_files = array(
+            $this->css_cached_lumm,
+            $this->cached_css_filepath
+        );
 
         foreach($cached_files as $file){
-            unlink($file);
+            $file = $this->config["cachedir"] . DIRECTORY_SEPARATOR . $file;
+
+            if(file_exists($file))
+                unlink($file);
         }
     }
 
 
     private function refresh_scss_cache() {
         // Clearing the scss cache
-        $this->clear_scss_cache();
+        $this->clear_cache();
 
         // Getting scss files
         $scss_stack = array();
