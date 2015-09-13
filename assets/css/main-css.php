@@ -85,16 +85,21 @@ class MainCSS {
 
 
     private function serve_lumm_cache() {
-        $content = file_get_contents($this->css_cached_lumm);
+        $content = @file_get_contents($this->css_cached_lumm);
         $this->ok_response($content);
     }
 
 
     private function refresh_lumm_cache() {
-        $css = file_get_contents( $this->cached_css_filepath );
-        
+        $css = @file_get_contents( $this->cached_css_filepath );
+
         // Create a more persistent cache file
-        file_put_contents($this->css_cached_lumm, $css);
+        $sucess = file_put_contents($this->css_cached_lumm, $css);
+
+        if(!$success) {
+            $this->not_found_response("Could not refresh lumm cache: '". $this->css_cached_lumm ."'");
+            die();
+        }
     }
 
 
@@ -108,7 +113,7 @@ class MainCSS {
 
     private function clear_scss_cache() {
         // Clear scss cache
-        $cached_files = array_filter(glob( $this->config["cachedir"] ), 'is_file');
+        $cached_files = array_filter(glob( $this->config["cachedir"] . '/*' ), 'is_file');
 
         foreach($cached_files as $file){
             unlink($file);
@@ -130,8 +135,13 @@ class MainCSS {
         $main_scss_content = "";
         foreach($this->import_directories as $file){    $main_scss_content .= "@import '" . $file . "';\n"; }
         foreach($scss_stack as $file){                  $main_scss_content .= "@import '" . $file . "';\n"; }
-        file_put_contents($this->main_scss_filename, $main_scss_content);
-        
+        $success = file_put_contents($this->main_scss_filename, $main_scss_content);
+
+        if(!$sucess) {
+            $this->not_found_response("Could not update: '". $this->main_scss_filename ."'!");
+            die();
+        }
+
         // Generate the CSS
         require_once '../lib/scssphp/scss.inc.php';
 
@@ -140,9 +150,12 @@ class MainCSS {
         
         try {
             $css = $scss->compile('@import "'. $this->main_scss_filename .'";');
-            
+
             $this->cached_css_filepath = $this->config["cachedir"]."/".$this->cached_css_filepath;
-            file_put_contents($this->cached_css_filepath, $css);
+            $sucess = file_put_contents($this->cached_css_filepath, $css);
+
+            if(!$sucess)
+                throw new Exception("Could not update: '". $this->cached_css_filepath ."'");
         }
         catch(Exception $e) {
             // Responding with the exception message
