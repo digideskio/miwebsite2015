@@ -103,7 +103,7 @@ $icon-grid: 30px;
 	vertical-align: bottom;
 }
 .newicon-block{
-	@includeicon(74,0);
+	@include icon(74,0);
 	vertical-align: bottom;
 }
 .newicon-grid{
