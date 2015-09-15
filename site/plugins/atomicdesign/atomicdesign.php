@@ -73,7 +73,10 @@ class atomicdesign {
         // Get template name
 	    $template = self::get_snip( $container->uid(), "default");
 	    $template = self::get_snip( $container->intendedTemplate(), $template);
-
+        
+        if(!isset($vars['snippet']))
+            $vars['snippet'] = $template;
+        
         return snippet($template, $vars, $return); // the function 'snippet' is introduced by kirby
     }
 }
