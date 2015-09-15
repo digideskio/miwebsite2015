@@ -1,6 +1,6 @@
 <?php atomicdesign::output("organism", "header"); ?>
 
-<!-- Template: container--rows -->
+<!-- Template: container--article -->
 <main class="main" role="main">
 
 	<section class="container">
