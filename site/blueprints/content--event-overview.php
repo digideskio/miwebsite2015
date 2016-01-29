@@ -1,0 +1,1 @@
+../../../../kirby-km/km-kirby-tools/blueprints/content--event-overview.php

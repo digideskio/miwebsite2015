@@ -1,8 +1,9 @@
 <?php if(!defined('KIRBY')) exit ?>
 
-title: Complete Row (Container)
+title: Multiple Cols (Container)
 pages:
   template:
+  	- container--rows
   	- content--article
   	- content--bighead
   	- content--video
@@ -11,15 +12,12 @@ pages:
   	- content--event-overview
   	- content--slideshow
   	- content--form-builder
-    - container--rows
-    - container--cols
-files: 
-	sortable: true
+files:  false
 fields:
   info:
-  	label: Complete Row (Container)
+  	label: Multiple Cols (Container)
   	type: info
-  	text: This template shows all subpages in a own row.
+  	text: This template shows all subpages in a own column
   	width: 1/2
   visible:
     label: Visible Data
@@ -47,19 +45,3 @@ fields:
       text: show above text
       subhead: show in subheader
       row: show in row above
-      
-  trennlinie:
-    label: Horizontal Ruler
-    type: radiosingleton
-    width: 1/2
-    options:
-      hide: hide
-      show: show
-      
-  behavior_type:
-    label: Behavior
-    type: radiosingleton
-    options:
-      standard: standard
-      accordion-closed: accordion, closed
-      accordion-opened: accordion, opened
