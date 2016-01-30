@@ -22,4 +22,3 @@
 </section>
 <?php snippet('sidebar') ?>
 <?php snippet('footer') ?>
-

@@ -1,0 +1,107 @@
+/*!
+ * Bootstrap v4.0.0-alpha.2 (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ */
+
+// Core variables and mixins
+@import "variables";
+@import "mixins";
+
+// Reset and dependencies
+@import "normalize";
+@import "print";
+
+// Core CSS
+@import "reboot";
+@import "type";
+@import "images";
+@import "code";
+@import "grid";
+@import "tables";
+@import "forms";
+@import "buttons";
+
+// Components
+@import "animation";
+@import "dropdown";
+@import "button-group";
+@import "input-group";
+@import "custom-forms";
+@import "nav";
+@import "navbar";
+@import "card";
+@import "breadcrumb";
+@import "pagination";
+@import "pager";
+@import "labels";
+@import "jumbotron";
+@import "alert";
+@import "progress";
+@import "media";
+@import "list-group";
+@import "responsive-embed";
+@import "close";
+
+// Components w/ JavaScript
+//@import "modal";
+//@import "tooltip";
+//@import "popover";
+//@import "carousel";
+
+// Utility classes
+@import "utilities";
+@import "utilities-background";
+@import "utilities-spacing";
+@import "utilities-responsive";
+
+
+/* MI Stuff
+  Wir folgen hier mal den CSS Konventionen des rscss Systems: http://rscss.io/
+=======================================================================================*/
+
+
+/* Defaults
+=======================================================================================*/
+
+$basefontsize: 1rem;
+$basemargin: $grid-gutter-width /2;
+
+.page-header{
+
+  padding-top: $basemargin;
+
+  .logo{
+    width: 100%;
+    height: auto;
+
+  }
+
+  .title{
+    font-weight: 700;
+    > .-minor{
+      font-weight: 300;
+    }
+  }
+
+  .navigation{
+    font-size: $basefontsize * 1.5;
+    font-weight: 300;
+
+    .nav-item{
+      border-bottom: solid 1px #000;
+
+      > .nav-link{
+        display: block;
+      }
+    }
+
+    .nav-item:first-child{
+      border-top: solid 1px #000;
+    }
+  }
+
+}
+
+
+

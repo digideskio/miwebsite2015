@@ -1,9 +1,9 @@
-<?php 
+<?php
 /** Die Klasse einbinden **/
-require_once("../../lib/twitter-api-php/TwitterAPIExchange.php"); 
-include_once('../../../config/custom-config.php');
+require_once("../../lib/twitter-api-php/TwitterAPIExchange.php");
+include_once('../../../../config/custom-config.php');
 
-/** Hier kommen die Codes der APP rein **/ 
+/** Hier kommen die Codes der APP rein **/
 $settings = $custom_config["twitter_data"];
 
 # konvertiert rfc timstamp zu unix ts
@@ -35,7 +35,7 @@ if(isset($_GET["class"])){ $class = $_GET["class"]; }
 
 /** Perform a GET request and echo the response **/
 /** Note: Set the GET field BEFORE calling buildOauth(); **/
-$url = 'https://api.twitter.com/1.1/statuses/user_timeline.json';
+$url = 'https://api.twitter.com/1.1/statuses/home_timeline.json';
 $getfield = '?screen_name='.$settings["screen_name"].'&count='.$settings["shown_items"];
 $requestMethod = 'GET';
 $twitter = new TwitterAPIExchange($settings);
@@ -46,12 +46,17 @@ $response = $twitter->setGetfield($getfield)
 $result=json_decode($response, true);
 
 if(sizeof($result) > 0):
-	foreach($result as $item): ?>
+	foreach($result as $item):
+  	$user = $item["user"];
+    $skip = $custom_config["twitter_data"]["skip_user"];
 
+    if (in_array($user["screen_name"], $skip)) { continue; }
+	?>
 <div class="<?php echo $class; ?>">
 	<div class="tweet">
 		<p class="tweet__body"><?php echo autolink($item["text"]); ?></p>
 		<div class="tweet__foot">
+  		<span>@<?=$user["name"]; ?></span>
 			<time class="time"><?php echo convert_date($item["created_at"]); ?></time>
 			<div class="interaction-bar">
 				<a class="btn btn-default interaction-bar__item" href="https://twitter.com/intent/tweet?in_reply_to=<?php echo $item["id"]; ?>"><span>t</span><span class="show-on-hover">weet</span></a>
@@ -62,7 +67,7 @@ if(sizeof($result) > 0):
 	</div>
 </div>
 
-<?php 
-	endforeach; 
+<?php
+	endforeach;
 endif;
 ?>

@@ -70,8 +70,8 @@ class FTest extends PHPUnit_Framework_TestCase {
   }
 
   public function testNiceSize() {
-    $this->assertEquals('37 b', f::niceSize($this->contentFile));
-    $this->assertEquals('37 b', f::niceSize(37));
+    $this->assertEquals('37 B', f::niceSize($this->contentFile));
+    $this->assertEquals('37 B', f::niceSize(37));
   }
 
   public function testModified() {
@@ -89,6 +89,8 @@ class FTest extends PHPUnit_Framework_TestCase {
     $this->assertEquals('archive', f::type('zip'));
     $this->assertEquals('code', f::type('css'));
     $this->assertEquals('code', f::type('content.php'));
+    $this->assertEquals('code', f::type('py'));
+    $this->assertEquals('code', f::type('java'));
 
   }
 

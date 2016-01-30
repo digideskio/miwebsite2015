@@ -5,7 +5,6 @@
 
 <!-- Content Block -->
 <?php
-
 atomicdesign::output("organism","container--rows"); ?>
 
 <!-- EO-Content Block -->
