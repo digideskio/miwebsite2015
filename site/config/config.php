@@ -59,3 +59,11 @@ Cache Dir
 ---------------------------------------
 */
 c::set('cachedir', $custom_config["cachedir"]);
+
+c::set('atomic-snippet–prefix', "atomic/");
+c::set('teaser-classes', array(
+  "teaser-overview"       => "card-columns",
+  "teaser-item"           => "card",
+  "teaser-item-template"  => "card",
+  "wrap"                  => true
+));

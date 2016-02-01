@@ -1,0 +1,81 @@
+Info: 
+
+----
+
+Visible: 
+
+----
+
+Title: Neues aus der Medieninformatik
+
+----
+
+Hide-in-lang: false
+
+----
+
+Invisible: 
+
+----
+
+Meta-title: 
+
+----
+
+Keywords: 
+
+----
+
+Desc: 
+
+----
+
+Facebook-title: 
+
+----
+
+Facebook: 
+
+----
+
+Layout: 
+
+----
+
+Trennlinie: hide
+
+----
+
+Subhead: 
+
+----
+
+Padding-at-top: 
+
+----
+
+Freigabelinie: 
+
+----
+
+Freigabe: false
+
+----
+
+Headline-position: row
+
+----
+
+Behavior-type: standard
+
+----
+
+Text: 
+
+----
+
+Color-class: normal
+
+----
+
+Layout-type: layout-xsmall-16zu9

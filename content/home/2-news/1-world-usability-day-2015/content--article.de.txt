@@ -1,0 +1,106 @@
+Info: 
+
+----
+
+Visible: 
+
+----
+
+Title: World Usability Day 2015
+
+----
+
+Hide-in-lang: false
+
+----
+
+Text: 
+
+Der weltweit stattfindende „World Usability Day" hat dieses Jahr als Fokusthema „Innovation" und auch an der TH Köln wurde ein interessantes Vortragsprogramm zusammen gestellt. Neben Thomas Geis (ProContext Consulting GmbH) und Gunnar Tacke (Capgemini Deutschland GmbH) werden auch zwei ehemalige Studenten der Medieninformatik jeweils einen Fachvortrag halten: Tim Schneider (Railslove GmbH) und Christopher Messner (CI Mobile Minds GmbH).
+
+Eine Anmeldung ist nicht erforderlich. Weitere Informationen zum Programm und den Referenten findet Ihr (link: http://www.wud-koeln.de/home text: hier) .
+
+## Ort
+Campus Südstadt
+Mevissensaal
+Claudiusstraße 1
+50678 Köln
+
+----
+
+Columns: 
+
+- 
+  noc: "1"
+  text2: ""
+  text3: ""
+
+----
+
+Invisible: 
+
+----
+
+Date: 
+
+----
+
+Showdate: false
+
+----
+
+Autor: 
+
+----
+
+Layout: 
+
+----
+
+Headline-position: text
+
+----
+
+Layout-switcher: 
+
+- 
+  noic: "4"
+  notc: "1"
+  otc: left
+  appearance: normal
+
+----
+
+Behavior-type: standard
+
+----
+
+Color-class: normal
+
+----
+
+Teaser-style: 
+
+----
+
+Home: 0
+
+----
+
+Display-data: headline, link
+
+----
+
+Teasertext: 
+
+----
+
+Select-image: 
+
+----
+
+Freigabelinie: 
+
+----
+
+Freigabe: false

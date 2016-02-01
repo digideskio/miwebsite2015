@@ -320,7 +320,7 @@ html {
 }
 
 html {
-  font-size: 16px;
+  font-size: 14px;
 
   -webkit-tap-highlight-color: transparent;
 }
@@ -516,19 +516,19 @@ h1, h2, h3, h4, h5, h6,
 }
 
 h1 {
-  font-size: 2.5rem;
-}
-
-h2 {
   font-size: 2rem;
 }
 
-h3 {
+h2 {
   font-size: 1.75rem;
 }
 
-h4 {
+h3 {
   font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
 }
 
 h5 {
@@ -540,19 +540,19 @@ h6 {
 }
 
 .h1 {
-  font-size: 2.5rem;
-}
-
-.h2 {
   font-size: 2rem;
 }
 
-.h3 {
+.h2 {
   font-size: 1.75rem;
 }
 
-.h4 {
+.h3 {
   font-size: 1.5rem;
+}
+
+.h4 {
+  font-size: 1.25rem;
 }
 
 .h5 {
@@ -626,8 +626,8 @@ mark,
 }
 
 .dl-horizontal {
-  margin-right: -1.875rem;
-  margin-left: -1.875rem;
+  margin-right: -1.275rem;
+  margin-left: -1.275rem;
 }
 
 .dl-horizontal::after {
@@ -763,8 +763,8 @@ pre code {
 }
 
 .container {
-  padding-right: .9375rem;
-  padding-left: .9375rem;
+  padding-right: .6375rem;
+  padding-left: .6375rem;
   margin-right: auto;
   margin-left: auto;
 }
@@ -794,8 +794,8 @@ pre code {
 }
 
 .container-fluid {
-  padding-right: .9375rem;
-  padding-left: .9375rem;
+  padding-right: .6375rem;
+  padding-left: .6375rem;
   margin-right: auto;
   margin-left: auto;
 }
@@ -805,8 +805,8 @@ pre code {
   display: -webkit-flex;
   display: -ms-flexbox;
   display:         flex;
-  margin-right: -.9375rem;
-  margin-left: -.9375rem;
+  margin-right: -.6375rem;
+  margin-left: -.6375rem;
 
   -webkit-flex-wrap: wrap;
       -ms-flex-wrap: wrap;
@@ -816,8 +816,8 @@ pre code {
 .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12 {
   position: relative;
   min-height: 1px;
-  padding-right: .9375rem;
-  padding-left: .9375rem;
+  padding-right: .6375rem;
+  padding-left: .6375rem;
 }
 
 .col-xs-1 {
@@ -4263,7 +4263,7 @@ input[type="button"].btn-block {
 }
 
 .card-block {
-  padding: 1.25rem;
+  padding: .75rem;
 }
 
 .card-title {
@@ -4284,17 +4284,17 @@ input[type="button"].btn-block {
 }
 
 .card-link + .card-link {
-  margin-left: 1.25rem;
+  margin-left: .75rem;
 }
 
 .card-header {
-  padding: .75rem 1.25rem;
+  padding: .75rem .75rem;
   background-color: #f5f5f5;
   border-bottom: 1px solid #e5e5e5;
 }
 
 .card-footer {
-  padding: .75rem 1.25rem;
+  padding: .75rem .75rem;
   background-color: #f5f5f5;
   border-top: 1px solid #e5e5e5;
 }
@@ -6145,13 +6145,103 @@ a.bg-danger:focus {
 =======================================================================================*/
 /* Defaults
 =======================================================================================*/
+/* Helper
+=======================================================================================*/
+.scale {
+  width: 100%;
+}
+
+.section.head {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.section.head > .subheadline {
+  font-weight: 700;
+}
+
+/* Globals
+=======================================================================================*/
+body {
+  position: relative;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, .5)));
+  background-image: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, .5) 100%);
+  background-image:      -o-linear-gradient(top, transparent 0%, rgba(0, 0, 0, .5) 100%);
+  background-image:         linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, .5) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=0);
+  background-repeat: repeat-x;
+}
+
+body > section {
+  margin-bottom: .6375rem;
+  background-color: #fff;
+}
+
+/* Overrides
+=======================================================================================*/
+@media (max-width: 544px) {
+  .card-block {
+    position: absolute;
+    top: auto;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: .31875rem;
+    padding-top: 1.275rem;
+    padding-bottom: 0;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, .8)));
+    background-image: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, .8) 100%);
+    background-image:      -o-linear-gradient(top, transparent 0%, rgba(0, 0, 0, .8) 100%);
+    background-image:         linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, .8) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#CC000000', GradientType=0);
+    background-repeat: repeat-x;
+  }
+  .card-block .card-title {
+    margin-top: 1.275rem;
+    color: #fff;
+  }
+}
+
+/* Components
+=======================================================================================*/
 .page-header {
-  padding-top: .9375rem;
+  padding-top: .6375rem;
+  padding-bottom: .6375rem;
+  margin-bottom: .6375rem;
+  background-color: #fff;
 }
 
 .page-header .logo {
+  -webkit-transition: all 400ms;
+       -o-transition: all 400ms;
+          transition: all 400ms;
+}
+
+.page-header #mi-box {
+  width: 50%;
+}
+
+.page-header #mi-box.tiny {
+  width: 60px;
+}
+
+.page-header #mi-unten {
   width: 100%;
-  height: auto;
+  margin-top: 1.9125rem;
+}
+
+.page-header #mi-unten.tiny {
+  opacity: 0;
+}
+
+.page-header .navbar {
+  padding: 0;
+  background-color: #fff;
+}
+
+.page-header .navbar.navbar-fixed-top {
+  padding: .6375rem;
+  border-bottom: solid 1px #d16;
 }
 
 .page-header .title {
@@ -6163,19 +6253,15 @@ a.bg-danger:focus {
 }
 
 .page-header .navigation {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 300;
 }
 
 .page-header .navigation .nav-item {
-  border-bottom: solid 1px #000;
+  border-top: solid 1px #000;
 }
 
 .page-header .navigation .nav-item > .nav-link {
   display: block;
-}
-
-.page-header .navigation .nav-item:first-child {
-  border-top: solid 1px #000;
 }
 /*# sourceMappingURL=bootstrap.css.map */

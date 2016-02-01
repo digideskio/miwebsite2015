@@ -4,7 +4,7 @@
 
 ?>
 
-<nav class="navigation">
+<nav id="main-navigation" class="navigation">
 
   <ul class="nav">
 

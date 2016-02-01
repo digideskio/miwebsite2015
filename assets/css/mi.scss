@@ -67,13 +67,95 @@
 $basefontsize: 1rem;
 $basemargin: $grid-gutter-width /2;
 
+
+
+/* Helper
+=======================================================================================*/
+
+.scale{
+  width: 100%;
+}
+
+.section.head{
+  margin-top: $basefontsize;
+  margin-bottom: $basefontsize;
+
+  > .subheadline{
+    font-weight: 700;
+  }
+}
+
+
+/* Globals
+=======================================================================================*/
+body{
+  position: relative;
+  @include gradient-vertical(rgba(0,0,0,0), rgba(0,0,0,0.5), 0%, 100%);
+
+  > section{
+    background-color: #fff;
+    margin-bottom: $basemargin;
+  }
+}
+
+
+/* Overrides
+=======================================================================================*/
+
+@media (max-width: breakpoint-min(sm)) {
+  .card-block{
+    position: absolute;
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: $basemargin /2;
+    padding-bottom: 0;
+    padding-top: $basemargin *2;
+    @include gradient-vertical(rgba(0,0,0,0), rgba(0,0,0,0.8), 0%, 100%);
+
+    .card-title{
+      margin-top: $basemargin *2;
+      color: #fff;
+    }
+  }
+}
+
+
+
+/* Components
+=======================================================================================*/
+
 .page-header{
 
   padding-top: $basemargin;
+  padding-bottom: $basemargin;
+  margin-bottom: $basemargin;
+  background-color: #fff;
 
   .logo{
+    transition: all 400ms;
+  }
+
+  #mi-box{
+    width: 50%;
+    &.tiny{ width: 60px; }
+  }
+
+  #mi-unten{
+    margin-top: $basemargin *3;
     width: 100%;
-    height: auto;
+    &.tiny{ opacity: 0;}
+  }
+
+  .navbar{
+    background-color: #fff;
+    padding: 0;
+
+    &.navbar-fixed-top{
+      padding: $basemargin;
+      border-bottom: solid 1px $brand-primary;
+    }
 
   }
 
@@ -85,23 +167,18 @@ $basemargin: $grid-gutter-width /2;
   }
 
   .navigation{
-    font-size: $basefontsize * 1.5;
+    font-size: $basefontsize * 1.2;
     font-weight: 300;
 
     .nav-item{
-      border-bottom: solid 1px #000;
+      border-top: solid 1px #000;
 
       > .nav-link{
         display: block;
       }
     }
 
-    .nav-item:first-child{
-      border-top: solid 1px #000;
-    }
   }
 
 }
-
-
 

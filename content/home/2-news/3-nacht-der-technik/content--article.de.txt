@@ -1,0 +1,100 @@
+Info: 
+
+----
+
+Visible: 
+
+----
+
+Title: Nacht der Technik
+
+----
+
+Hide-in-lang: false
+
+----
+
+Text: 
+
+Spannend, interaktiv, überraschend: mit dieser Erfolgsformel geht die NACHT DER TECHNIK bereits zum fünften Mal an den Start und ermöglicht Jung und Alt einen faszinierenden Einblick in die unterschiedlichsten Fachgebiete. Es warten Laborführungen, Workshops, Kurzvorträge, Wissenschaftskino und viele weitere Technikunternehmen. Am Campus Deutz der Fachhochschule Köln erhält man sogar freien Eintritt und kann den erlebnisreichen Tag dann bei leckeren Cocktails ausklingen lassen, denn der AStA lädt ab 23 Uhr zur "watch.out After-Show-Party" ein. 
+
+Interesse geweckt?! Dann erhaltet Ihr hier nochmal genauere Informationen und schaut hoffentlich vorbei!
+
+----
+
+Columns: 
+
+- 
+  noc: "1"
+  text2: ""
+  text3: ""
+
+----
+
+Invisible: 
+
+----
+
+Date: 
+
+----
+
+Showdate: false
+
+----
+
+Autor: 
+
+----
+
+Layout: 
+
+----
+
+Headline-position: hide
+
+----
+
+Layout-switcher: 
+
+- 
+  noic: "4"
+  notc: "1"
+  otc: left
+  appearance: normal
+
+----
+
+Behavior-type: standard
+
+----
+
+Color-class: normal
+
+----
+
+Teaser-style: 
+
+----
+
+Home: 0
+
+----
+
+Display-data: headline
+
+----
+
+Teasertext: 
+
+----
+
+Select-image: nacht_der_t_univer_11_1696_.jpg
+
+----
+
+Freigabelinie: 
+
+----
+
+Freigabe: false

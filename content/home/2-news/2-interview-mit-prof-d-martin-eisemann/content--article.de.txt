@@ -1,0 +1,126 @@
+Info: 
+
+----
+
+Visible: 
+
+----
+
+Title: Interview mit Prof. Dr. Martin Eisemann
+
+----
+
+Hide-in-lang: false
+
+----
+
+Text: 
+
+Prof. Dr. Martin Eisemann ist seit dem Sommersemester diesen Jahres am Campus Gummersbach der TH Köln. In einem interessanten Gespräch mit Daniela Kucharczyk, Studentin der Medieninformatik, gab er einen kurzen Einblick in seine Interessen und eine Aussicht auf Zukunftsperspektiven, wobei sein Fachgebiet Computergrafik im Mittelpunkt stand. Viel Vergnügen dabei!
+
+##Was haben Sie gemacht bevor Sie am Campus Gummersbach angefangen haben?
+Meine letzte Anstellung war als akademischer Rat der Technischen Universität Braunschweig, wo ich im Institut für Computergraphik beschäftigt war. Dort habe ich Doktoranten, Studenten, sowie Abschlussarbeiten betreut und auch Vorlesungen gegeben. Im Grunde genommen fast dasselbe, wie hier, nur das ich da noch einen Professor über mir hatte.
+ 
+##Wie ist es gekommen, dass Sie am Campus Gummersbach Dozent geworden sind?
+Oh, das war eigentlich ein ziemlicher Zufall. Mir wurde damals empfohlen mich schon mal zu bewerben, da ich gerne Professor werden wollte und das war gerade zwei Jahre nach meiner Doktorarbeit. Daher hatte ich verschiedene Bewerbungen an Universitäten rausgeschickt, die gerade eine Stelle als Professor für Computergrafik frei hatten und habe durch Zufall gesehen, dass hier an der Fachhochschule Köln auch eine Stelle frei wurde. Daraufhin hatte ich mich einfach mal beworben, obwohl diese Standardmindestvoraussetzung, dass man drei Jahre in der Industrie tätig gewesen sein muss, bei mir ja nicht zugetroffen hat, da ich rein aus dem universitären Bereich komme. Aber zum Glück geht das Gesetz noch weiter. Man braucht drei Jahre Berufserfahrung, wobei eigentlich braucht man fünf außerhalb der Uni, oder eine Habilitation, die hatte ich auch nicht, oder habilitationsäquivalente Leistungen, die hatte ich! Also ich hatte zum Glück genug publiziert und Lehrerfahrung, dass ich quasi dennoch geeignet bin und gerade im Hinblick darauf, dass die FH Köln jetzt zur TH Köln wird und damit auch einen Anspruch hat in der Forschung mehr zu tun, glaube ich, passt das ziemlich gut. Vor allem hat es mich sehr gefreut, weil ich gebürtiger Kölner bin und jetzt wieder in der Nähe meiner Heimat.
+ 
+##Was genau haben Sie studiert?
+Ich habe Computervisualistik in Koblenz studiert. Das ist...hmm...wie beschreibt man das am besten. Das ist im Grunde Informatik mit Einflüssen aus Kunst, Design, Pädagogik und Psychologie. Also man konnte das auch noch ein bisschen frei gestalten, zumindest den interdisziplinären Bereich. Der Informatikbereich war dabei sehr konzentriert auf die visuellen Fächer, wie Bildverarbeitung, Computergrafik, sowie Bildbearbeitung. Mir war da relativ früh klar, dass ich in diesem Bereich arbeiten möchte.
+ 
+##Warum haben Sie sich für diesen Studiengang entschieden?
+Ich habe einen zwei Jahre älteren Bruder mit dem ich schon immer das Interesse für Naturwissenschaften teile und wir hatten beide Leistungskurs Mathematik. Er hat dann angefangen Mathematik zu studieren und ich wollte unbedingt etwas anderes machen. Daraufhin habe ich mir eine Liste mit sämtlichen Studiengängen in Deutschland rausgesucht und bin diese komplett von oben nach unten durchgegangen, wobei ich bei Computervisualistik hängen geblieben bin. Ich hätte mir viel Arbeit sparen können, wenn ich bei "C" schon aufgehört hätte. Witzigerweise hat mein Bruder später noch zur Informatik umgesattelt, sich ebenfalls in die Computergrafik vertieft und ist jetzt auch Professor für Computergrafik.
+ 
+##Was fasziniert Sie an der Computergrafik?
+Ich finde Computergrafik insofern großartig, da es zum Einen diesen naturwissenschaftlichen Aspekt hat, also Informatik und Mathematik, zum Anderen aber auch den visuellen ästhetischen und künstlerischen Aspekt mit drin hat und aus ganz vielen verschiedenen Bereichen Einflüsse bezieht. Wenn man sich mal die Forschung anschaut, dann hat man auch ganz oft Psychologie, Biologie, Fotografie oder andere künstlerische Fächer mit drin, die da irgendwie vereint werden, das fand ich immer unglaublich spannend. In vielen Dingen ist das auch so ein bisschen wie Magie, wenn man sich das anguckt, das muss ich wirklich sagen! Gut, beim Hören der Grundlagenvorlesung vielleicht noch etwas eingeschränkt, aber bei den fortgeschrittenen Sachen definitiv. Das Schöne ist, man kann hierbei dem Zauberer quasi hinter die Kulissen schauen, was das ganze sehr faszinierend macht.
+ 
+##Für welche Veranstaltungen sind Sie dann hier am Campus in Zukunft verantwortlich?
+Dieses Semester mache ich die Theoretische Informatik II, sowie die Visualistik im Medieninformatik Master und nächstes Semester werde ich auf jeden Fall die Computergrafik und Animation, so wie die Theoretische Informatik I geben. Außerdem hoffe ich, in den nächsten Semestern zudem diverse Wahlpflichtfächer zu etablieren, die dann hoffentlich entsprechend Anklang finden.
+ 
+##Haben Sie denn auch schon eine Idee für Wahlpflichtfächer?
+Ja, schon. Im Medieninformatik Master würde ich sehr gerne bildbasierte Computergrafik und fotorealistische Computergrafik anbieten. Also bei der fotorealistischen Computergrafik geht es zum Beispiel darum, wie die Produktionsstudios, wie ILM, Double Negative oder Ähnliche, die Blockbuster in Hollywood erzeugen. Also wie werden die Spezialeffekte erzeugt, sodass man den Unterschied zur Realität nicht mehr sieht. Gerade der Film "Gravity", der vorletztes Jahr im Kino war, ist ein sehr gutes Beispiel. Da war fast alles nur noch Computergrafik, bis auf die Gesichter. Bei der bildbasierten Computergrafik hingegen, geht es vor allem darum, was man mit Bildern alles machen kann, die man mit Foto- oder Videokamera aufgenommen hat. Ein gutes Beispiel dafür, ist das Image-Based Rendering. Das kennt man in letzter Zeit vor allen Dingen vom Fußball und den Olympischen Spielen, weil da ganz häufig das Bild angehalten wird und sich die Kamera dann irgendwie um die Szene herumdreht. Diese Kameras gab es eigentlich gar nicht, sodass hier die Frage ist, wie kann ich das realisieren, wenn ich nur ein paar wenige Eingabekameras habe, dass ich mich dann trotzdem im Nachhinein frei in meiner Szene bewegen kann. Das berühmteste Beispiel für diese Art des Image-based Renderings ist der "Matrix" Film, das Beispiel kennen ganz viele, wenn Trinity in die Luft springt, die Zeit anhält und sich die Kamera um sie herumdreht. Das haben die natürlich nicht mit einer Kamera gemacht, die sich blitzschnell bewegt, sondern die haben ganz viele Kameras aufgestellt, alle zeitgleich ausgelöst und dann mit computergrafischen Algorithmen Zwischenbilder erzeugt.
+ 
+##Welche Tipps hinsichtlich des Studiums und ggf. hinsichtlich der späteren Berufswahl 
+würden Sie den Medieninformatik Erstsemestern und Studieninteressierten geben? 
+Also zum Einen, dass sie hoffentlich ihre Neugier nicht verlieren und auch immer mit Spaß beim Studium sind. Wobei ich natürlich auch hoffe, dass ich da meinen Beitrag zu leisten und vor allen Dingen die Theoretische Informatik halbwegs erträglich gestalten kann. Und zum Anderen, dass sie gewillt sind, sich in Dinge hinein zu arbeiten. Denn es ist nun einmal oft so, dass man sich anstrengen muss, um etwas zu verstehen. Wenn man zum Beispiel eine mathematische Formel vor sich hat, nicht einfach aufgeben und sagen, "...uuuh, das verstehe ich nicht!", sondern versucht, das irgendwie in kleine Teilprobleme zu zerlegen und probiert diese einzeln zu lösen. Das wird einem nämlich immer wieder in der Informatik begegnen. Dieses "divide and conquer"-Konzept ist einfach das Wichtigste, was man in der Informatik braucht. Wenn man ein Problem hat, das man nicht lösen kann, versucht man es in Teilprobleme zu zerlegen und diese zu lösen, dann klappt es auch mit dem großen Problem.
+
+##Was macht den Medieninformatik Studiengang ihrer Meinung nach so interessant?
+Wie der Name schon sagt, ist das die Arbeit mit Medien. Dass man fast immer eine visuelle Antwort bekommt, bei dem was man macht, finde ich persönlich wahnsinnig motivierend. Wenn ich jetzt mit...hmm...ich möchte hier jetzt keine anderen Forschungsgebiete beleidigen...also ich persönlich finde es einfach deutlich motivierender, wenn ich ein schönes ästhetisches Bild als Ergebnis kriege, als wenn lediglich die Zahl "5" auf dem Monitor erscheint. Und das ist ein ganz großer Vorteil der Medieninformatik. Ausserdem ist es halt auch so, dass man mit dem, was man erlernt, Leuten später eine Freude bereiten kann. Ganz viel, was wir lernen, ist unter anderem für die Entertainment Industrie und ich finde, das ist ein schönes Gefühl, dass das, was man lernt, später von Leuten genutzt wird, um Spaß zu haben und ihr Leben interessant zu gestalten.
+
+----
+
+Columns: 
+
+- 
+  noc: "1"
+  text2: ""
+  text3: ""
+
+----
+
+Invisible: 
+
+----
+
+Date: 
+
+----
+
+Showdate: false
+
+----
+
+Autor: 
+
+----
+
+Layout: 
+
+----
+
+Headline-position: hide
+
+----
+
+Layout-switcher: 
+
+- 
+  noic: "4"
+  notc: "1"
+  otc: left
+  appearance: normal
+
+----
+
+Behavior-type: standard
+
+----
+
+Color-class: normal
+
+----
+
+Teaser-style: 
+
+----
+
+Home: 0
+
+----
+
+Display-data: headline, content, link
+
+----
+
+Teasertext: Prof. Dr. Martin Eisemann ist seit dem Sommersemester diesen Jahres am Campus Gummersbach der TH Köln. In einem interessanten Gespräch mit Daniela Kucharczyk, Studentin der Medieninformatik, gab er einen kurzen Einblick in seine Interessen und eine Aussicht auf Zukunftsperspektiven, wobei sein Fachgebiet Computergrafik im Mittelpunkt stand. Viel Vergnügen dabei!
+
+----
+
+Select-image: 
+
+----
+
+Freigabelinie: 
+
+----
+
+Freigabe: false

@@ -1,0 +1,29 @@
+Info: 
+
+----
+
+Visible: 
+
+----
+
+Title: Einblick & Ausblick
+
+----
+
+Hide-in-lang: false
+
+----
+
+Layout: 
+
+----
+
+Headline-position: 
+
+----
+
+Trennlinie: 
+
+----
+
+Behavior-type: 

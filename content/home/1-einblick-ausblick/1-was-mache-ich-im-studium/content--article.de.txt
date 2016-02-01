@@ -1,0 +1,102 @@
+Info: 
+
+----
+
+Visible: 
+
+----
+
+Title: Was mache ich im Studium
+
+----
+
+Hide-in-lang: false
+
+----
+
+Text: 
+
+Der Bachelor Studiengang Medieninformatik führt zum Abschluss Bachelor of Science und hat eine Regelstudienzeit von 6 Semestern. Er gliedert sich in zwei Teile: Grund- und Hauptstudium, wobei das Hauptstudium aus einem Pflichtfachteil und einem Wahlpflicht- und Projektteil besteht. Eine Auflistung der einzelnen Module findet sich weiter unten auf dieser Seite. 
+
+Im Bachelor-Studium der Medieninformatik werden drei Ziele verfolgt:
+* der Aufbau von Kommunikations- und Methodenkompetenz
+* die Vermittlung eines umfassenden Technologieverständnisses
+* das Kennenlernen von Geschäftsprozessen und Kernaktivitäten der Medienwirtschaft
+
+----
+
+Columns: 
+
+- 
+  noc: "1"
+  text2: ""
+  text3: ""
+
+----
+
+Invisible: 
+
+----
+
+Date: 
+
+----
+
+Showdate: false
+
+----
+
+Autor: 
+
+----
+
+Layout: 
+
+----
+
+Headline-position: row
+
+----
+
+Layout-switcher: 
+
+- 
+  notc: "1"
+  otc: left
+  appearance: normal
+
+----
+
+Behavior-type: accordion-closed
+
+----
+
+Color-class: normal
+
+----
+
+Teaser-style: 
+
+----
+
+Home: 0
+
+----
+
+Display-data: 
+
+----
+
+Teasertext: 
+
+----
+
+Select-image: 
+
+----
+
+Freigabelinie: 
+
+----
+
+Freigabe: false

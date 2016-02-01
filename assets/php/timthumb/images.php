@@ -17,7 +17,7 @@ $path = parse_url($_GET['src'], PHP_URL_PATH);
 #$query = $_SERVER['QUERY_STRING'];
 
 $query = $url;
-$query = preg_replace("=.*?src\=http://.*?/=", "src=/", $query);
+$query = preg_replace("=.*src\==", "src=", $query);
 
 $query = str_replace(";", "&", $query);
 $query = str_replace("%3b", "&", $query);

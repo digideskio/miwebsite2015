@@ -1,5 +1,5 @@
 <?php
-	//if(preg_match("=(1|true|TRUE)=",$page->hide_in_lang())){  go("/" + $site->language()->code()); }
+  include_once("assets/php/functions.php");
 	snippet('header', array("content" => $page));
 ?>
 
@@ -8,4 +8,4 @@
 atomicdesign::output("organism","container--rows"); ?>
 
 <!-- EO-Content Block -->
-<?php snippet( c::get('customs-folder') . 'footer'); ?>
+<?php snippet('footer'); ?>
