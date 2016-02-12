@@ -60,6 +60,24 @@ Cache Dir
 */
 c::set('cachedir', $custom_config["cachedir"]);
 
+/*
+---------------------------------------
+Pattern lab
+---------------------------------------
+*/
+c::set('patterns.title', 'Patterns');
+c::set('patterns.path', 'patterns');
+c::set('patterns.directory', $custom_config["base_path"].'/site/patterns');
+c::set('patterns.lock', false);
+c::set('patterns.preview.css', 'assets/css/index.css');
+c::set('patterns.preview.js', 'assets/js/index.js');
+c::set('patterns.preview.background', false);
+
+/*
+---------------------------------------
+Teaser snips, um bootstrap 4 oder 3 verwenden zu können
+---------------------------------------
+*/
 c::set('atomic-snippet–prefix', "atomic/");
 c::set('teaser-classes', array(
   "teaser-overview"       => "card-columns",

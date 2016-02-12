@@ -2,4 +2,4 @@ coda_backups/
 
 .DS_Store
 config/custom-config.php
-
+assets/php/timthumb/cache/*

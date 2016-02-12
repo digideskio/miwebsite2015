@@ -10,8 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <!--script src="https://use.typekit.net/uwc8kbp.js"></script>
-    <script>try{Typekit.load({ async: true });}catch(e){}</script-->
+    <script src="https://use.typekit.net/uwc8kbp.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/assets/lib/bootstrap/dist/css/bootstrap.css">

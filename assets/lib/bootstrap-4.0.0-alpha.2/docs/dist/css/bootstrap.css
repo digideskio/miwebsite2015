@@ -6264,4 +6264,10 @@ body > section {
 .page-header .navigation .nav-item > .nav-link {
   display: block;
 }
+
+/* Template
+=======================================================================================*/
+.big-cols {
+  padding: .6375rem;
+}
 /*# sourceMappingURL=bootstrap.css.map */
