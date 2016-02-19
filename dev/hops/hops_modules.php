@@ -59,7 +59,7 @@ class HOPSModules {
             $moduleDetailsJSONString = $this->extractJSONStringFromHTMLBody($moduleDetailsJSONString);
             $moduleDetailsJSONString = $this->sanitizeJSONString($moduleDetailsJSONString);
 
-            $module             = json_decode($moduleDetailsJSONString);
+            $module = json_decode($moduleDetailsJSONString);
 
             if(is_array($module)) {
                 if(count($module) === 1)
@@ -68,8 +68,8 @@ class HOPSModules {
                     continue;
             }
 
-            /* Da alle Werte vom Typ String sind und nicht immer atomar sind,
-                werden sie augetrennt und in ihren eigentlichen Typ konvertiert */
+            /* Da alle Werte vom Typ String und nicht immer atomar sind,
+                werden sie aufgetrennt und in ihren eigentlichen Typ konvertiert */
             $module = $this->parseModuleDozenten($module);
             $module = $this->parseModuleValues($module);
             $module = $this->parseModuleCourseAndSemester($module);
@@ -90,8 +90,8 @@ class HOPSModules {
     /**
       * HTTP-Request konstruieren (Query-Parameter) und absetzen
       *
-      * @param string $modus Art der zu beziehenden Moduldaten
-      * @param array $params Filterparameter
+      * @param string $modus Art der zu beziehenden Modul-Daten
+      * @param array $params Filterparameter (Key-Value-Pairs)
       *
       * @return string Body des HTTP-Response
       */
@@ -104,14 +104,14 @@ class HOPSModules {
                 $paramsArr[] = $key . "=" . $val;
         }
 
-        $paramsStr = implode("&", $paramsArr);
+        $paramsStr  = implode("&", $paramsArr);
         $requestUrl = $this->moduleBaseUrl . "?" . $paramsStr;
 
         return file_get_contents($requestUrl);
     }
 
     /**
-      * Extrahieren eines JSON-String aus einem HTML-Grundgerüst
+      * Extrahieren eines JSON-Strings aus einem HTML-Grundgerüst
       *
       * Diese Funktion wurde eingeführt, da HOPS Modul-Details
       *     als HTML-Dokument mit HTML-Grundgerüst zurückgibt.
@@ -153,7 +153,7 @@ class HOPSModules {
     }
 
     /**
-      * Liste von mit Kommata getrennten Dozenten aufsplitten
+      * Liste von mit Kommata getrennten Dozenten auftrennen
       *     und Dozenten-Kennung extrahieren
       *
       * @param object $module Modul-Objekt (aus JSON per json_decode)
@@ -191,7 +191,7 @@ class HOPSModules {
     }
 
     /**
-      * Als String vorliegende numerische und boolesche Werte
+      * Als String vorliegende, numerische und boolesche Werte
       *     anhand einer Feldname-zu-Typ-Map konvertieren
       *
       * @param object $module Modul-Objekt (aus JSON per json_decode)
@@ -224,9 +224,9 @@ class HOPSModules {
     }
 
     /**
-      * Parsen von nicht-atomaren Wert, der Angaben bezüglich
-      *     Studiengänge und Semester, zu denen Modul belegt wird
-      *     / werden kann
+      * Parsen von nicht atomaren Wert, der Angaben bezüglich
+      *     Studiengänge enthält und Semester, zu denen das Modul
+      *     über die jeweiligen Studiengänge belegt werden / werden können
       *
       * @param object $module Modul-Objekt (aus JSON per json_decode)
       *

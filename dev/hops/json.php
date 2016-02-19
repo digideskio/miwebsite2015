@@ -15,6 +15,6 @@ if(!file_exists($nameTmpFile)) {
 $fileContents = file_get_contents($nameTmpFile);
 
 header('Content-Type', 'application/json');
-header('Length', count($fileContents));
+header('Content-Length', count($fileContents));
 
 echo $fileContents;
