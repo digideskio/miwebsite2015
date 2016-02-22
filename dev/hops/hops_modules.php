@@ -3,9 +3,19 @@
 
 class HOPSModules {
 
+    const PROGRAM_MI_B = 'MI_B';
+    const PROGRAM_MI_M = 'MI_M';
+
+    const PF_PFLICHTFACH     = 'PF';
+    const PF_WAHLPFLICHTFACH = 'WPF';
+
+    const FT_VORLESUNG = 'V';
+    const FT_SEMINAR   = 'S';
+
+
     private $moduleBaseUrl = "http://www.medieninformatik.th-koeln.de/dev/api-bridge.php";
     private $params = array(
-        'program'  => 'MI_B',
+        'program'  => self::PROGRAM_MI_B,
         'emphasis' => NULL
     );
 
@@ -35,9 +45,14 @@ class HOPSModules {
     );
 
     private $modules = array();
+    private $moduleIDs = array();
+    private $lecturerModuleMap = array();
 
 
-    function __construct($filterParams = array()) {
+    function __construct($filterParams = array(), $fetchData = true) {
+        if(!$fetchData)
+            return;
+
         /* Modulübersicht anfordern */
         $this->params             = array_merge($this->params, $filterParams);
         $moduleOverviewJSONString = $this->request('modules', $this->params);
@@ -68,6 +83,8 @@ class HOPSModules {
                     continue;
             }
 
+            $this->moduleIDs[$mID] = $module->BEZEICHNUNG;
+
             /* Da alle Werte vom Typ String und nicht immer atomar sind,
                 werden sie aufgetrennt und in ihren eigentlichen Typ konvertiert */
             $module = $this->parseModuleDozenten($module);
@@ -76,25 +93,71 @@ class HOPSModules {
 
             $this->modules[$mID] = $module;
         }
+
+        /* Temporäres Array mit Dozenten-Objekten und ihnen zugewiesenen Modulen */
+        $this->createLecturerModuleMap();
     }
 
     /**
-      * Rückgabe aller Module als Array
-      *
-      * @return Array mit Modul-Objekten
-      */
+     * Rückgabe aller Module als Array
+     *
+     * @return Array mit Modul-Objekten
+     */
     public function getModules() {
         return $this->modules;
     }
 
+
     /**
-      * HTTP-Request konstruieren (Query-Parameter) und absetzen
-      *
-      * @param string $modus Art der zu beziehenden Modul-Daten
-      * @param array $params Filterparameter (Key-Value-Pairs)
-      *
-      * @return string Body des HTTP-Response
-      */
+     * Rückgabe aller Module-IDs samt Modulbezeichnung als assoziatives Array
+     *
+     * @return Array mit Modul-IDs
+     */
+    public function getModuleIDs() {
+        return $this->moduleIDs;
+    }
+
+
+    /**
+     * Filterung von Modulen mittels Filterfunktion
+     *
+     * @param function $func Filterfunktion, die mit jedem Modul-Objekt aufgerufen wird
+     *
+     * @return Array mit gefilterten Modul-Objekten
+     */
+    public function filterModulesBy($func = FALSE) {
+        if(!is_callable($func))
+            throw new Exception("Keine Filterfunktion mitgegeben!");
+
+        $filteredModules = array();
+
+        foreach($this->getModules() as $moduleID => $moduleData) {
+            if($func($moduleData))
+                $filteredModules[$moduleID] = $moduleData;
+        }
+
+        return $filteredModules;
+    }
+
+
+    /**
+     * Rückgabe einer Liste von Dozenten und ihren Modulen
+     *
+     * @return Array mit Dozenten und ihren Modulen
+     */
+    public function getLecturerModuleMap() {
+        return $this->lecturerModuleMap;
+    }
+
+
+    /**
+     * HTTP-Request konstruieren (Query-Parameter) und absetzen
+     *
+     * @param string $modus Art der zu beziehenden Modul-Daten
+     * @param array $params Filterparameter (Key-Value-Pairs)
+     *
+     * @return string Body des HTTP-Response
+     */
     private function request($modus, $params) {
 
         $paramsArr = array('modus=' . $modus);
@@ -111,16 +174,16 @@ class HOPSModules {
     }
 
     /**
-      * Extrahieren eines JSON-Strings aus einem HTML-Grundgerüst
-      *
-      * Diese Funktion wurde eingeführt, da HOPS Modul-Details
-      *     als HTML-Dokument mit HTML-Grundgerüst zurückgibt.
-      * Der JSON-String liegt als Inhalt des body-Elements vor.
-      *
-      * @param string $mixedContent HTML-Grundgerüst mit eingebettetem JSON
-      *
-      * @return string JSON-String
-      */
+     * Extrahieren eines JSON-Strings aus einem HTML-Grundgerüst
+     *
+     * Diese Funktion wurde eingeführt, da HOPS Modul-Details
+     *     als HTML-Dokument mit HTML-Grundgerüst zurückgibt.
+     * Der JSON-String liegt als Inhalt des body-Elements vor.
+     *
+     * @param string $mixedContent HTML-Grundgerüst mit eingebettetem JSON
+     *
+     * @return string JSON-String
+     */
     private function extractJSONStringFromHTMLBody($mixedContent) {
         
         $matches = array();
@@ -137,13 +200,13 @@ class HOPSModules {
     }
 
     /**
-      * In Freitext genutzte style-Attribute, br-Elemente
-      *     und geschützte Leerzeichen entfernen
-      *
-      * @param string $JSONString Unsauberer JSON-String
-      *
-      * @return string gesäuberter JSON-String
-      */
+     * In Freitext genutzte style-Attribute, br-Elemente
+     *     und geschützte Leerzeichen entfernen
+     *
+     * @param string $JSONString Unsauberer JSON-String
+     *
+     * @return string gesäuberter JSON-String
+     */
     private function sanitizeJSONString($JSONString) {
         
         $JSONString = preg_replace("/(\\s*style=\\\\\".*?\\\\\")|(&nbsp;)/", "", $JSONString);
@@ -153,14 +216,14 @@ class HOPSModules {
     }
 
     /**
-      * Liste von mit Kommata getrennten Dozenten auftrennen
-      *     und Dozenten-Kennung extrahieren
-      *
-      * @param object $module Modul-Objekt (aus JSON per json_decode)
-      *
-      * @return object Modul-Objekt mit besserer Datenstruktur
-      *                 für Zugriff auf Dozenten-Infos
-      */
+     * Liste von mit Kommata getrennten Dozenten auftrennen
+     *     und Dozenten-Kennung extrahieren
+     *
+     * @param object $module Modul-Objekt (aus JSON per json_decode)
+     *
+     * @return object Modul-Objekt mit besserer Datenstruktur
+     *                 für Zugriff auf Dozenten-Infos
+     */
     private function parseModuleDozenten($module) {
 
         $dozenten = explode(',', $module->DOZENTEN);
@@ -191,13 +254,13 @@ class HOPSModules {
     }
 
     /**
-      * Als String vorliegende, numerische und boolesche Werte
-      *     anhand einer Feldname-zu-Typ-Map konvertieren
-      *
-      * @param object $module Modul-Objekt (aus JSON per json_decode)
-      *
-      * @return object Modul-Objekt mit richtig konvertierten Werten
-      */
+     * Als String vorliegende, numerische und boolesche Werte
+     *     anhand einer Feldname-zu-Typ-Map konvertieren
+     *
+     * @param object $module Modul-Objekt (aus JSON per json_decode)
+     *
+     * @return object Modul-Objekt mit richtig konvertierten Werten
+     */
     private function parseModuleValues($module) {
 
         foreach($this->moduleValueFieldnames as $fieldname => $valType) {
@@ -224,15 +287,15 @@ class HOPSModules {
     }
 
     /**
-      * Parsen von nicht atomaren Wert, der Angaben bezüglich
-      *     Studiengänge enthält und Semester, zu denen das Modul
-      *     über die jeweiligen Studiengänge belegt werden / werden können
-      *
-      * @param object $module Modul-Objekt (aus JSON per json_decode)
-      *
-      * @return object Modul-Objekt mit besserer Datenstruktur
-      *                 für Zugriff auf Studiengang- und Semester-Infos
-      */
+     * Parsen von nicht atomaren Wert, der Angaben bezüglich
+     *     Studiengänge enthält und Semester, zu denen das Modul
+     *     über die jeweiligen Studiengänge belegt werden / werden können
+     *
+     * @param object $module Modul-Objekt (aus JSON per json_decode)
+     *
+     * @return object Modul-Objekt mit besserer Datenstruktur
+     *                 für Zugriff auf Studiengang- und Semester-Infos
+     */
     private function parseModuleCourseAndSemester($module) {
     
         $coursesAndSemesters = $module->SG_SE;
@@ -269,5 +332,74 @@ class HOPSModules {
         $module->SG_SE = $coursesAndSemestersObj;
 
         return $module;
+    }
+
+
+    /**
+     * Erzeugung der Dozent-zu-Modul-Map
+     *
+     */
+    private function createLecturerModuleMap() {
+        foreach($this->getModules() as $moduleID => $moduleData) {
+            foreach($moduleData->DOZENTEN as $dozent) {
+
+                if(!isset($this->lecturerModuleMap[$dozent->KUERZEL])) {
+                    $dozentObj = new stdClass();
+                    $dozentObj->NAME = $dozent->NAME;
+                    $dozentObj->MODULE_IDS = array();
+
+                    $this->lecturerModuleMap[$dozent->KUERZEL] = $dozentObj;
+                }
+
+                $this->lecturerModuleMap[$dozent->KUERZEL]->MODULE_IDS[] = $moduleID;
+            }
+        }
+    }
+
+
+    /**
+     * Rekonstruiert die ModulID-zu-Modulbezeichnung-Map
+     *  und Dozent-zu-Module-Map, ohne über den Klassenkonstruktor zu gehen.
+     * Wird bebötigt, wenn die Moduldaten aus einer Datei eingelesen werden.
+     *
+     */
+    private function recreateMaps() {
+
+        $this->moduleIDs = array();
+        $this->lecturerModuleMap = array();
+
+        foreach($this->modules as $moduleID => $moduleData) {
+            $this->moduleIDs[$moduleID] = $moduleData->BEZEICHNUNG;
+        }
+
+        $this->createLecturerModuleMap();
+    }
+
+
+    /**
+     * Serialisiert die Moduldaten als JSON-Datei
+     *
+     */
+    public function toJSONFile($filename) {
+        return file_put_contents($filename, json_encode($this->getModules(), JSON_PRETTY_PRINT));
+    }
+
+
+    /**
+     * Deserialisieren einer JSON-Datei, in der die Moduldaten vorliegen
+     *
+     * @param string $filename Pfad zur Datei, die deserialisiert werden soll
+     */
+    public static function fromJSONFile($filename) {
+        if(!file_exists($filename))
+            throw new Exception("Datei nicht gefunden: " . $filename);
+
+        $fileContent = file_get_contents($filename);
+
+        $hopsModules = new self(array(), false);
+        $hopsModules->modules = json_decode($fileContent);
+        $hopsModules->recreateMaps();
+
+        return $hopsModules;
     }
 }
