@@ -20,7 +20,7 @@ catch(Exception $e) {
     $hopsModules = new HOPSModules();
     
     /* Für Medieninformatik Master */
-    // $hopsModules = new HOPSModules(array('program' => HOPSModules::PROGRAM_MI_M));
+    // $hopsModules = new HOPSModules(array(HOPSModules::PROGRAM => HOPSModules::PROGRAM_MI_M));
     
     $hopsModules->toJSONFile($nameTmpFile);
 }

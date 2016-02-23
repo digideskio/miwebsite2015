@@ -3,8 +3,11 @@
 
 class HOPSModules {
 
+    const PROGRAM      = 'program';
     const PROGRAM_MI_B = 'MI_B';
     const PROGRAM_MI_M = 'MI_M';
+
+    const EMPHASIS = 'emphasis';
 
     const PF_PFLICHTFACH     = 'PF';
     const PF_WAHLPFLICHTFACH = 'WPF';
@@ -15,8 +18,8 @@ class HOPSModules {
 
     private $moduleBaseUrl = "http://www.medieninformatik.th-koeln.de/dev/api-bridge.php";
     private $params = array(
-        'program'  => self::PROGRAM_MI_B,
-        'emphasis' => NULL
+        self::PROGRAM  => self::PROGRAM_MI_B,
+        self::EMPHASIS => NULL
     );
 
     private $moduleValueFieldnames = array(
@@ -44,8 +47,8 @@ class HOPSModules {
         "AUFWAND"                       => "num"
     );
 
-    private $modules = array();
-    private $moduleIDs = array();
+    private $modules           = array();
+    private $moduleIDs         = array();
     private $lecturerModuleMap = array();
 
 
@@ -101,7 +104,7 @@ class HOPSModules {
     /**
      * Rückgabe aller Module als Array
      *
-     * @return Array mit Modul-Objekten
+     * @return array Array mit Modul-Objekten
      */
     public function getModules() {
         return $this->modules;
@@ -111,7 +114,7 @@ class HOPSModules {
     /**
      * Rückgabe aller Module-IDs samt Modulbezeichnung als assoziatives Array
      *
-     * @return Array mit Modul-IDs
+     * @return array Array mit Modul-IDs
      */
     public function getModuleIDs() {
         return $this->moduleIDs;
@@ -123,7 +126,7 @@ class HOPSModules {
      *
      * @param function $func Filterfunktion, die mit jedem Modul-Objekt aufgerufen wird
      *
-     * @return Array mit gefilterten Modul-Objekten
+     * @return array Array mit gefilterten Modul-Objekten
      */
     public function filterModulesBy($func = FALSE) {
         if(!is_callable($func))
@@ -143,7 +146,7 @@ class HOPSModules {
     /**
      * Rückgabe einer Liste von Dozenten und ihren Modulen
      *
-     * @return Array mit Dozenten und ihren Modulen
+     * @return array Array mit Dozenten und ihren Modulen
      */
     public function getLecturerModuleMap() {
         return $this->lecturerModuleMap;
@@ -185,7 +188,7 @@ class HOPSModules {
      * @return string JSON-String
      */
     private function extractJSONStringFromHTMLBody($mixedContent) {
-        
+
         $matches = array();
 
         if(     preg_match("/<body>\\s*(.*)\\s*<\\/body>/",
@@ -208,7 +211,7 @@ class HOPSModules {
      * @return string gesäuberter JSON-String
      */
     private function sanitizeJSONString($JSONString) {
-        
+
         $JSONString = preg_replace("/(\\s*style=\\\\\".*?\\\\\")|(&nbsp;)/", "", $JSONString);
         $JSONString = preg_replace("/(<br.*?>)/", "\n", $JSONString);
 
@@ -297,15 +300,15 @@ class HOPSModules {
      *                 für Zugriff auf Studiengang- und Semester-Infos
      */
     private function parseModuleCourseAndSemester($module) {
-    
+
         $coursesAndSemesters = $module->SG_SE;
         $coursesAndSemesters = explode(',', $coursesAndSemesters);
         $coursesAndSemestersObj = new stdClass();
-        
+
         foreach($coursesAndSemesters as $coursesAndSemestersItem) {
 
             $matches = array();
-            
+
             if(    preg_match("/(\\w+)\\s(\\d+)\\s(\\w+)/",
                               $coursesAndSemestersItem,
                               $matches)
