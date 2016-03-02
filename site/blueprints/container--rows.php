@@ -11,9 +11,8 @@ pages:
   	- content--event-overview
   	- content--slideshow
   	- content--form-builder
-    - container--rows
-    - container--cols
-files: 
+  	- container--rows
+files:
 	sortable: true
 fields:
   info:
@@ -32,13 +31,13 @@ fields:
     type: radio
     width: 1/2
     default: false
-    options: 
+    options:
     	false: visible
     	true: invisible
   layout:
     label: Design (only editable in your main language)
     type: headline
-        	
+
   headline_position:
     label: Headline
     type: radiosingleton
@@ -47,7 +46,7 @@ fields:
       text: show above text
       subhead: show in subheader
       row: show in row above
-      
+
   trennlinie:
     label: Horizontal Ruler
     type: radiosingleton
@@ -55,7 +54,7 @@ fields:
     options:
       hide: hide
       show: show
-      
+
   behavior_type:
     label: Behavior
     type: radiosingleton

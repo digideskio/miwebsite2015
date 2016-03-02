@@ -80,8 +80,9 @@ Teaser snips, um bootstrap 4 oder 3 verwenden zu können
 */
 c::set('atomic-snippet–prefix', "atomic/");
 c::set('teaser-classes', array(
-  "teaser-overview"       => "card-columns",
-  "teaser-item"           => "card",
+  "teaser-overview"       => "card-columns teaser-overview",
+  "teaser-item"           => "card teaser--item",
   "teaser-item-template"  => "card",
-  "wrap"                  => true
+  "wrap"                  => true,
+  "href"                  => true // Soll ein href angezeigt werden? oder werden die Teaser via Ajax geladen
 ));

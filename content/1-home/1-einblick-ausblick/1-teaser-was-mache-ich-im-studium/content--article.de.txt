@@ -1,0 +1,95 @@
+Info: 
+
+----
+
+Visible: 
+
+----
+
+Title: Was mache ich im Studium?
+
+----
+
+Hide-in-lang: false
+
+----
+
+Text: 
+
+Das ist wohl eine der entscheidenen Fragen von Studieninteressierten. Was passiert da eigentlich? Muss ich tierische Ahnung von Computern haben? Muss ich Zeichnen können? Ist das kreativ? Brauch ich da Mathe?
+
+(link: /artikelpool/was-mache-ich-im-studium text: mehr)
+
+----
+
+Columns: 
+
+- 
+  noc: "1"
+  text2: ""
+  text3: ""
+
+----
+
+Invisible: 
+
+----
+
+Date: 
+
+----
+
+Autor: 
+
+----
+
+Layout: 
+
+----
+
+Headline-position: row
+
+----
+
+Layout-switcher: 
+
+- 
+  notc: "1"
+  otc: left
+  appearance: xxl
+
+----
+
+Behavior-type: standard
+
+----
+
+Color-class: blau
+
+----
+
+Teaser-style: 
+
+----
+
+Home: 0
+
+----
+
+Display-data: 
+
+----
+
+Teasertext: 
+
+----
+
+Select-image: 
+
+----
+
+Freigabelinie: 
+
+----
+
+Freigabe: false

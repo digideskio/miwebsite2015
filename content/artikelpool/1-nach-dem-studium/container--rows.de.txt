@@ -1,0 +1,29 @@
+Info: 
+
+----
+
+Visible: 
+
+----
+
+Title: Nach dem Studium
+
+----
+
+Hide-in-lang: false
+
+----
+
+Layout: 
+
+----
+
+Headline-position: 
+
+----
+
+Trennlinie: 
+
+----
+
+Behavior-type: 

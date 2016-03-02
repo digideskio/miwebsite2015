@@ -10,7 +10,7 @@
 
   <?php foreach($pages->visible() AS $p): ?>
     <li class="nav-item">
-      <a class="nav-link" href="<?=$p->uid();?>"><?= $p->title(); ?></a>
+      <a class="nav-link" href="/<?=$p->uid();?>"><?= $p->title(); ?></a>
     </li>
   <?php endforeach; ?>
 

@@ -1,0 +1,9 @@
+Title: Ajax Wrap
+----
+Author: bulthaup GmbH & Co. KG
+----
+Description: 
+----
+Keywords: 
+----
+Copyright: © 2000-(date: Year) (link: http://bulthaup.com text: bulthaup)

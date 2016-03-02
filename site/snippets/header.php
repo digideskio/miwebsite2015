@@ -19,16 +19,24 @@
   <body>
 
     <header class="page-header container">
-      <h1 class="title"><!-- Todo: SEO taugliche Kontruktion entwickeln. -->
-        <figure class="text-xs-center">
-          <div class="navbar">
-            <img id="mi-box" class="logo" src="../../assets/img/mi-box.svg" alt="Medieninformatik am Campus Gummersbach">
-          </div>
-          <img id="mi-unten" class="logo" src="../../assets/img/mi-unten.svg" alt="Medieninformatik am Campus Gummersbach">
-        </figure>
-      </h1>
+      <div class="header--large">
+        <h1 class="title"><!-- Todo: SEO taugliche Kontruktion entwickeln. -->
+          <figure class="text-xs-center">
+            <img id="mi-box" class="logo" src="/assets/img/mi-box.svg" alt="Medieninformatik am Campus Gummersbach">
+            <img id="mi-unten" class="logo" src="/assets/img/mi-unten.svg" alt="Medieninformatik am Campus Gummersbach">
+          </figure>
+        </h1>
 
-      <?php snippet( 'menu', array('uid' => $data->uid(), "content" =>$data)); ?>
+        <?php snippet( 'menu', array('uid' => $data->uid(), "content" =>$data)); ?>
+      </div>
+
+      <div class="header--tiny navbar-fixed-top">
+        <h1 class="title"><!-- Todo: SEO taugliche Kontruktion entwickeln. -->
+          <figure class="text-xs-center">
+            <img id="mi-box-tiny" class="logo" src="/assets/img/mi-box.svg" alt="Medieninformatik am Campus Gummersbach">
+          </figure>
+        </h1>
+      </div>
 
     </header>
 
