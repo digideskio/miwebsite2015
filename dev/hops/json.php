@@ -15,7 +15,7 @@ try{
 }
 catch(Exception $e) {
     /*
-     * Fragt die Moduldaten beim HOPS ab und restrukturiert sie bis zu einem Gewissen grad
+     * Fragt die Moduldaten beim HOPS ab und restrukturiert sie bis zu einem Gewissen Grad
      */
     $hopsModules = new HOPSModules();
     
@@ -29,24 +29,55 @@ catch(Exception $e) {
 /*
  * Module nach Eigenschaften filtern
  */
-function filterModules($hopsModules) {
 
-    $func = function($moduleObj) {
-        $isPF      = $moduleObj->PFLICHTFACH === HOPSModules::PF_PFLICHTFACH;
-        $isSeminar = $moduleObj->FACH_TYP    === HOPSModules::FT_SEMINAR;
+$filterFunc = function($moduleObj) {
+    $isPF      = $moduleObj->PFLICHTFACH === HOPSModules::PF_PFLICHTFACH;
+    // $isSeminar = $moduleObj->FACH_TYP    === HOPSModules::FT_SEMINAR;
+    
+    return $isPF; // && $isSeminar;
+};
+
+
+
+
+/*
+ * Module nach Semester gruppieren (Semester => Bucket)
+ */
+$selectorFunc = function($moduleObj) {
+    
+    if( !isset($moduleObj->SG_SE->MI_B) || 
+        !isset($moduleObj->SG_SE->MI_B->SEMESTER) )
+        return 'unknown';
+    
+    $semester = $moduleObj->SG_SE->MI_B->SEMESTER;
+    
+    if(is_array($semester) && !empty($semester))
+        $semester = $semester[0]; // Erstes Semester ist das Semester, an dem die Veranstaltung bzw. das Modul regulär stattfindet
+    
+    return $semester;
+};
+
+
+$modulesArr = array();
+
+switch( '' ) {
+    case 'filter': /* gefilterte Module */
+        $modulesArr = $hopsModules->filterModulesBy($filterFunc)->getModules();
+        $hopsModules->removeFilter(); /* Um nicht weiter auf Basis einer Liste mit gefilterten Modulen zu arbeiten */
+        break;
         
-        return $isPF && $isSeminar;
-    };
-
-    return $hopsModules->filterModulesBy($func);
+    case 'bucket': /* gruppierte Module */
+        $modulesArr = $hopsModules->getModulesAsBucketsBy($selectorFunc);
+        break;
+    
+    case 'filter_n_bucket': /* gefilterte und gruppierte Module */
+        $modulesArr = $hopsModules->filterModulesBy($filterFunc)->getModulesAsBucketsBy($selectorFunc);
+        $hopsModules->removeFilter(); /* Um nicht weiter auf Basis einer Liste mit gefilterten Modulen zu arbeiten */
+        break;
+    
+    default: /* alle Module */
+        $modulesArr = $hopsModules->getModules();
 }
-
-
-
-                         /*     alle Module         :      gefilterte Module    */ 
-$modulesArr = ( true ) ? $hopsModules->getModules() : filterModules($hopsModules);
-
-
 
 
 $modulesDataJSON = json_encode($modulesArr, JSON_PRETTY_PRINT);

@@ -47,9 +47,13 @@ class HOPSModules {
         "AUFWAND"                       => "num"
     );
 
+    private $filterActive = false;
+
     private $modules           = array();
     private $moduleIDs         = array();
     private $lecturerModuleMap = array();
+    
+    private $modulesBackup = array();
 
 
     function __construct($filterParams = array(), $fetchData = true) {
@@ -122,6 +126,42 @@ class HOPSModules {
 
 
     /**
+     * Einordnung von Modulen in Buckets (Gruppierung), anahnd einer Eigenschaft,
+     * die per Selektorfunktion selektiert wird
+     *
+     * @param function $func Selektorfunktion, die die Eigenschaft eines Moduls selektiert, wonach Gruppen erzeugt werden
+     *
+     * @return array Array mit gruppierten Modul-Objekten
+     */
+    public function getModulesAsBucketsBy($func = FALSE) {
+        if(!is_callable($func))
+            throw new Exception("Keine Selektorfunktion mitgegeben!");
+    
+        $moduleBuckets = array();
+
+        foreach($this->getModules() as $moduleID => $moduleData) {
+            $bucket_var = $func($moduleData);
+            
+            if(!isset($moduleBuckets))
+                $moduleBuckets[$bucket_var] = array();
+
+            $moduleBuckets[$bucket_var][] = $moduleData;
+        }
+
+        return $moduleBuckets;
+    }
+
+    /**
+     * Rückgabe einer Liste von Dozenten und ihren Modulen
+     *
+     * @return array Array mit Dozenten und ihren Modulen
+     */
+    public function getLecturerModuleMap() {
+        return $this->lecturerModuleMap;
+    }
+
+
+    /**
      * Filterung von Modulen mittels Filterfunktion
      *
      * @param function $func Filterfunktion, die mit jedem Modul-Objekt aufgerufen wird
@@ -132,6 +172,10 @@ class HOPSModules {
         if(!is_callable($func))
             throw new Exception("Keine Filterfunktion mitgegeben!");
 
+        if(!$this->filterActive) {
+            $this->modulesBackup = $this->modules;
+        }
+
         $filteredModules = array();
 
         foreach($this->getModules() as $moduleID => $moduleData) {
@@ -139,17 +183,39 @@ class HOPSModules {
                 $filteredModules[$moduleID] = $moduleData;
         }
 
-        return $filteredModules;
+        $this->modules = $filteredModules;
+        $this->recreateMaps();
+
+        $this->filterActive = true;
+
+        return $this;
     }
 
 
     /**
-     * Rückgabe einer Liste von Dozenten und ihren Modulen
+     * Alle Filteraktionen zurücksetzen
      *
-     * @return array Array mit Dozenten und ihren Modulen
+     * @return object HOPSModules-Instanz
      */
-    public function getLecturerModuleMap() {
-        return $this->lecturerModuleMap;
+    public function removeFilter() {
+        if($this->filterActive) {
+            $this->filterActive = false;
+            
+            $this->modules = $this->modulesBackup;
+            $this->recreateMaps();
+        }
+        
+        return $this;
+    }
+
+
+    /**
+     * Angabe bezüglich darüber, ob mit gefilterten Modulen gearbeitet wird
+     *
+     * @return bool Status darüber, ob Filter angewandt wurden
+     */
+    public function filterActive() {
+        return $this->filterActive;
     }
 
 
@@ -343,6 +409,9 @@ class HOPSModules {
      *
      */
     private function createLecturerModuleMap() {
+    
+        $this->lecturerModuleMap = array();
+    
         foreach($this->getModules() as $moduleID => $moduleData) {
             foreach($moduleData->DOZENTEN as $dozent) {
 
@@ -362,14 +431,13 @@ class HOPSModules {
 
     /**
      * Rekonstruiert die ModulID-zu-Modulbezeichnung-Map
-     *  und Dozent-zu-Module-Map, ohne über den Klassenkonstruktor zu gehen.
+     *  und Dozent-zu-Module-Map, ohne über den Konstruktor zu gehen.
      * Wird bebötigt, wenn die Moduldaten aus einer Datei eingelesen werden.
      *
      */
     private function recreateMaps() {
 
         $this->moduleIDs = array();
-        $this->lecturerModuleMap = array();
 
         foreach($this->modules as $moduleID => $moduleData) {
             $this->moduleIDs[$moduleID] = $moduleData->BEZEICHNUNG;
