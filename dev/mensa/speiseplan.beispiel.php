@@ -21,7 +21,7 @@ $weekday_meals = $feed->get_weekday_meals();
             *, body {
                 line-height: 140%;
             }
-            
+
             body {
             	font-size: 100%;
 	            font-weight: 300;
@@ -101,6 +101,7 @@ $weekday_meals = $feed->get_weekday_meals();
 
                 .weekday_overview .block.meal.vegetarian {
                     background-color: #77cc00;
+                    color: #333;
                 }
 
                 .weekday_overview .block.meal.side_dishes {
@@ -179,7 +180,7 @@ $weekday_meals = $feed->get_weekday_meals();
 
                                 <?php
                                     if(stripos($meal_type, 'hinweis') !== false) {
-                                    
+
                                         /* Hinweise sind eher der Legende zugehörig */
                                         if(!in_array($meal_data->article, $weekday_meals->legend->main))
                                             $weekday_meals->legend->main[] = $meal_data->article;
