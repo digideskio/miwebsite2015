@@ -1,0 +1,95 @@
+Info: 
+
+----
+
+Visible: 
+
+----
+
+Title: Was muss ich mitbringen?
+
+----
+
+Hide-in-lang: false
+
+----
+
+Text: 
+
+Woher weiß ich, dass das Studium zu mir passt? Was muss ich mitbringen? Woher bekomme ich Infos? Kann ich mal vorbei kommen?
+
+(link: /medieninformatik/was-muss-ich-mitbringen text: weiterlesen icon: link)
+
+----
+
+Columns: 
+
+- 
+  noc: "1"
+  text2: ""
+  text3: ""
+
+----
+
+Invisible: 
+
+----
+
+Date: 
+
+----
+
+Autor: 
+
+----
+
+Layout: 
+
+----
+
+Headline-position: row
+
+----
+
+Layout-switcher: 
+
+- 
+  notc: "1"
+  otc: left
+  appearance: normal
+
+----
+
+Behavior-type: standard
+
+----
+
+Color-class: gruen
+
+----
+
+Teaser-style: 
+
+----
+
+Home: 0
+
+----
+
+Display-data: 
+
+----
+
+Teasertext: 
+
+----
+
+Select-image: 
+
+----
+
+Freigabelinie: 
+
+----
+
+Freigabe: false

@@ -1,0 +1,95 @@
+Info: 
+
+----
+
+Visible: 
+
+----
+
+Title: Master Studium & Promotion
+
+----
+
+Hide-in-lang: false
+
+----
+
+Text: 
+
+Einige Absolventen haben aber auch nach sechs Semestern Medieninformatik Bachelorstudium noch nicht genug vom Lernen: sie entscheiden sich für den anschließenden Master Studiengang. Er ist eine wissenschaftliche Vertiefung und ermöglicht es noch intensiver als der Bachelor Studiengang, eigene Schwerpunkte zu setzen. Der Abschluss des Medieninformatik Master ermöglicht zu einer Promotion an einer Universität im In- oder Ausland.
+
+(link: /master text: mehr zum Medieninformatik Master icon: link)
+
+----
+
+Columns: 
+
+- 
+  noc: "1"
+  text2: ""
+  text3: ""
+
+----
+
+Invisible: 
+
+----
+
+Date: 
+
+----
+
+Autor: 
+
+----
+
+Layout: 
+
+----
+
+Headline-position: row
+
+----
+
+Layout-switcher: 
+
+- 
+  notc: "1"
+  otc: left
+  appearance: normal
+
+----
+
+Behavior-type: standard
+
+----
+
+Color-class: 
+
+----
+
+Teaser-style: 
+
+----
+
+Home: 0
+
+----
+
+Display-data: 
+
+----
+
+Teasertext: 
+
+----
+
+Select-image: 
+
+----
+
+Freigabelinie: 
+
+----
+
+Freigabe: false

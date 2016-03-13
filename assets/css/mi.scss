@@ -70,9 +70,13 @@ $basemargin: $grid-gutter-width /2;
 
 $mi-blau: #4952e1;
 $mi-pink: #dd1166;
-$mi-gruen: #77cc00;
+$mi-gruen: #00AD2F;
 $mi-lila: #9313ce;
 $mi-black: #231f20;
+
+$fs-x-large:  $basefontsize * 2;
+$fs-large:    $basefontsize * 1.5;
+$fs-medium:   $basefontsize * 1.25;
 
 
 
@@ -83,14 +87,7 @@ $mi-black: #231f20;
   width: 100%;
 }
 
-.section.head{
-  margin-top: $basefontsize;
-  margin-bottom: $basefontsize /2;
 
-  > .subheadline{
-    font-weight: 700;
-  }
-}
 
 
 /* Globals
@@ -217,6 +214,7 @@ body{
 
       > .nav-link{
         display: block;
+        margin-bottom: 2px;
       }
     }
 
@@ -226,12 +224,41 @@ body{
 
 article .body{
 
+  padding-bottom: $basefontsize;
+
+
+
   h2{
-    font-size: $basefontsize * 1.2;
+    font-size: $fs-large;
   }
 
 }
 
+.bighead.special{
+  position: relative;
+  > .wrap{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-left: $basemargin;
+    padding-right: $basemargin;
+    padding-bottom: $basemargin * 2;
+    @include gradient-vertical(rgba(0,0,0,0.7), rgba(0,0,0,0), 0%, 100%);
+
+    > .main-headline{
+      color: #fff;
+      text-shadow: 0 0 6px rgba(0,0,0,0.4);
+      font-size: $fs-large;
+      line-height: 100%;
+    }
+  }
+}
+
+
+
+/* Sections
+=======================================================================================*/
 
 section.blau,
 section.lila{
@@ -252,10 +279,46 @@ section.lila{
   *{ color: #fff !important; }
 }
 
-.bigtext{
-  font-size: $basefontsize * 1.1;
+section.gruen{
+  background-color: $mi-gruen;
+  *{ color: #fff !important; }
 }
 
+
+.section.head{
+  margin-top: $basefontsize;
+  margin-bottom: $basefontsize /2;
+
+}
+
+/* Typo
+=======================================================================================*/
+
+.bigtext{
+  font-size: $fs-medium;
+  line-height: 120%;
+}
+
+.main-headline{
+  font-size: $fs-large;
+  font-weight: 500;
+  margin-top: $basefontsize;
+  margin-bottom: $basefontsize;
+}
+
+.subheadline{
+  font-size: $fs-large;
+  font-weight: 500;
+}
+
+.content a{
+  text-decoration: underline;
+  font-weight: 500;
+
+  &:hover{
+    font-weight: 700;
+  }
+}
 
 /* Rules for small devices
 =======================================================================================*/

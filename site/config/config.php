@@ -86,3 +86,29 @@ c::set('teaser-classes', array(
   "wrap"                  => true,
   "href"                  => true // Soll ein href angezeigt werden? oder werden die Teaser via Ajax geladen
 ));
+
+
+/*
+---------------------------------------
+Icon shortcuts
+---------------------------------------
+*/
+
+c::set('icons', array(
+  "link" => "fa-angle-double-right",
+  "hyperlink" => "fa-external-link"
+
+));
+
+
+
+/*
+---------------------------------------
+Zentrale Links
+---------------------------------------
+*/
+
+c::set('links', array(
+  "bewerbung-bachelor" => "https://www.th-koeln.de/studium/medieninformatik-bachelor--bewerbung_3962.php",
+  "bachelor" => "/bachelor"
+));

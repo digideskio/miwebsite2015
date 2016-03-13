@@ -1,0 +1,29 @@
+Info: 
+
+----
+
+Visible: 
+
+----
+
+Title: Was muss ich mitbringen?
+
+----
+
+Hide-in-lang: false
+
+----
+
+Layout: 
+
+----
+
+Headline-position: hide
+
+----
+
+Trennlinie: hide
+
+----
+
+Behavior-type: standard

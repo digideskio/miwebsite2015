@@ -6151,15 +6151,6 @@ a.bg-danger:focus {
   width: 100%;
 }
 
-.section.head {
-  margin-top: 1rem;
-  margin-bottom: .5rem;
-}
-
-.section.head > .subheadline {
-  font-weight: 700;
-}
-
 /* Globals
 =======================================================================================*/
 body, html {
@@ -6290,12 +6281,46 @@ body > section {
 
 .page-header .navigation .nav-item > .nav-link {
   display: block;
+  margin-bottom: 2px;
+}
+
+article .body {
+  padding-bottom: 1rem;
 }
 
 article .body h2 {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
+.bighead.special {
+  position: relative;
+}
+
+.bighead.special > .wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-right: .6375rem;
+  padding-bottom: 1.275rem;
+  padding-left: .6375rem;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .7)), to(transparent));
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, .7) 0%, transparent 100%);
+  background-image:      -o-linear-gradient(top, rgba(0, 0, 0, .7) 0%, transparent 100%);
+  background-image:         linear-gradient(to bottom, rgba(0, 0, 0, .7) 0%, transparent 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#B3000000', endColorstr='#00000000', GradientType=0);
+  background-repeat: repeat-x;
+}
+
+.bighead.special > .wrap > .main-headline {
+  font-size: 1.5rem;
+  line-height: 100%;
+  color: #fff;
+  text-shadow: 0 0 6px rgba(0, 0, 0, .4);
+}
+
+/* Sections
+=======================================================================================*/
 section.blau + section,
 section.lila + section {
   margin-top: 1px;
@@ -6317,8 +6342,45 @@ section.lila * {
   color: #fff !important;
 }
 
+section.gruen {
+  background-color: #00ad2f;
+}
+
+section.gruen * {
+  color: #fff !important;
+}
+
+.section.head {
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+}
+
+/* Typo
+=======================================================================================*/
 .bigtext {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
+  line-height: 120%;
+}
+
+.main-headline {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.subheadline {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.content a {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.content a:hover {
+  font-weight: 700;
 }
 
 /* Rules for small devices

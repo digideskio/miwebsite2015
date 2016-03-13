@@ -18,12 +18,12 @@ Layout:
 
 ----
 
-Headline-position: 
+Headline-position: hide
 
 ----
 
-Trennlinie: 
+Trennlinie: hide
 
 ----
 
-Behavior-type: 
+Behavior-type: standard

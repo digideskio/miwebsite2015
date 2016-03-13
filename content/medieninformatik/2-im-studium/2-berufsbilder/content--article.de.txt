@@ -6,7 +6,7 @@ Visible:
 
 ----
 
-Title: Was mache ich im Studium?
+Title: Berufsbilder
 
 ----
 
@@ -14,11 +14,7 @@ Hide-in-lang: false
 
 ----
 
-Text: 
-
-Das ist wohl eine der entscheidenen Fragen von Studieninteressierten. Was passiert da eigentlich? Muss ich tierische Ahnung von Computern haben? Muss ich Zeichnen können? Ist das kreativ? Brauch ich da Mathe?
-
-(link: /artikelpool/was-mache-ich-im-studium text: mehr)
+Text: Die Wege der bisherigen Absolventen des Studiengangs sind so vielfältig wie das Fachgebiet Medieninformatik selbst: Medienunternehmen wie RTL, Telekommunikationsunternehmen wie T-Mobile oder Vodafone, Agenturen im Bereich der neuen Medien wie Pixelpark, aber auch Konzerne wie Ford oder Bayer beschäftigen Medieninformatiker vom Campus Gummersbach.
 
 ----
 
@@ -56,7 +52,7 @@ Layout-switcher:
 - 
   notc: "1"
   otc: left
-  appearance: xxl
+  appearance: normal
 
 ----
 
@@ -64,7 +60,7 @@ Behavior-type: standard
 
 ----
 
-Color-class: blau
+Color-class: 
 
 ----
 

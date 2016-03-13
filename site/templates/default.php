@@ -9,8 +9,11 @@
 $ebene = $page->children()->visible();
 if($ebene->count() === 0){
   $ebene = $page->parent()->children()->visible();
+  atomicdesign::output("organism","container--rows", array("use_containers" => $ebene));
+}else{
+  atomicdesign::output("organism","container--rows");
 }
-atomicdesign::output("organism","container--rows", array("use_containers" => $ebene)); ?>
+?>
 
 <!-- EO-Content Block -->
 <?php snippet('footer'); ?>

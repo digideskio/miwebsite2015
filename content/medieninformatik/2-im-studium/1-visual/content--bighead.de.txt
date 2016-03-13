@@ -14,7 +14,7 @@ Hide-in-lang: false
 
 ----
 
-Text: (link: /artikelpool/nach-dem-studium text: Was mache ich nach dem Studium?)
+Text: 
 
 ----
 
@@ -31,11 +31,15 @@ Invisible:
 
 ----
 
+Autor: 
+
+----
+
 Date: 
 
 ----
 
-Autor: 
+Container-class: container-fluid
 
 ----
 
@@ -43,7 +47,7 @@ Layout:
 
 ----
 
-Headline-position: row
+Headline-position: special
 
 ----
 
@@ -53,35 +57,11 @@ Layout-switcher:
   noic: "4"
   notc: "1"
   otc: left
-  appearance: xxl
+  appearance: normal
 
 ----
 
-Behavior-type: standard
-
-----
-
-Color-class: lila
-
-----
-
-Teaser-style: 
-
-----
-
-Home: 0
-
-----
-
-Display-data: 
-
-----
-
-Teasertext: 
-
-----
-
-Select-image: 
+Image-crop: top
 
 ----
 

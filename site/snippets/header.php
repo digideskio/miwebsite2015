@@ -3,6 +3,7 @@
 
   <?php
     $data = isset($content) ? $content : $page;
+    $def_lang = (c::get("lang_layouts")) ? c::get("lang_layouts"): $site->defaultLanguage()->code();
   ?>
   <head>
     <!-- Required meta tags always come first -->
@@ -15,6 +16,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/assets/lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   </head>
   <body>
 
@@ -39,6 +41,12 @@
       </div>
 
     </header>
+
+    <?php if($data->uid() != "home" && $data->content($def_lang)->headline_position() != "hide"): ?>
+    <div class="container">
+        <?php pattern('01-atoms/headline', ['text' => $data->title(), "class" => "main-headline"]); ?>
+    </div>
+    <?php endif; ?>
 
 
 
