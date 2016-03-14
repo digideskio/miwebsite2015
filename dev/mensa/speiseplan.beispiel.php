@@ -4,7 +4,7 @@ require 'max_manager_gm_feed.php';
 
 $feed = new MaxManagerGMFeed();
 
-$weekday_meals = $feed->get_weekday_meals();
+$weekdayMeals = $feed->getWeekdayMeals();
 
 ?>
 
@@ -161,52 +161,52 @@ $weekday_meals = $feed->get_weekday_meals();
         <main>
             <?php $indices = array('thisweek', 'nextweek'); ?>
             <?php foreach($indices as $week): ?>
-                <?php $current_week_meals = $weekday_meals->$week; ?>
+                <?php $currentWeekMeals = $weekdayMeals->$week; ?>
 
                 <section class="week_overview">
                     <h2 class="week_type"><?= ($week === 'thisweek') ? "Diese Woche": "Nächste Woche" ?></h2>
-                    <?php foreach($current_week_meals->weekdays as $weekday):  ?>
+                    <?php foreach($currentWeekMeals->weekdays as $weekday):  ?>
 
                         <section class="weekday_overview">
                                 <div class="block day_indicator">
                                     <?php
                                         $date = DateTime::createFromFormat('Y-m-d', $weekday->date);
-                                        $date_str = $date->format('d.m.Y');
+                                        $dateStr = $date->format('d.m.Y');
                                     ?>
-                                    <h3><?= $weekday->weekday_name ?></h3>
-                                    <time datetime="<?= $weekday->date ?>"><?= $date_str ?></time>
+                                    <h3><?= $weekday->weekdayName ?></h3>
+                                    <time datetime="<?= $weekday->date ?>"><?= $dateStr ?></time>
                                 </div>
-                            <?php foreach($weekday->meals as $meal_type => $meal_data): ?>
+                            <?php foreach($weekday->meals as $mealType => $mealData): ?>
 
                                 <?php
-                                    if(stripos($meal_type, 'hinweis') !== false) {
+                                    if(stripos($mealType, 'hinweis') !== false) {
 
                                         /* Hinweise sind eher der Legende zugehörig */
-                                        if(!in_array($meal_data->article, $weekday_meals->legend->main))
-                                            $weekday_meals->legend->main[] = $meal_data->article;
+                                        if(!in_array($mealData->article, $weekdayMeals->legend->main))
+                                            $weekdayMeals->legend->main[] = $mealData->article;
 
                                         continue;
                                     }
 
-                                    $type_class = '';
+                                    $typeClass = '';
 
-                                    if(stripos($meal_type, 'beilag') !== false) {
-                                        $type_class = 'side_dishes';
+                                    if(stripos($mealType, 'beilag') !== false) {
+                                        $typeClass = 'side_dishes';
                                     }
-                                    else if(   stripos($meal_type, 'vegeta') !== false
-                                            || stripos($meal_data->article, 'vegeta') !== false
-                                            || stripos($meal_data->desc, 'vegeta') !== false ) {
+                                    else if(   stripos($mealType, 'vegeta') !== false
+                                            || stripos($mealData->article, 'vegeta') !== false
+                                            || stripos($mealData->desc, 'vegeta') !== false ) {
                                         $type_class = 'vegetarian';
                                     }
                                 ?>
 
-                                <article class="block meal <?= $type_class ?>">
+                                <article class="block meal <?= $typeClass ?>">
                                     <header>
-                                        <h4><?= $meal_type ?></h4>
+                                        <h4><?= $mealType ?></h4>
                                     </header>
-                                    <p class="name"><?= $meal_data->article ?></p>
-                                    <p class="desc"><?= $meal_data->desc ?></p>
-                                    <p class="price"><?= ($meal_data->price !== false) ? implode(' / ', $meal_data->price): '' ?></p>
+                                    <p class="name"><?= $mealData->article ?></p>
+                                    <p class="desc"><?= $mealData->desc ?></p>
+                                    <p class="price"><?= ($mealData->price !== false) ? implode(' / ', $mealData->price): '' ?></p>
                                 </article>
 
                             <?php endforeach; ?>
@@ -221,7 +221,7 @@ $weekday_meals = $feed->get_weekday_meals();
         <footer class="legend">
             <h2>Zusatzstoffe, Allergene und Sonstiges</h2>
             <p class="price_info">Studierende / Bedienstete / Gäste*** (Preis in €)</p>
-            <?php foreach($weekday_meals->legend as $type => $entries): ?>
+            <?php foreach($weekdayMeals->legend as $type => $entries): ?>
 
                 <div class="entry <?= $type ?>">
                     <?php if($type === 'main'): ?>
@@ -231,13 +231,13 @@ $weekday_meals = $feed->get_weekday_meals();
                         <?php endforeach; ?>
                     <?php else: ?>
                         <?php
-                            $headline_map = array(
+                            $headlineMap = array(
                                 'additives'   => 'Zusatzstoffe',
                                 'allergenics' => 'Allergene',
                                 'others'      => 'Sonstiges'
                             );
                         ?>
-                        <h3><?= $headline_map[$type] ?></h3>
+                        <h3><?= $headlineMap[$type] ?></h3>
                         <ul>
                             <?php foreach($entries as $num => $desc): ?>
                                 <li><span><?= $num . ' - ' . $desc; ?></span></li>
