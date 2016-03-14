@@ -196,7 +196,7 @@ $weekdayMeals = $feed->getWeekdayMeals();
                                     else if(   stripos($mealType, 'vegeta') !== false
                                             || stripos($mealData->article, 'vegeta') !== false
                                             || stripos($mealData->desc, 'vegeta') !== false ) {
-                                        $type_class = 'vegetarian';
+                                        $typeClass = 'vegetarian';
                                     }
                                 ?>
 
