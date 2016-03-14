@@ -7,7 +7,7 @@ require $classDir . '/hops_modules.php';
 $nameTmpFile = $classDir . '/modules_dump.tmp.json';
 
 try{
-    /* 
+    /*
      * Einlesen der temporären Datei ermöglicht den Aufruf von diversen
      *    hilfreichen Methoden auf Basis der Moduldaten; z.B. 'getLecturerModuleMap'.
      *  Ansonsten kann der Inhalt der temporären Datei auch direkt ausgegeben werden,
@@ -20,10 +20,10 @@ catch(Exception $e) {
      * Fragt die Moduldaten beim HOPS ab und restrukturiert sie bis zu einem Gewissen Grad
      */
     $hopsModules = new HOPSModules();
-    
+
     /* Für Medieninformatik Master */
     // $hopsModules = new HOPSModules(array(HOPSModules::PROGRAM => HOPSModules::PROGRAM_MI_M));
-    
+
     $hopsModules->toJSONFile($nameTmpFile);
 }
 
@@ -67,7 +67,7 @@ $module = $modulesArr->$mid;
 
     <?php foreach($module as $key => $val): ?>
         <?php if(!is_string($val) || empty($val)) continue; ?>
-        
+
         <div class="entry">
             <h2 class="title"> <?= $key ?> </h2>
             <div class="text"> <?= $val ?> </div>
