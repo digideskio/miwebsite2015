@@ -143,7 +143,7 @@ class MaxManagerGMFeed {
 
             /* Speise-Typ */
             if(substr($classVal, 0, 2) === 'pk') {
-                $currMealType = '' . $tds[0];
+                $currMealType = trim('' . $tds[0]);
 
                 if(!isset($meals->$currMealType)) {
                     $meals->$currMealType = new stdClass();
@@ -155,8 +155,10 @@ class MaxManagerGMFeed {
             }
             /* Die eigentlichen Speisedaten auf drei td-Element verstreut */
             else if(substr($classVal, 0, 4) === 'cell') {
-                
-                if(count($tds) < 3) {
+
+                /* Wenn es keine drei Spalten besitzt (Speisen noch nicht gesetzt) oder
+                    der Speisetyp ('Tellergericht x' usw.) bereits gesetzt wurde -> doppelte Einträge */
+                if(count($tds) < 3 || !empty($meals->$currMealType->article)) {
                     // Keine Speisen für diesen Tag
                     continue;
                 }
