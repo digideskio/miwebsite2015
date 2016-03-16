@@ -6,6 +6,7 @@ require_once('../../assets/lib/twitter-api-php/TwitterAPIExchange.php');
 
 class TwitterHomeTimelineCache {
 
+    /* Für TwitterAPIExchange benötigt -> buildOAuth */
     const GET_METHOD  = 'GET';
 
     private $settings = array(
@@ -25,7 +26,9 @@ class TwitterHomeTimelineCache {
         'consumer_secret'           => ''
     );
 
+    /* API-URL um die Tweets anzufragen, die in der Home Timeline ausgegeben werden */
     private $apiHomeTimelineURL = 'https://api.twitter.com/1.1/statuses/home_timeline.json';
+    /* Assoziatives Array um GET-Parameter zu halten */
     private $getField           = array();
 
     private $cacheFilepath = 'tweets.tmp.json';
@@ -37,11 +40,14 @@ class TwitterHomeTimelineCache {
     function __construct($settings) {
         $this->settings = array_merge($this->settings, $settings);
 
+        /* Standardwerte für die GET-Parameter setzen */
         $this->getField = array(
             'screen_name' => $this->settings["screen_name"],
             'count'       => $this->settings["fetch_count"]
         );
 
+        /* Zu überspringende Usernames und akzeptierte Hashtags aufsplitten,
+            sofern sie als String anstatt Array gegeben sind */
         if(is_string($this->settings['skip_user'])) {
             $this->settings['skip_user'] =
                 explode(',', $this->settings['skip_user']);
@@ -57,12 +63,23 @@ class TwitterHomeTimelineCache {
         $this->settings['accepted_hashtags'] =
               array_map('strtolower', $this->settings['accepted_hashtags']);
 
+
         $this->twitterAPIExchangeObj = new TwitterAPIExchange($this->settings);
 
+        /* Bereits bezogene Tweets aus dem Cache beziehen, sofern einer zuvor angelegt wurde */
         $this->initCache();
     }
 
 
+    /**
+     * Holen von Tweets aus dem Cache oder sofern dieser nicht mehr aktuell ist,
+     *    direkt über die Twitter-API
+     *
+     * @param int $count Anzahl an Tweets, die zurückgegeben werden sollen
+     *
+     * @return array|object Ein Array mit Tweet-Objekten (stdClass), oder ein
+     *                      Fehlerobjekt mit Twitter-Error-Code und Error-Nachricht
+     */
     function getTweets($count = 10) {
         $now = new DateTime('now');
 
@@ -73,6 +90,7 @@ class TwitterHomeTimelineCache {
 
         $lastId = -1;
 
+        /* Nicht mehr Tweets anfragen, als man am Ende im Cache hält */
         if($count > $this->settings['keep_tweets_count'])
             $count = $this->settings['keep_tweets_count'];
 
@@ -129,6 +147,15 @@ class TwitterHomeTimelineCache {
     }
 
 
+    /**
+     * Tweets anhand von Parametern filtern (Tweets von bestimmten Usern überspringen;
+     *    nur Tweets mit bestimmten Hashtags) und um hilfreiche Eigenschaften erweitern
+     *    (Unix-Timestamp, vorformartiertes Datum und URIs in Links umwandeln)
+     *
+     * @param array $tweets Array mit noch unangetasteten Tweets (stdClass-Objekte)
+     *
+     * @return array Array mit gefilterten und erweiterten Tweets
+     */
     function filterAndExtendTweets($tweets) {
 
         $filteredTweets = array();
@@ -151,8 +178,10 @@ class TwitterHomeTimelineCache {
                 }
             }
 
-            $tweet->autolinked_text      = $this->autolink($tweet->text);
-            $tweet->formatted_created_at = $this->convertDate($tweet->created_at);
+            $tweet->text_extended        = $this->autolink($tweet->text);
+            $tweet->created_at_formatted = $this->convertDate($tweet->created_at);
+            $tweet->created_at_timestamp = $this->convertDateToTimestamp($tweet->created_at);
+            $tweet->text_extended        = $this->autolinkHashtags($tweet->text_extended);
 
             $filteredTweets[] = $tweet;
         }
@@ -161,6 +190,14 @@ class TwitterHomeTimelineCache {
     }
 
 
+    /**
+     * In Twitter-Nachrichtentexte entahltene URIs in Links umwandeln
+     *    -> HTML-anchor-Element
+     *
+     * @param string $str Tweet-Nachrichtentext
+     *
+     * @return string Tweet-Nachrichtentext mit Links
+     */
     private function autolink($str) {
         $attrs = '';
 
@@ -176,20 +213,50 @@ class TwitterHomeTimelineCache {
     }
 
 
-    private function convertDate($date, $dateFormat = 'd.m.Y') {
-      $months = array();
+    private function autolinkHashtags($str) {
+        $result = preg_replace( '/#([\wäöüß]+)/',
+                                '<a class="hashtag" href="https://twitter.com/hashtag/$1">#$1</a>',
+                                $str);
 
-      for($x=0; $x<12; $x++) {
-        $months[$x] = date('M', mktime(0, 0, 0, $x, 1, 2000));
-      }
-      #Sun Jan 20 20:18:25 +0000 2013
-      list($day_name, $month, $day, $date, $timecode, $year) = explode(' ', $date);
-      $month = array_search($month,$months);
+        if(empty($result))
+            return $str;
 
-      return date($dateFormat, mktime(0, 0, 0, $month, $day, $year)) . " - " .
-                preg_replace("=:..$=", "", $date);
+        return $result;
     }
 
+
+    /**
+     * Konvertieren eines Tweet-Erstellungszeitpunkts in ein Datumsstrings
+     *    anhand eines gegebenen Formats
+     *
+     * @param int $date RFC-Datumsstring
+     * @param string $format Datumsformat
+     *
+     * @return string Erstellungsdatum im Zielformat
+     */
+    private function convertDate($date, $format = 'd.m.Y - H:i') {
+        $date = new DateTime($date);
+        return $date->format($format);
+    }
+
+
+    /**
+     * Konvertieren eines Tweet-Erstellungszeitpunkts in ein UNIX-Timestamp
+     *
+     * @param int $date RFC-Datumsstring
+     *
+     * @return int UNIX-Timestamp
+     */
+    private function convertDateToTimestamp($date) {
+        $date = new DateTime($date);
+        return $date->getTimestamp();
+    }
+
+
+    /**
+     * Cache-Variable setzen;
+     *    entweder auf Basis eines bestehenden Caches, oder mit initialen Standardwerten
+     */
     private function initCache() {
         if(file_exists($this->cacheFilepath)) {
             $cacheContentRaw = file_get_contents($this->cacheFilepath);
