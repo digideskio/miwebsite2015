@@ -18,7 +18,7 @@ function getOrElse($val, $else) {
 $envSettings = array(
     'screen_name'       => getOrElse( getenv('TWITTER_SCREEN_NAME'),             '<PLACEHOLDER>' ),
     'skip_user'         => getOrElse( explode(',', getenv('TWITTER_SKIP_USER')), '<PLACEHOLDER>' ),
-    //'accepted_hashtags' => getOrElse( explode(',', getenv('TWITTER_ACCEPTED_HASHTAGS')), array('mikoeln,medieninformatik')), // usw.
+    //'accepted_hashtags' => getOrElse( explode(',', getenv('TWITTER_ACCEPTED_HASHTAGS')), array('mikoeln', 'medieninformatik')), // usw.
 
 
     //'fetch_count'           => 20,

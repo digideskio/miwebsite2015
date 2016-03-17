@@ -164,7 +164,7 @@ class TwitterHomeTimelineCache {
             if(in_array($tweet->user->screen_name, $this->settings['skip_user']))
                 continue;
 
-            /* Sofern akzeptierte Hastags gegeben sind (mindestens einer),
+            /* Sofern akzeptierte Hashtags gegeben sind (mindestens einer),
                 dann sind nur Tweets erlaubt, die die entsprechenden Hashtags enthalten  */
             if(count($this->settings['accepted_hashtags']) > 0) {
                 $tweetHashtags = array_map(function($hashtag) { return strtolower($hashtag->text); },
@@ -213,6 +213,14 @@ class TwitterHomeTimelineCache {
     }
 
 
+    /**
+     * In Twitter-Nachrichtentexte entahltene Hashtags in Links umwandeln
+     *    -> https://twitter.com/hashtag/<hashtag>
+     *
+     * @param string $str Tweet-Nachrichtentext
+     *
+     * @return string Tweet-Nachrichtentext mit Links
+     */
     private function autolinkHashtags($str) {
         $result = preg_replace( '/#([\wäöüß]+)/',
                                 '<a class="hashtag" href="https://twitter.com/hashtag/$1">#$1</a>',
