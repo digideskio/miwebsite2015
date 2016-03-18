@@ -3,7 +3,7 @@
     <head>
         <title>Übersicht Veranstaltungen</title>
         <meta charset="utf-8" />
-        
+
         <style>
             * {
                 font-size: 13px;
@@ -39,19 +39,19 @@
                 margin: 20px 0;
             }
 
-            .entry h2.title {
+            .entry .title {
                 font-size: 11px;
                 color: #77cc00;
                 float: left;
                 width: 250px;
             }
-            
-            .entry div.text {
+
+            .entry .text {
                 float: left;
                 width: 516px;
             }
-            
-            .entry div.text * {
+
+            .entry .text * {
                 margin-bottom: 15px;
             }
 

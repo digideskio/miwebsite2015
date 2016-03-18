@@ -3,7 +3,7 @@
     <head>
         <title>Übersicht Veranstaltungen</title>
         <meta charset="utf-8" />
-        
+
         <style>
             * {
                 font-size: 13px;
@@ -39,7 +39,7 @@
                     background: #b4a7a0;
                     color: #fff;
                 }
-                
+
                     .semester .square.module h2 {
                         font-weight: bold;
                         font-size: 11px;
@@ -50,17 +50,17 @@
                         text-decoration: none;
                         border-bottom: 1px dotted #fff;
                     }
-                    
+
                     .semester .square.module a:hover {
                         color: #fff;
                         text-decoration: none;
                         border-bottom: 1px solid #d16;
                     }
-                    
+
                     .semester .square.module .module_infos {
                         margin-top: 20px;
                     }
-                    
+
                     .semester .square.module a.details {
                         color: #d16;
                         border: 1px solid transparent;
@@ -70,15 +70,15 @@
                         right: 5px;
                         margin-right: 5px;
                     }
-                    
+
                     .semester .square.module a.details:hover {
                         border-bottom: 1px solid #d16;
                     }
         </style>
     </head>
     <body>
-
-    <?php require('inc/uebersicht_veranstaltungen.inc.php'); ?>
-
+        <main>
+            <?php require('inc/uebersicht_veranstaltungen.inc.php'); ?>
+        </main>
     </body>
 </html>
