@@ -2,8 +2,8 @@
 
 require('twitter_home_timeline_cache.php');
 
-if(file_exists('../../../../config/custom-config.php'))
-  include_once('../../../../config/custom-config.php');
+if(file_exists('../../../config/custom-config.php'))
+  include_once('../../../config/custom-config.php');
 
 
 
@@ -21,7 +21,7 @@ $envSettings = array(
     //'accepted_hashtags' => getOrElse( explode(',', getenv('TWITTER_ACCEPTED_HASHTAGS')), array('mikoeln', 'medieninformatik')), // usw.
 
 
-    //'fetch_count'           => 20,
+    //'fetch_count'           => 120,
     //'keep_tweets_count'     => 50,
     //'cache_validity_period' => 10 * 60, // Sekunden
     //'autolink_attributes'   => array(), // assoziatives Array
@@ -46,7 +46,7 @@ $settings =      isset($custom_config)
 
 $twitter = new TwitterHomeTimelineCache($settings);
 
-$tweets = $twitter->getTweets( /* Standardwert = 10 */ );
+$tweets = $twitter->getTweets( 300/* Standardwert = 10 */ );
 
 
 ?>

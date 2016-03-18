@@ -6213,7 +6213,7 @@ body > section {
   }
 }
 
-/* Components
+/* .Header & .Navigation
 =======================================================================================*/
 .page-header {
   padding-top: .6375rem;
@@ -6275,15 +6275,44 @@ body > section {
   font-weight: 300;
 }
 
-.page-header .navigation .nav-item {
+.page-header .navigation a, .page-header .navigation a:hover, .page-header .navigation a:focus {
+  text-decoration: none;
+}
+
+.page-header .navigation a:hover, .page-header .navigation a:focus {
+  color: #000;
+}
+
+.page-header .navigation .nav, .page-header .navigation .subnav {
+  padding: 0;
+}
+
+.page-header .navigation .nav > .navitem, .page-header .navigation .subnav > .navitem {
+  display: block;
   border-top: solid 1px #000;
 }
 
-.page-header .navigation .nav-item > .nav-link {
+.page-header .navigation .nav > .navitem > .navlink, .page-header .navigation .subnav > .navitem > .navlink {
   display: block;
-  margin-bottom: 2px;
+  margin: .31875rem 0;
+  font-weight: 500;
+  outline: 0;
 }
 
+.page-header .navigation .subnav {
+  margin-bottom: 1rem;
+}
+
+.page-header .navigation .subnav > .navitem {
+  border-top: dotted 1px rgba(0, 0, 0, .2);
+}
+
+.page-header .navigation .subnav > .navitem > .navlink {
+  font-weight: 300;
+}
+
+/* .Components
+=======================================================================================*/
 article .body {
   padding-bottom: 1rem;
 }
@@ -6319,7 +6348,7 @@ article .body h2 {
   text-shadow: 0 0 6px rgba(0, 0, 0, .4);
 }
 
-/* Sections
+/* .Sections
 =======================================================================================*/
 section.blau + section,
 section.lila + section {
@@ -6355,7 +6384,7 @@ section.gruen * {
   margin-bottom: .5rem;
 }
 
-/* Typo
+/* .Typo
 =======================================================================================*/
 .bigtext {
   font-size: 1.25rem;

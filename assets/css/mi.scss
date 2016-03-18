@@ -151,10 +151,7 @@ body{
 }
 
 
-
-
-
-/* Components
+/* .Header & .Navigation
 =======================================================================================*/
 
 .page-header{
@@ -209,24 +206,55 @@ body{
     font-size: $basefontsize * 1.2;
     font-weight: 300;
 
-    .nav-item{
-      border-top: solid 1px #000;
+    a, a:hover, a:focus{
+      text-decoration: none;
+    }
 
-      > .nav-link{
+    a:hover, a:focus{
+      color: #000;
+    }
+
+    .nav, .subnav{
+      padding: 0;
+
+      > .navitem{
+        border-top: solid 1px #000;
         display: block;
-        margin-bottom: 2px;
+
+        > .navlink{
+          display: block;
+          margin: $basemargin /2 0;
+          font-weight: 500;
+          outline: 0;
+        }
       }
     }
 
+    .subnav{
+
+      margin-bottom: $basefontsize;
+
+      > .navitem{
+        border-top: dotted 1px rgba(0,0,0,0.2);
+
+        > .navlink{
+          font-weight: 300;
+        }
+      }
+    }
   }
 }
 
 
+
+
+
+/* .Components
+=======================================================================================*/
+
 article .body{
 
   padding-bottom: $basefontsize;
-
-
 
   h2{
     font-size: $fs-large;
@@ -257,7 +285,7 @@ article .body{
 
 
 
-/* Sections
+/* .Sections
 =======================================================================================*/
 
 section.blau,
@@ -291,7 +319,7 @@ section.gruen{
 
 }
 
-/* Typo
+/* .Typo
 =======================================================================================*/
 
 .bigtext{
