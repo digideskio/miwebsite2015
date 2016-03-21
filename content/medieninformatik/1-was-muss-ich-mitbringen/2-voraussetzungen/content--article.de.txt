@@ -1,0 +1,101 @@
+Info: 
+
+----
+
+Visible: 
+
+----
+
+Title: Persönliche Voraussetzungen Bachelor
+
+----
+
+Hide-in-lang: false
+
+----
+
+Text: 
+
+Sind Sie kommunikationsfreudig, offen, neugierig und kreativ? Haben Sie Freude an analytischem, abstraktem und logischem Denken und Handeln und arbeiten gerne im Team? Sind Sie fasziniert von Technologie? Dann ist Medieninformatik das Richtige für Sie.
+
+Der Medieninformatik Bachelor Studiengang ist ein angewandter Informatik Studiengang. Somit gehört neben den Medien-spezifischen Inhalten, Denkmodellen, Werkzeugen und Vorgehensweisen auch die Vermittlung von mathematischen, theoretischen und technischen Grundlagen mit Lehrveranstaltungen wie Mathematik, Algorithmen und Programmierung, Theoretische Informatik als auch Einführung in Betriebssysteme und Rechnerarchitekturen zum Pflichtprogramm des Studiengangs.
+
+Der Studiengang  ist sehr projektorientiert. Das zeigt sich sowohl in kompletten Modulen wie dem "Audiovisuellen Medienprojekt", dem "Entwicklungsprojekt interaktive Medien" oder dem Praxisprojekt, als auch in vielen modulbegleitenden Praktika. Die Studierenden können so in Teams mit einem hohen Maß an Selbstverantwortlichkeit umfangreichere Themen bearbeiten und komplexe Problemstellungen lösen. Dabei arbeitet man themenzentriert statt fachzentriert.
+
+Das Studium ist so konzipiert, dass keine expliziten Informatik-Fachkenntnisse vorausgesetzt werden.
+
+Mehr zum (shortcut: bachelor text: Medieninformatik Bachelor Studiengang icon: link)
+
+----
+
+Columns: 
+
+- 
+  noc: "1"
+  text2: ""
+  text3: ""
+
+----
+
+Invisible: 
+
+----
+
+Date: 
+
+----
+
+Autor: 
+
+----
+
+Layout: 
+
+----
+
+Headline-position: row
+
+----
+
+Layout-switcher: 
+
+- 
+  notc: "1"
+  otc: left
+  appearance: normal
+
+----
+
+Behavior-type: standard
+
+----
+
+Color-class: 
+
+----
+
+Teaser-style: 
+
+----
+
+Home: 0
+
+----
+
+Display-data: 
+
+----
+
+Teasertext: 
+
+----
+
+Select-image: 
+
+----
+
+Freigabelinie: 
+
+----
+
+Freigabe: false

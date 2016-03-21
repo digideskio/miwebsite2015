@@ -49,6 +49,7 @@ class Blueprint extends Obj {
   public function load($name) {
 
     // make sure there's no path included in the name
+    //var_dump($name);
     $name = basename(strtolower($name));
 
     if(isset(static::$cache[$name])) {

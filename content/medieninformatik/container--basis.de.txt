@@ -1,0 +1,45 @@
+Title: Medieninformatik
+
+----
+
+Keywords: 
+
+----
+
+Desc: 
+
+----
+
+Headline-zeigen: false
+
+----
+
+Hide-in-lang: false
+
+----
+
+Meta-title: 
+
+----
+
+Facebook-title: 
+
+----
+
+Facebook: 
+
+----
+
+Trennlinie: hide
+
+----
+
+Subhead: hide
+
+----
+
+Padding-at-top: 0
+
+----
+
+Freigabe: false

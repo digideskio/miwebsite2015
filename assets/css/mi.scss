@@ -55,6 +55,7 @@
 @import "utilities-spacing";
 @import "utilities-responsive";
 
+@import "mi-mixins";
 
 /* MI Stuff
   Wir folgen hier mal den CSS Konventionen des rscss Systems: http://rscss.io/
@@ -67,6 +68,16 @@
 $basefontsize: 1rem;
 $basemargin: $grid-gutter-width /2;
 
+$mi-blau: #4952e1;
+$mi-pink: #dd1166;
+$mi-gruen: #00AD2F;
+$mi-lila: #9313ce;
+$mi-black: #231f20;
+
+$fs-x-large:  $basefontsize * 2;
+$fs-large:    $basefontsize * 1.5;
+$fs-medium:   $basefontsize * 1.25;
+
 
 
 /* Helper
@@ -76,18 +87,21 @@ $basemargin: $grid-gutter-width /2;
   width: 100%;
 }
 
-.section.head{
-  margin-top: $basefontsize;
-  margin-bottom: $basefontsize;
 
-  > .subheadline{
-    font-weight: 700;
-  }
-}
 
 
 /* Globals
 =======================================================================================*/
+
+body, html{
+  font-weight: 300;
+  letter-spacing: 0.03em;
+}
+
+p{
+  @include hyphens;
+}
+
 body{
   position: relative;
   @include gradient-vertical(rgba(0,0,0,0), rgba(0,0,0,0.5), 0%, 100%);
@@ -99,10 +113,20 @@ body{
 }
 
 
+.bild{
+  margin-bottom: $basefontsize /2;
+}
+
 /* Overrides
 =======================================================================================*/
 
 @media (max-width: breakpoint-min(sm)) {
+
+  body{
+      line-height: 130%;
+  }
+
+
   .card-block{
     position: absolute;
     top: auto;
@@ -119,7 +143,14 @@ body{
       color: #fff;
     }
   }
+
+  .bild{
+    //margin-left: -$basemargin;
+    //margin-right: -$basemargin;
+  }
 }
+
+
 
 
 
@@ -132,20 +163,28 @@ body{
   padding-bottom: $basemargin;
   margin-bottom: $basemargin;
   background-color: #fff;
-
-  .logo{
-    transition: all 400ms;
-  }
+  border-bottom: solid 1px $brand-primary;
 
   #mi-box{
     width: 50%;
-    &.tiny{ width: 60px; }
   }
 
   #mi-unten{
     margin-top: $basemargin *3;
-    width: 100%;
-    &.tiny{ opacity: 0;}
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .header--tiny{
+    margin-top: -80px;
+    transition: all 0.4s;
+
+    figure{ margin-bottom: 0; }
+    #mi-box-tiny{ width: 50px; }
+
+    &.sichtbar{
+      margin-top: $basefontsize /2;
+    }
   }
 
   .navbar{
@@ -175,18 +214,130 @@ body{
 
       > .nav-link{
         display: block;
+        margin-bottom: 2px;
       }
     }
 
   }
+}
+
+
+article .body{
+
+  padding-bottom: $basefontsize;
+
+
+
+  h2{
+    font-size: $fs-large;
+  }
 
 }
 
+.bighead.special{
+  position: relative;
+  > .wrap{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-left: $basemargin;
+    padding-right: $basemargin;
+    padding-bottom: $basemargin * 2;
+    @include gradient-vertical(rgba(0,0,0,0.7), rgba(0,0,0,0), 0%, 100%);
+
+    > .main-headline{
+      color: #fff;
+      text-shadow: 0 0 6px rgba(0,0,0,0.4);
+      font-size: $fs-large;
+      line-height: 100%;
+    }
+  }
+}
+
+
+
+/* Sections
+=======================================================================================*/
+
+section.blau,
+section.lila{
+
+  & + section{
+    margin-top: 1px;
+  }
+
+}
+
+section.blau{
+  background-color: $mi-blau;
+  *{ color: #fff !important; }
+}
+
+section.lila{
+  background-color: $mi-lila;
+  *{ color: #fff !important; }
+}
+
+section.gruen{
+  background-color: $mi-gruen;
+  *{ color: #fff !important; }
+}
+
+
+.section.head{
+  margin-top: $basefontsize;
+  margin-bottom: $basefontsize /2;
+
+}
+
+/* Typo
+=======================================================================================*/
+
+.bigtext{
+  font-size: $fs-medium;
+  line-height: 120%;
+}
+
+.main-headline{
+  font-size: $fs-large;
+  font-weight: 500;
+  margin-top: $basefontsize;
+  margin-bottom: $basefontsize;
+}
+
+.subheadline{
+  font-size: $fs-large;
+  font-weight: 500;
+}
+
+.content a{
+  text-decoration: underline;
+  font-weight: 500;
+
+  &:hover{
+    font-weight: 700;
+  }
+}
+
+/* Rules for small devices
+=======================================================================================*/
+
+@media (max-width: breakpoint-min(sm)) {
+
+  .big-cols > section{
+    padding: $grid-gutter-width /2;
+    padding-top: 0;
+  }
+
+}
 
 
 /* Template
 =======================================================================================*/
 
 .big-cols{
-  padding: $grid-gutter-width /2;
+  /*padding: $grid-gutter-width /2;*/
 }
+
+

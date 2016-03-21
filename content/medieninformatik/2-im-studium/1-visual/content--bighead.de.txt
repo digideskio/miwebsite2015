@@ -1,0 +1,72 @@
+Info: 
+
+----
+
+Visible: 
+
+----
+
+Title: Was mache ich nach dem Studium?
+
+----
+
+Hide-in-lang: false
+
+----
+
+Text: 
+
+----
+
+Columns: 
+
+- 
+  noc: "1"
+  text2: ""
+  text3: ""
+
+----
+
+Invisible: 
+
+----
+
+Autor: 
+
+----
+
+Date: 
+
+----
+
+Container-class: container-fluid
+
+----
+
+Layout: 
+
+----
+
+Headline-position: special
+
+----
+
+Layout-switcher: 
+
+- 
+  noic: "4"
+  notc: "1"
+  otc: left
+  appearance: normal
+
+----
+
+Image-crop: top
+
+----
+
+Freigabelinie: 
+
+----
+
+Freigabe: false

@@ -1,0 +1,91 @@
+Info: 
+
+----
+
+Visible: 
+
+----
+
+Title: Berufsbilder
+
+----
+
+Hide-in-lang: false
+
+----
+
+Text: Die Wege der bisherigen Absolventen des Studiengangs sind so vielfältig wie das Fachgebiet Medieninformatik selbst: Medienunternehmen wie RTL, Telekommunikationsunternehmen wie T-Mobile oder Vodafone, Agenturen im Bereich der neuen Medien wie Pixelpark, aber auch Konzerne wie Ford oder Bayer beschäftigen Medieninformatiker vom Campus Gummersbach.
+
+----
+
+Columns: 
+
+- 
+  noc: "1"
+  text2: ""
+  text3: ""
+
+----
+
+Invisible: 
+
+----
+
+Date: 
+
+----
+
+Autor: 
+
+----
+
+Layout: 
+
+----
+
+Headline-position: row
+
+----
+
+Layout-switcher: 
+
+- 
+  notc: "1"
+  otc: left
+  appearance: normal
+
+----
+
+Behavior-type: standard
+
+----
+
+Color-class: 
+
+----
+
+Teaser-style: 
+
+----
+
+Home: 0
+
+----
+
+Display-data: 
+
+----
+
+Teasertext: 
+
+----
+
+Select-image: 
+
+----
+
+Freigabelinie: 
+
+----
+
+Freigabe: false

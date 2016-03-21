@@ -1,0 +1,97 @@
+Info: 
+
+----
+
+Visible: 
+
+----
+
+Title: Bachelor? Master? Was ist denn da der Unterschied?
+
+----
+
+Hide-in-lang: false
+
+----
+
+Text: 
+
+Der Bachelor Studiengang Medieninformatik ist ein sogenanntes grundständiges Studium und führt zum *ersten* Hochschulabschluss. 
+(link: /bachelor text: mehr zum Medieninformatik Bachelor icon: link)
+
+Der Master Studiengang ist *postgradual*, d. h. zur Zulassung ist ein erfolgreich abgeschlossener grundständiger Studiengang erforderlich.  
+(link: /master text: mehr zum Medieninformatik Master icon: link)
+
+----
+
+Columns: 
+
+- 
+  noc: "1"
+  text2: ""
+  text3: ""
+
+----
+
+Invisible: 
+
+----
+
+Date: 
+
+----
+
+Autor: 
+
+----
+
+Layout: 
+
+----
+
+Headline-position: row
+
+----
+
+Layout-switcher: 
+
+- 
+  notc: "1"
+  otc: left
+  appearance: normal
+
+----
+
+Behavior-type: standard
+
+----
+
+Color-class: lila
+
+----
+
+Teaser-style: 
+
+----
+
+Home: 0
+
+----
+
+Display-data: 
+
+----
+
+Teasertext: 
+
+----
+
+Select-image: 
+
+----
+
+Freigabelinie: 
+
+----
+
+Freigabe: false

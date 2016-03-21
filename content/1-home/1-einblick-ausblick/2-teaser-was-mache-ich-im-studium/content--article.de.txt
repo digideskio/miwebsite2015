@@ -6,7 +6,7 @@ Visible:
 
 ----
 
-Title: Was mache ich im Studium
+Title: Was mache ich im Studium?
 
 ----
 
@@ -14,7 +14,11 @@ Hide-in-lang: false
 
 ----
 
-Text: (link: www.google.de text: Was mache ich im Studium?)
+Text: 
+
+Das ist wohl eine der entscheidenen Fragen von Studieninteressierten. Was passiert da eigentlich? Muss ich tierische Ahnung von Computern haben? Muss ich Zeichnen können? Ist das kreativ? Brauch ich da Mathe?
+
+(link: /medieninformatik/was-mache-ich-im-studium text: weiterlesen icon: link)
 
 ----
 
@@ -35,10 +39,6 @@ Date:
 
 ----
 
-Showdate: false
-
-----
-
 Autor: 
 
 ----
@@ -54,7 +54,6 @@ Headline-position: row
 Layout-switcher: 
 
 - 
-  noic: "4"
   notc: "1"
   otc: left
   appearance: normal
@@ -65,7 +64,7 @@ Behavior-type: standard
 
 ----
 
-Color-class: normal
+Color-class: blau
 
 ----
 

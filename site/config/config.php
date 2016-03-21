@@ -80,8 +80,35 @@ Teaser snips, um bootstrap 4 oder 3 verwenden zu können
 */
 c::set('atomic-snippet–prefix', "atomic/");
 c::set('teaser-classes', array(
-  "teaser-overview"       => "card-columns",
-  "teaser-item"           => "card",
+  "teaser-overview"       => "card-columns teaser-overview",
+  "teaser-item"           => "card teaser--item",
   "teaser-item-template"  => "card",
-  "wrap"                  => true
+  "wrap"                  => true,
+  "href"                  => true // Soll ein href angezeigt werden? oder werden die Teaser via Ajax geladen
+));
+
+
+/*
+---------------------------------------
+Icon shortcuts
+---------------------------------------
+*/
+
+c::set('icons', array(
+  "link" => "fa-angle-double-right",
+  "hyperlink" => "fa-external-link"
+
+));
+
+
+
+/*
+---------------------------------------
+Zentrale Links
+---------------------------------------
+*/
+
+c::set('links', array(
+  "bewerbung-bachelor" => "https://www.th-koeln.de/studium/medieninformatik-bachelor--bewerbung_3962.php",
+  "bachelor" => "/bachelor"
 ));

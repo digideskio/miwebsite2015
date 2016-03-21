@@ -320,7 +320,7 @@ html {
 }
 
 html {
-  font-size: 14px;
+  font-size: 18px;
 
   -webkit-tap-highlight-color: transparent;
 }
@@ -516,15 +516,15 @@ h1, h2, h3, h4, h5, h6,
 }
 
 h1 {
-  font-size: 2rem;
-}
-
-h2 {
   font-size: 1.75rem;
 }
 
-h3 {
+h2 {
   font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
 }
 
 h4 {
@@ -540,15 +540,15 @@ h6 {
 }
 
 .h1 {
-  font-size: 2rem;
-}
-
-.h2 {
   font-size: 1.75rem;
 }
 
-.h3 {
+.h2 {
   font-size: 1.5rem;
+}
+
+.h3 {
+  font-size: 1.25rem;
 }
 
 .h4 {
@@ -6151,17 +6151,21 @@ a.bg-danger:focus {
   width: 100%;
 }
 
-.section.head {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-.section.head > .subheadline {
-  font-weight: 700;
-}
-
 /* Globals
 =======================================================================================*/
+body, html {
+  font-weight: 300;
+  letter-spacing: .03em;
+}
+
+p {
+  -webkit-hyphens: auto;
+     -moz-hyphens: auto;
+          hyphens: auto;
+
+      -ms-hyphens: auto;
+}
+
 body {
   position: relative;
   background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, .5)));
@@ -6177,9 +6181,16 @@ body > section {
   background-color: #fff;
 }
 
+.bild {
+  margin-bottom: .5rem;
+}
+
 /* Overrides
 =======================================================================================*/
 @media (max-width: 544px) {
+  body {
+    line-height: 130%;
+  }
   .card-block {
     position: absolute;
     top: auto;
@@ -6209,29 +6220,36 @@ body > section {
   padding-bottom: .6375rem;
   margin-bottom: .6375rem;
   background-color: #fff;
-}
-
-.page-header .logo {
-  -webkit-transition: all 400ms;
-       -o-transition: all 400ms;
-          transition: all 400ms;
+  border-bottom: solid 1px #d16;
 }
 
 .page-header #mi-box {
   width: 50%;
 }
 
-.page-header #mi-box.tiny {
-  width: 60px;
-}
-
 .page-header #mi-unten {
-  width: 100%;
+  max-width: 100%;
   margin-top: 1.9125rem;
+  overflow: hidden;
 }
 
-.page-header #mi-unten.tiny {
-  opacity: 0;
+.page-header .header--tiny {
+  margin-top: -80px;
+  -webkit-transition: all .4s;
+       -o-transition: all .4s;
+          transition: all .4s;
+}
+
+.page-header .header--tiny figure {
+  margin-bottom: 0;
+}
+
+.page-header .header--tiny #mi-box-tiny {
+  width: 50px;
+}
+
+.page-header .header--tiny.sichtbar {
+  margin-top: .5rem;
 }
 
 .page-header .navbar {
@@ -6263,11 +6281,120 @@ body > section {
 
 .page-header .navigation .nav-item > .nav-link {
   display: block;
+  margin-bottom: 2px;
+}
+
+article .body {
+  padding-bottom: 1rem;
+}
+
+article .body h2 {
+  font-size: 1.5rem;
+}
+
+.bighead.special {
+  position: relative;
+}
+
+.bighead.special > .wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-right: .6375rem;
+  padding-bottom: 1.275rem;
+  padding-left: .6375rem;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .7)), to(transparent));
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, .7) 0%, transparent 100%);
+  background-image:      -o-linear-gradient(top, rgba(0, 0, 0, .7) 0%, transparent 100%);
+  background-image:         linear-gradient(to bottom, rgba(0, 0, 0, .7) 0%, transparent 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#B3000000', endColorstr='#00000000', GradientType=0);
+  background-repeat: repeat-x;
+}
+
+.bighead.special > .wrap > .main-headline {
+  font-size: 1.5rem;
+  line-height: 100%;
+  color: #fff;
+  text-shadow: 0 0 6px rgba(0, 0, 0, .4);
+}
+
+/* Sections
+=======================================================================================*/
+section.blau + section,
+section.lila + section {
+  margin-top: 1px;
+}
+
+section.blau {
+  background-color: #4952e1;
+}
+
+section.blau * {
+  color: #fff !important;
+}
+
+section.lila {
+  background-color: #9313ce;
+}
+
+section.lila * {
+  color: #fff !important;
+}
+
+section.gruen {
+  background-color: #00ad2f;
+}
+
+section.gruen * {
+  color: #fff !important;
+}
+
+.section.head {
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+}
+
+/* Typo
+=======================================================================================*/
+.bigtext {
+  font-size: 1.25rem;
+  line-height: 120%;
+}
+
+.main-headline {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.subheadline {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.content a {
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.content a:hover {
+  font-weight: 700;
+}
+
+/* Rules for small devices
+=======================================================================================*/
+@media (max-width: 544px) {
+  .big-cols > section {
+    padding: .6375rem;
+    padding-top: 0;
+  }
 }
 
 /* Template
 =======================================================================================*/
 .big-cols {
-  padding: .6375rem;
+  /*padding: $grid-gutter-width /2;*/
 }
 /*# sourceMappingURL=bootstrap.css.map */
