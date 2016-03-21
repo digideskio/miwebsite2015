@@ -152,13 +152,20 @@ class TwitterHomeTimelineCache {
 
     /**
      * Erzeugung einer Liste aller Wörter (aller Tweets im Cache),
-     *  samt Anzahl ihrer Vorkommnisse
+     *  samt Anzahl ihrer Vorkommnisse;
+     * Vor jeder Konstruktion der Wortliste, wird versucht der
+     *  Cache aktuell zu halten. Konnte der Cache nicht aktuell
+     *  gehalten werden bzw. keine neuen Tweets abgefragt werden,
+     *  wird die Wortliste auf Basis des nicht aktualisierten Caches
+     *  konstruiert.
      *
      * @return array Wörter + Anzahl der Vokommnisse
      */
     function getWordlist() {
+        /* Aktualisierung des Caches anstoßen */
+        $this->getTweets();
+    
         $wordlist = array();
-
 
         if(is_null($this->stopwords)) {
             $this->stopwords = array();

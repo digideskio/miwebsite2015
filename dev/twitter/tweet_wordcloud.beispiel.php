@@ -202,8 +202,11 @@ $twitter = new TwitterHomeTimelineCache($settings);
             var freqList = [];
 
             for(var k in wordsRaw) {
+                /* Sofern ein Wort weniger als drei Mal auftaucht,
+                    wird es nicht berücksichtigt */
                 if(wordsRaw[k] < 3)
                   continue;
+
                 words.push(k);
                 freqList.push(
                     { 'text': k, 'cnt': wordsRaw[k] }
