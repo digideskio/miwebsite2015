@@ -14,10 +14,11 @@ class TwitterHomeTimelineCache {
         'skip_user'         => array(),
         'accepted_hashtags' => array(),
 
-        'fetch_count'           => 20, // Anzahl Tweets, pro Anfrage
-        'keep_tweets_count'     => 50, // Anzahl Tweets, die maximal im Cache gehalten werden sollen
-        'cache_validity_period' => 10 * 60, // Sekunden
-        'autolink_attributes'   => array(),
+        'fetch_count'            => 20, // Anzahl Tweets, pro Anfrage
+        'keep_tweets_count'      => 100, // Anzahl Tweets, die maximal im Cache gehalten werden sollen
+        'cache_validity_period'  => 10 * 60, // Sekunden
+        'autolink_attributes'    => array(),
+        'stopwordlist_filepaths' => array(),
 
         /* Von TwitterAPIExchange benötigt */
         'oauth_access_token'        => '',
@@ -33,6 +34,8 @@ class TwitterHomeTimelineCache {
 
     private $cacheFilepath = 'tweets.tmp.json';
     private $cache = null;
+
+    private $stopwords = null;
 
     private $twitterAPIExchangeObj;
 
@@ -148,6 +151,63 @@ class TwitterHomeTimelineCache {
 
 
     /**
+     * Erzeugung einer Liste aller Wörter (aller Tweets im Cache),
+     *  samt Anzahl ihrer Vorkommnisse
+     *
+     * @return array Wörter + Anzahl der Vokommnisse
+     */
+    function getWordlist() {
+        $wordlist = array();
+
+
+        if(is_null($this->stopwords)) {
+            $this->stopwords = array();
+
+            foreach($this->settings['stopwordlist_filepaths'] as $filepath) {
+                if(!file_exists($filepath))
+                    continue;
+
+                $currFileStopwords = file($filepath);
+                $currFileStopwords = array_map('trim', $currFileStopwords);
+
+                $this->stopwords = array_merge($this->stopwords, $currFileStopwords);
+            }
+
+            $this->stopwords = array_unique($this->stopwords);
+        }
+
+        foreach($this->cache->tweets as $tweet) {
+
+            $hashtags = $tweet->entities->hashtags;
+            $hashtags = array_map(function($hashtag) { return $hashtag->text; }, $hashtags);
+
+            $text = $tweet->text_extended;
+
+            $text = strtolower($text);
+            $text = preg_replace('/(<a .*?\/a>)/', '', $text);
+            $text = preg_replace('/[^\w\'ßäöü]+/u', ' ', $text);
+            $splitText = preg_split('/\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
+
+            $splitText = array_map('strtolower', $splitText);
+
+            $words = array_merge($splitText, $hashtags);
+
+            foreach($words as $word) {
+                if(in_array($word, $this->stopwords))
+                    continue;
+
+                if(!isset($wordlist[$word]))
+                    $wordlist[$word] = 1;
+
+                $wordlist[$word]++;
+            }
+        }
+
+        return $wordlist;
+    }
+
+
+    /**
      * Tweets anhand von Parametern filtern (Tweets von bestimmten Usern überspringen;
      *    nur Tweets mit bestimmten Hashtags) und um hilfreiche Eigenschaften erweitern
      *    (Unix-Timestamp, vorformartiertes Datum und URIs in Links umwandeln)
@@ -178,10 +238,12 @@ class TwitterHomeTimelineCache {
                 }
             }
 
-            $tweet->text_extended        = $this->autolink($tweet->text);
+            $tweet->text_extended        = html_entity_decode($tweet->text);
+            $tweet->text_extended        = $this->autolink($tweet->text_extended);
             $tweet->created_at_formatted = $this->convertDate($tweet->created_at);
             $tweet->created_at_timestamp = $this->convertDateToTimestamp($tweet->created_at);
             $tweet->text_extended        = $this->autolinkHashtags($tweet->text_extended);
+            $tweet->text_extended        = $this->autolinkMentions($tweet->text_extended);
 
             $filteredTweets[] = $tweet;
         }
@@ -224,6 +286,26 @@ class TwitterHomeTimelineCache {
     private function autolinkHashtags($str) {
         $result = preg_replace( '/#([\wäöüß]+)/',
                                 '<a class="hashtag" href="https://twitter.com/hashtag/$1">#$1</a>',
+                                $str);
+
+        if(empty($result))
+            return $str;
+
+        return $result;
+    }
+
+
+    /**
+     * In Twitter-Nachrichtentexte entahltene Mentions (@screen_name) in Links umwandeln
+     *    -> https://twitter.com/<screen_name>
+     *
+     * @param string $str Tweet-Nachrichtentext
+     *
+     * @return string Tweet-Nachrichtentext mit Links
+     */
+    private function autolinkMentions($str) {
+        $result = preg_replace( '/@([\w]+)/',
+                                '<a class="mention" href="https://twitter.com/$1">@$1</a>',
                                 $str);
 
         if(empty($result))
