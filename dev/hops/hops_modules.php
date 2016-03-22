@@ -270,6 +270,7 @@ class HOPSModules {
                     $modulePart->MODUL_ID .= '_' . $i;
                     $i++;
                     $modulePart->MODULCREDITS = '' . (intval($modulePart->MODULCREDITS) / 2);
+                    $modulePart->MODULSWS   = '' . (intval($modulePart->MODULSWS) / 2);
                     $resolvedModuleParts[] = $modulePart;
                 }
                 break;
