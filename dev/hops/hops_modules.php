@@ -311,7 +311,8 @@ class HOPSModules {
             case '1540': // Audiovisuelles Medienprojekt
                 $modulePart1 = $moduleParts[0];
                 $modulePart1->MODULCREDITS = '' . (intval($modulePart1->MODULCREDITS) / 2);
-                $modulePart1->BEZEICHNUNG = $modulePart1->MODULBEZEICHNUNG;
+                $modulePart1->MODULSWS     = '' . (intval($modulePart1->MODULSWS) / 2);
+                $modulePart1->BEZEICHNUNG  = $modulePart1->MODULBEZEICHNUNG;
 
                 $modulePart2 = new stdclass();
 
