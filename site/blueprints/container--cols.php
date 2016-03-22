@@ -4,6 +4,7 @@ title: Multiple Cols (Container)
 pages:
   template:
   	- container--rows
+  	- container--component
   	- content--article
   	- content--bighead
   	- content--video
@@ -30,13 +31,13 @@ fields:
     type: radio
     width: 1/2
     default: false
-    options: 
+    options:
     	false: visible
     	true: invisible
   layout:
     label: Design (only editable in your main language)
     type: headline
-        	
+
   headline_position:
     label: Headline
     type: radiosingleton

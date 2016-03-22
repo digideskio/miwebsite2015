@@ -1,0 +1,25 @@
+Info: 
+
+----
+
+Visible: 
+
+----
+
+Title: Modulübersicht
+
+----
+
+Hide-in-lang: false
+
+----
+
+Addional-class: 
+
+----
+
+Data: 
+
+----
+
+Snippet: moduluebersicht-bachelor

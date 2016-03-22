@@ -13,6 +13,7 @@ pages:
     - content--form-builder
     - container--rows
     - container--cols
+  	- container--component
 files:
 	sortable: true;
 fields:

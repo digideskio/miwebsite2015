@@ -48,4 +48,5 @@ kirbytext::$tags['shortcut'] = array(
 	}
 );
 
+
 ?>

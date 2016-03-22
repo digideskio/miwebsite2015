@@ -77,6 +77,7 @@ $mi-black: #231f20;
 $fs-x-large:  $basefontsize * 2;
 $fs-large:    $basefontsize * 1.5;
 $fs-medium:   $basefontsize * 1.25;
+$fs-normal:   $basefontsize;
 
 
 
@@ -96,6 +97,7 @@ $fs-medium:   $basefontsize * 1.25;
 body, html{
   font-weight: 300;
   letter-spacing: 0.03em;
+  font-size: $fs-normal;
 }
 
 p{
@@ -104,7 +106,7 @@ p{
 
 body{
   position: relative;
-  @include gradient-vertical(rgba(0,0,0,0), rgba(0,0,0,0.5), 0%, 100%);
+  @include gradient-vertical(rgba(0,0,0,0), rgba(0,0,0,0.2), 0%, 100%);
 
   > section{
     background-color: #fff;
@@ -203,7 +205,7 @@ body{
   }
 
   .navigation{
-    font-size: $basefontsize * 1.2;
+    font-size: $fs-medium;
     font-weight: 300;
 
     a, a:hover, a:focus{
@@ -252,12 +254,16 @@ body{
 /* .Components
 =======================================================================================*/
 
-article .body{
+.artikel{
 
-  padding-bottom: $basefontsize;
+  padding-top: $basefontsize;
 
-  h2{
+  .headline{
     font-size: $fs-large;
+  }
+
+  .body{
+    padding-bottom: $basefontsize;
   }
 
 }
@@ -283,6 +289,12 @@ article .body{
   }
 }
 
+
+/* .Studienverlaufsplan
+=======================================================================================*/
+.modul{
+  width: 400px;
+}
 
 
 /* .Sections

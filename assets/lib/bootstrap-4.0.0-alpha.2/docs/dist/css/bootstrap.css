@@ -6154,6 +6154,7 @@ a.bg-danger:focus {
 /* Globals
 =======================================================================================*/
 body, html {
+  font-size: 1rem;
   font-weight: 300;
   letter-spacing: .03em;
 }
@@ -6168,11 +6169,11 @@ p {
 
 body {
   position: relative;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, .5)));
-  background-image: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, .5) 100%);
-  background-image:      -o-linear-gradient(top, transparent 0%, rgba(0, 0, 0, .5) 100%);
-  background-image:         linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, .5) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=0);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, .2)));
+  background-image: -webkit-linear-gradient(top, transparent 0%, rgba(0, 0, 0, .2) 100%);
+  background-image:      -o-linear-gradient(top, transparent 0%, rgba(0, 0, 0, .2) 100%);
+  background-image:         linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, .2) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#33000000', GradientType=0);
   background-repeat: repeat-x;
 }
 
@@ -6271,7 +6272,7 @@ body > section {
 }
 
 .page-header .navigation {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: 300;
 }
 
@@ -6313,12 +6314,16 @@ body > section {
 
 /* .Components
 =======================================================================================*/
-article .body {
-  padding-bottom: 1rem;
+.artikel {
+  padding-top: 1rem;
 }
 
-article .body h2 {
+.artikel .headline {
   font-size: 1.5rem;
+}
+
+.artikel .body {
+  padding-bottom: 1rem;
 }
 
 .bighead.special {
@@ -6346,6 +6351,12 @@ article .body h2 {
   line-height: 100%;
   color: #fff;
   text-shadow: 0 0 6px rgba(0, 0, 0, .4);
+}
+
+/* .Studienverlaufsplan
+=======================================================================================*/
+.modul {
+  width: 400px;
 }
 
 /* .Sections

@@ -12,6 +12,7 @@ pages:
   	- content--slideshow
   	- content--form-builder
   	- container--rows
+  	- container--component
 files:
 	sortable: true
 fields:

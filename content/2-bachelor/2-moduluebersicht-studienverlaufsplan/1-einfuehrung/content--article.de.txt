@@ -1,0 +1,95 @@
+Info: 
+
+----
+
+Visible: 
+
+----
+
+Title: Einführung
+
+----
+
+Hide-in-lang: false
+
+----
+
+Text: Hier finden Sie eine Auflistungen der einzelnen Module pro Studiensemester. Wenn Sie Fragen zu einzelnen Modulen haben, dann wenden Sie sich einfach an den angezeigten Modulverantwortlichen. Bei Fragen dazu wenden Sie sich bitte an (shortcut: manager-bachelor).
+
+----
+
+Columns: 
+
+- 
+  noc: "1"
+  text2: ""
+  text3: ""
+
+----
+
+Invisible: 
+
+----
+
+Date: 
+
+----
+
+Autor: 
+
+----
+
+Layout: 
+
+----
+
+Headline-position: hide
+
+----
+
+Layout-switcher: 
+
+- 
+  notc: "1"
+  otc: left
+  appearance: normal
+
+----
+
+Behavior-type: standard
+
+----
+
+Color-class: normal
+
+----
+
+Addional-class: gruen
+
+----
+
+Teaser-style: 
+
+----
+
+Home: 0
+
+----
+
+Display-data: 
+
+----
+
+Teasertext: 
+
+----
+
+Select-image: 
+
+----
+
+Freigabelinie: 
+
+----
+
+Freigabe: false
