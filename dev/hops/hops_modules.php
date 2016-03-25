@@ -82,41 +82,36 @@ echo  "2 -> $mID<hr>";
             $moduleDetailsJSONString = $this->extractJSONStringFromHTMLBody($moduleDetailsJSONString);
 echo  "3 -> $mID<hr>";
             $moduleDetailsJSONString = $this->sanitizeJSONString($moduleDetailsJSONString);
-echo  "4 -> $mID<hr>";
-            $module = json_decode($moduleDetailsJSONString);
-  echo "<hr>";
-if($mID == 1538){
 
-  var_dump($moduleDetailsJSONString); exit;
-}else{
-  var_dump($moduleDetailsJSONString);
-}
 
-            if(is_array($module)) {
-                if(count($module) === 1)
-                    $module = $module[0];
-                else{
-                    continue;
-                }
+            $moduleParts = json_decode($moduleDetailsJSONString);
+
+            if(    is_array($moduleParts)
+                && count($moduleParts) > 0 ) {
+                $moduleParts = $this->handleModuleStruct($moduleParts);
 
             }
+            else
+                continue;
 
-            $this->moduleIDs[$mID] = $module->BEZEICHNUNG;
+            foreach($moduleParts as $modulePart) {
+                $currMID = $modulePart->MODUL_ID;
+                $this->moduleIDs[$currMID] = $modulePart->BEZEICHNUNG;
 
-            /* Da alle Werte vom Typ String und nicht immer atomar sind,
-                werden sie aufgetrennt und in ihren eigentlichen Typ konvertiert */
-            $module = $this->parseModuleDozenten($module);
-            $module = $this->parseModuleValues($module);
-            $module = $this->parseModuleCourseAndSemester($module);
-if($mID == 1538){
-  var_dump($module); exit;
-}
-            $this->modules[$mID] = $module;
+                /* Da alle Werte vom Typ String und nicht immer atomar sind,
+                    werden sie aufgetrennt und in ihren eigentlichen Typ konvertiert */
+                $modulePart = $this->parseModuleDozenten($modulePart);
+                $modulePart = $this->parseModuleValues($modulePart);
+                $modulePart = $this->parseModuleCourseAndSemester($modulePart);
+
+                $this->modules[$currMID] = $modulePart;
+            }
         }
 exit;
         /* Temporäres Array mit Dozenten-Objekten und ihnen zugewiesenen Modulen */
         $this->createLecturerModuleMap();
     }
+
 
     /**
      * Rückgabe aller Module als Array
@@ -163,6 +158,7 @@ exit;
 
         return $moduleBuckets;
     }
+
 
     /**
      * Rückgabe einer Liste von Dozenten und ihren Modulen
@@ -255,6 +251,111 @@ exit;
         return file_get_contents($requestUrl);
     }
 
+
+
+    /**
+     * Besonderheiten von bestimmten Modulen handhaben
+     *
+     * @param array $moduleParts Module und ihre Variationen
+                                 (semesterübergreifende oder mehrdozentrige Module)
+     *
+     * @return array
+     */
+    private function handleModuleStruct($moduleParts) {
+
+        $resolvedModuleParts = array();
+
+        $mID = $moduleParts[0]->MODUL_ID;
+
+        switch($mID) {
+            case '1543': // Theoretische Informatik I / II
+                $i = 1;
+                foreach($moduleParts as $modulePart) {
+                    $modulePart->MODUL_ID .= '_' . $i;
+                    $i++;
+                    $modulePart->MODULCREDITS = '' . (intval($modulePart->MODULCREDITS) / 2);
+                    $modulePart->MODULSWS   = '' . (intval($modulePart->MODULSWS) / 2);
+                    $resolvedModuleParts[] = $modulePart;
+                }
+                break;
+
+            case '1295': // Projektmanagment
+                $firstModuleVariant = $moduleParts[0];
+                $firstModuleVariant->BEZEICHNUNG = $firstModuleVariant->MODULBEZEICHNUNG;
+
+                for($i = 1; $i < count($moduleParts); $i++) {
+                    $currModuleVariant = $moduleParts[$i];
+
+                    foreach($currModuleVariant as $prop => $val) {
+                        if(     $prop === "DOZENTEN"
+                            &&  !is_null($val)
+                            &&  strpos($firstModuleVariant->DOZENTEN, $val) === FALSE) {
+
+                            $firstModuleVariant->DOZENTEN .= (',' . $val);
+                        }
+                        else if($prop === "SG_SE") {
+                            if(!is_string($firstModuleVariant->SG_SE))
+                                $firstModuleVariant->SG_SE = $val;
+                            else
+                            $firstModuleVariant->SG_SE .= ',' . $val;
+                        }
+
+                        if(     is_null($firstModuleVariant->$prop)
+                            &&  !is_null($currModuleVariant->$prop) ) {
+                            $firstModuleVariant->$prop = $currModuleVariant->$prop;
+                        }
+                    }
+                }
+
+                $resolvedModuleParts[] = $firstModuleVariant;
+
+                break;
+
+            case '1538': // Medientechnik und Produktion
+            case '1540': // Audiovisuelles Medienprojekt
+                $modulePart1 = $moduleParts[0];
+                $modulePart1->MODULCREDITS = '' . (intval($modulePart1->MODULCREDITS) / 2);
+                $modulePart1->MODULSWS     = '' . (intval($modulePart1->MODULSWS) / 2);
+                $modulePart1->BEZEICHNUNG  = $modulePart1->MODULBEZEICHNUNG;
+
+                $modulePart2 = new stdclass();
+
+                foreach($modulePart1 as $prop => $val) {
+                    $modulePart2->$prop = $val;
+                }
+
+                $sgSe = $modulePart1->SG_SE;
+
+                $sgSe = preg_replace_callback('/ [1-9] /',
+                                              function($val) {
+                                                  return ' ' . (intval($val[0]) + 1) . ' ';
+                                              },
+                                              $sgSe);
+
+                $modulePart2->SG_SE = $sgSe;
+
+                $resolvedModuleParts[] = $modulePart1;
+                $resolvedModuleParts[] = $modulePart2;
+
+                $i = 1;
+                foreach($resolvedModuleParts as &$module) {
+                    $module->BEZEICHNUNG .= ' ' . $i;
+                    $module->MODUL_ID .= '_' . $i;
+                    $i++;
+                }
+
+                break;
+
+            default:
+                $resolvedModuleParts = $moduleParts;
+                break;
+        }
+
+
+        return $resolvedModuleParts;
+    }
+
+
     /**
      * Extrahieren eines JSON-Strings aus einem HTML-Grundgerüst
      *
@@ -281,6 +382,7 @@ exit;
         return $mixedContent;
     }
 
+
     /**
      * In Freitext genutzte style-Attribute, br-Elemente
      *     und geschützte Leerzeichen entfernen
@@ -296,6 +398,7 @@ exit;
 
         return $JSONString;
     }
+
 
     /**
      * Liste von mit Kommata getrennten Dozenten auftrennen
@@ -335,6 +438,7 @@ exit;
         return $module;
     }
 
+
     /**
      * Als String vorliegende, numerische und boolesche Werte
      *     anhand einer Feldname-zu-Typ-Map konvertieren
@@ -367,6 +471,7 @@ exit;
 
         return $module;
     }
+
 
     /**
      * Parsen von nicht atomaren Wert, der Angaben bezüglich

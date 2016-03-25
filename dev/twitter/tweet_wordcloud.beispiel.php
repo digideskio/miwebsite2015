@@ -234,9 +234,9 @@ $twitter = new TwitterHomeTimelineCache($settings);
 
             var layout = d3.layout.cloud().size([size.width, size.height])
                     .words(freqList)
-                    .padding(5)
+                    .padding(0)
                     .fontSize(function(d) { return d.cnt * fontResizeFactor; })
-                    .rotate(function() { return ~~(Math.random() * 2) * 45; })
+                    .rotate(function() { return ~~(Math.random() * 2) * 90; })
                     .on('end', drawVis);
 
             layout.start();
