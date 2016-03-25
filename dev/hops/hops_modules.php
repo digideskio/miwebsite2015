@@ -71,23 +71,34 @@ class HOPSModules {
             $mIDs[] = $moduleResult->ID;
         }
         $mIDs = array_unique($mIDs);
-
+#var_dump($mIDs); exit;
         /* Moduldetails anfordern */
         foreach($mIDs as $mID) {
+echo  "1 -> $mID<hr>";
             $paramMID = array("mid" => $mID);
             $moduleDetailsJSONString = $this->request('details', $paramMID);
-
+echo  "2 -> $mID<hr>";
             /* JSON extrahieren und säubern */
             $moduleDetailsJSONString = $this->extractJSONStringFromHTMLBody($moduleDetailsJSONString);
+echo  "3 -> $mID<hr>";
             $moduleDetailsJSONString = $this->sanitizeJSONString($moduleDetailsJSONString);
-
+echo  "4 -> $mID<hr>";
             $module = json_decode($moduleDetailsJSONString);
+  echo "<hr>";
+if($mID == 1538){
+
+  var_dump($moduleDetailsJSONString); exit;
+}else{
+  var_dump($moduleDetailsJSONString);
+}
 
             if(is_array($module)) {
                 if(count($module) === 1)
                     $module = $module[0];
-                else
+                else{
                     continue;
+                }
+
             }
 
             $this->moduleIDs[$mID] = $module->BEZEICHNUNG;
@@ -97,10 +108,12 @@ class HOPSModules {
             $module = $this->parseModuleDozenten($module);
             $module = $this->parseModuleValues($module);
             $module = $this->parseModuleCourseAndSemester($module);
-
+if($mID == 1538){
+  var_dump($module); exit;
+}
             $this->modules[$mID] = $module;
         }
-
+exit;
         /* Temporäres Array mit Dozenten-Objekten und ihnen zugewiesenen Modulen */
         $this->createLecturerModuleMap();
     }
@@ -238,7 +251,7 @@ class HOPSModules {
 
         $paramsStr  = implode("&", $paramsArr);
         $requestUrl = $this->moduleBaseUrl . "?" . $paramsStr;
-echo $requestUrl; exit;
+
         return file_get_contents($requestUrl);
     }
 

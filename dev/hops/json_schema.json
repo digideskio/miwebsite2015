@@ -1,0 +1,319 @@
+{
+    "id": "http://medieninformatik.th-koeln.de/hops/modules_schema#",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+	"title": "HOPS Module Schema",
+	"type": "object",
+    "patternProperties": {
+        "^(\\d+)$": {
+            "type": "object",
+            "oneOf": [
+                { "$ref": "#/definitions/module" }
+            ]
+        }
+    },
+    "definitions": {
+        "module": {
+            "type": "object",
+            "properties": {
+                "FACHKUERZEL": {
+                    "type": [ "string", "null" ]
+                },
+                "DOZENTEN": {
+                    "type": "array",
+                    "items": { "$ref": "#/definitions/dozenten" },
+                    "minItems": 1
+                },
+                "KURZBEZ": {
+                    "type": [ "string", "null" ]
+                },
+                "BEZEICHNUNG": {
+                    "type": [ "string", "null" ]
+                },
+                "PFLICHTFACH": {
+                    "type": [ "string", "null" ]
+                },
+                "FACH_TYP": {
+                    "type": [ "string", "null" ]
+                },
+                "ANZAHL_SWS": {
+                    "type": [ "integer", "null" ],
+                    "min": 0
+                },
+                "INHALT": {
+                    "type": [ "string", "null" ]
+                },
+                "VORAUSSETZUNGEN": {
+                    "type": [ "string", "null" ]
+                },
+                "LITERATUR": {
+                    "type": [ "string", "null" ]
+                },
+                "HOERERZAHL": {
+                    "type": [ "integer", "null" ],
+                    "min": 0
+                },
+                "SPRACHE": {
+                    "type": [ "string", "null" ]
+                },
+                "KREDITPUNKTE": {
+                    "type": [ "integer", "null" ],
+                    "min": 0
+                },
+                "LERNZIELE": {
+                    "type": [ "string", "null" ]
+                },
+                "LEISTUNGEN": {
+                    "type": [ "string", "null" ]
+                },
+                "MEDIENFORMEN": {
+                    "type": [ "string", "null" ]
+                },
+                "AKTIV": {
+                    "type": "boolean"
+                },
+                "FB_NR": {
+                    "type": [ "integer", "null" ],
+                    "min": 0
+                },
+                "SG_SE": {
+                    "type": "object",
+                    "oneOf": [
+                        { "$ref": "#/definitions/sg_se" }
+                    ]
+                },
+                "MODUL_ID": {
+                    "type": [ "integer", "null" ]
+                },
+                "MODULVERSION": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULBEZEICHNUNG": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULUNTERTITEL": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULKURZBEZEICHNUNG": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULVORAUSSETZUNG": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULVORAUSSETZUNG_EMPFOHLEN": {
+                    "type": [ "string", "null" ]
+                },
+                "MODUL_VERANSTALTUNGSZUSATZ": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULSPRACHE": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULLEHRFORM": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULLERNZIELE": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULINHALT": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULLEISTUNGEN": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULMEDIENFORMEN": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULLITERATUR": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULSCHWERPUNKTE": {
+                    "type": [ "string", "null" ]
+                },
+                "AKKREDITIERUNG": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULCREDITS": {
+                    "type": [ "integer", "null" ],
+                    "min": 0
+                },
+                "MODULCREDITS_ZUSATZ": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULDAUER": {
+                    "type": [ "integer", "null" ]
+                },
+                "MODULSWS": {
+                    "type": [ "integer", "null" ],
+                    "min": 0
+                },
+                "MODULSWS_ZUSATZ": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULAUFWAND": {
+                    "type": [ "integer", "null" ],
+                    "min": 0
+                },
+                "MODULAUFWAND_KONTAKTZEIT_AQAS": {
+                    "type": [ "integer", "null" ],
+                    "min": 0
+                },
+                "MODULAUFWAND_ZUSATZ": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULSWS_VORLESUNG": {
+                    "type": [ "integer", "null" ],
+                    "min": 0
+                },
+                "MODULAUFWAND_VORLESUNG": {
+                    "type": [ "integer", "null" ],
+                    "min": 0
+                },
+                "MODULSWS_PRAKTIKUM": {
+                    "type": [ "integer", "null" ],
+                    "min": 0
+                },
+                "MODULAUFWAND_PRAKTIKUM": {
+                    "type": [ "integer", "null" ],
+                    "min": 0
+                },
+                "MODULSWS_UEBUNG": {
+                    "type": [ "integer", "null" ],
+                    "min": 0
+                },
+                "MODULAUFWAND_UEBUNG": {
+                    "type": [ "integer", "null" ],
+                    "min": 0
+                },
+                "MODULSWS_SEMINAR": {
+                    "type": [ "integer", "null" ],
+                    "min": 0
+                },
+                "MODULAUFWAND_SEMINAR": {
+                    "type": [ "integer", "null" ],
+                    "min": 0
+                },
+                "MODULAUFWAND_SELBSTSTUDIUM": {
+                    "type": [ "integer", "null" ],
+                    "min": 0
+                },
+                "MODULSTELLENWERT_NOTE": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULSONSTIGES": {
+                    "type": [ "string", "null" ]
+                },
+                "MODULCP_VORAUSSETZUNGEN": {
+                    "type": [ "string", "null" ]
+                },
+                "MODUL_HAEUFIGKEIT": {
+                    "type": [ "string", "null" ]
+                },
+                "GRUPPENGROESSE": {
+                    "type": [ "integer", "null" ]
+                },
+                "AUFWAND": {
+                    "type": [ "integer", "null" ],
+                    "min": 0
+                }
+            },
+            "required": [
+                "DOZENTEN",
+                "KURZBEZ",
+                "BEZEICHNUNG",
+                "PFLICHTFACH",
+                "FACH_TYP",
+                "ANZAHL_SWS",
+                "INHALT",
+                "VORAUSSETZUNGEN",
+                "LITERATUR",
+                "HOERERZAHL",
+                "SPRACHE",
+                "KREDITPUNKTE",
+                "LERNZIELE",
+                "LEISTUNGEN",
+                "MEDIENFORMEN",
+                "AKTIV",
+                "FB_NR",
+                "SG_SE",
+                "MODUL_ID",
+                "MODULVERSION",
+                "MODULBEZEICHNUNG",
+                "MODULUNTERTITEL",
+                "MODULKURZBEZEICHNUNG",
+                "MODULVORAUSSETZUNG",
+                "MODULVORAUSSETZUNG_EMPFOHLEN",
+                "MODUL_VERANSTALTUNGSZUSATZ",
+                "MODULSPRACHE",
+                "MODULLEHRFORM",
+                "MODULLERNZIELE",
+                "MODULINHALT",
+                "MODULLEISTUNGEN",
+                "MODULMEDIENFORMEN",
+                "MODULLITERATUR",
+                "MODULSCHWERPUNKTE",
+                "AKKREDITIERUNG",
+                "MODULCREDITS",
+                "MODULCREDITS_ZUSATZ",
+                "MODULDAUER",
+                "MODULSWS",
+                "MODULSWS_ZUSATZ",
+                "MODULAUFWAND",
+                "MODULAUFWAND_KONTAKTZEIT_AQAS",
+                "MODULAUFWAND_ZUSATZ",
+                "MODULSWS_VORLESUNG",
+                "MODULAUFWAND_VORLESUNG",
+                "MODULSWS_PRAKTIKUM",
+                "MODULAUFWAND_PRAKTIKUM",
+                "MODULSWS_UEBUNG",
+                "MODULAUFWAND_UEBUNG",
+                "MODULSWS_SEMINAR",
+                "MODULAUFWAND_SEMINAR",
+                "MODULAUFWAND_SELBSTSTUDIUM",
+                "MODULSTELLENWERT_NOTE",
+                "MODULSONSTIGES",
+                "MODULCP_VORAUSSETZUNGEN",
+                "MODUL_HAEUFIGKEIT",
+                "GRUPPENGROESSE",
+                "AUFWAND"
+            ]
+         },
+         "dozenten": {
+            "type": "object",
+            "properties": {
+                "KUERZEL": {
+                    "type": "string"
+                },
+                "NAME": {
+                    "type": "string"
+                }
+            },
+            "required": [ "KUERZEL", "NAME" ]
+         },
+         "sg_se": {
+            "type": "object",
+            "patternProperties": {
+                "^(\\w+_\\w)$": {
+                    "type": "object",
+                    "oneOf": [
+                        { "$ref": "#/definitions/sg_se_item" }
+                    ]
+                }
+            }
+         },
+         "sg_se_item": {
+            "type": "object",
+            "properties": {
+                "SEMESTER": {
+                    "type": [ "integer", "array" ],
+                    "min": 1,
+                    "minItems": 1,
+                    "items": { "type": "integer" }
+                },
+                "STUDIENGANG": {
+                    "type": "string"
+                }
+            },
+            "required": [ "SEMESTER", "STUDIENGANG" ]
+        }
+    }
+}

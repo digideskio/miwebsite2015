@@ -1,5 +1,6 @@
 <?php
 
+error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 
 class HOPSModules {
 
@@ -90,7 +91,7 @@ class HOPSModules {
                     continue;
             }
 
-            $this->moduleIDs[$mID] = $module->BEZEICHNUNG;
+            $this->moduleIDs[$mID] = (isset($module->BEZEICHNUNG)) ? $module->BEZEICHNUNG : false;
 
             /* Da alle Werte vom Typ String und nicht immer atomar sind,
                 werden sie aufgetrennt und in ihren eigentlichen Typ konvertiert */
@@ -238,7 +239,7 @@ class HOPSModules {
 
         $paramsStr  = implode("&", $paramsArr);
         $requestUrl = $this->moduleBaseUrl . "?" . $paramsStr;
-echo $requestUrl; exit;
+
         return file_get_contents($requestUrl);
     }
 
@@ -294,7 +295,6 @@ echo $requestUrl; exit;
      *                 für Zugriff auf Dozenten-Infos
      */
     private function parseModuleDozenten($module) {
-
         $dozenten = explode(',', $module->DOZENTEN);
 
         $dozentenObjArr = array();
@@ -440,7 +440,7 @@ echo $requestUrl; exit;
         $this->moduleIDs = array();
 
         foreach($this->modules as $moduleID => $moduleData) {
-            $this->moduleIDs[$moduleID] = $moduleData->BEZEICHNUNG;
+            $this->moduleIDs[$moduleID] = (isset($moduleData->BEZEICHNUNG)) ? $moduleData->BEZEICHNUNG : false;
         }
 
         $this->createLecturerModuleMap();
