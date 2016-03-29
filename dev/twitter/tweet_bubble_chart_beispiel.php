@@ -196,9 +196,7 @@ $twitter = new TwitterHomeTimelineCache($settings);
         <script>
             // Quelle: https://bl.ocks.org/mbostock/4063269
 
-            var fontResizeFactor = 8,
-                format = d3.format(',d'),
-                aspectRatio = (window.screen.height || 9) / (window.screen.width || 16);
+            var format = d3.format(',d');
 
             var wordsRaw = <?= json_encode($twitter->getWordlist()); ?>,
                 wordsFreq = [];
@@ -219,13 +217,12 @@ $twitter = new TwitterHomeTimelineCache($settings);
 
             var size = {
                 width: divNodeWidth,
-                height: divNodeWidth * aspectRatio
+                height: divNodeWidth
             };
             
 
             /* FIXME: Experimentell */
             if(size.width < 500) {
-                fontResizeFactor = 5;
                 size.height *= 2;
             }
 
@@ -264,7 +261,7 @@ $twitter = new TwitterHomeTimelineCache($settings);
                 node.append('text')
                     .attr('dy', '.3em')
                     .style('text-anchor', 'middle')
-                    .text(function(d) { var substr = d.text.substring(0, d.r / 5); return substr + ((substr.length < d.text.length) ? '...': ''); });
+                    .text(function(d) { var substr = d.text.substring(0, d.r / 4); return substr + ((substr.length < d.text.length) ? '...': ''); });
             }
 
 
