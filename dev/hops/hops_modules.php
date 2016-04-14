@@ -71,10 +71,10 @@ class HOPSModules {
             $mIDs[] = $moduleResult->ID;
         }
         $mIDs = array_unique($mIDs);
-//var_dump($mIDs); exit;
+
         /* Moduldetails anfordern */
         foreach($mIDs as $mID) {
-print "$mID<br>";
+
             $paramMID = array("mid" => $mID);
             $moduleDetailsJSONString = $this->request('details', $paramMID);
 
@@ -112,8 +112,7 @@ print "$mID<br>";
 
         /* Temporäres Array mit Dozenten-Objekten und ihnen zugewiesenen Modulen */
         $this->createLecturerModuleMap();
-print "<pre>";
-        var_dump($this->modules); exit;
+
     }
 
 
@@ -251,7 +250,7 @@ print "<pre>";
 
         $paramsStr  = implode("&", $paramsArr);
         $requestUrl = $this->moduleBaseUrl . "?" . $paramsStr;
-print $requestUrl . "<hr>";
+
         return file_get_contents($requestUrl);
     }
 
@@ -535,6 +534,8 @@ print $requestUrl . "<hr>";
         $this->lecturerModuleMap = array();
 
         foreach($this->getModules() as $moduleID => $moduleData) {
+
+          if(isset($moduleData->DOZENTEN)){
             foreach($moduleData->DOZENTEN as $dozent) {
 
                 if(!isset($this->lecturerModuleMap[$dozent->KUERZEL])) {
@@ -547,6 +548,7 @@ print $requestUrl . "<hr>";
 
                 $this->lecturerModuleMap[$dozent->KUERZEL]->MODULE_IDS[] = $moduleID;
             }
+          }
         }
     }
 
@@ -562,7 +564,7 @@ print $requestUrl . "<hr>";
         $this->moduleIDs = array();
 
         foreach($this->modules as $moduleID => $moduleData) {
-            $this->moduleIDs[$moduleID] = $moduleData->BEZEICHNUNG;
+            $this->moduleIDs[$moduleID] = (isset($moduleData->BEZEICHNUNG)) ? $moduleData->BEZEICHNUNG : "Keine Bezeichnung";
         }
 
         $this->createLecturerModuleMap();

@@ -67,36 +67,60 @@ sort($semesters);
 
 ?>
 
-<div class="col-md-12 grid js-isotope">
-<button onclick="$grid.isotope({ sortBy : 'random' });">Random</button>
+<div class="col-md-12 moduluebersicht">
+
+    <div class="modul-filtergroups">
+      <div class="modul-filter">
+        <button class="btn btn-primary">1</button>
+        <button class="btn btn-primary">2</button>
+        <button class="btn btn-primary">3</button>
+        <button class="btn btn-primary">4</button>
+        <button class="btn btn-primary">5</button>
+        <button class="btn btn-primary">6</button>
+      </div>
+      <div class="modul-filter pull-right">
+        <button class="btn btn-secondary">A-Z</button>
+      </div>
+    </div>
+
   <?php foreach($semesters as $semester): ?>
   <!--div class="semester semester-<?=$semester;?>"-->
 
     <?php foreach($semesterArr[$semester] as $module):
       $dozentenArr = array();
 
+
+      //var_dump($module); exit;
+
       foreach($module->DOZENTEN as $dozent){
         $dozentenArr[] = '<a href="#">' . $dozent->NAME . '</a>';
       }
-      //var_dump($module);
+
+      $typ = ($module->PFLICHTFACH === HOPSModules::PF_PFLICHTFACH) ? "Pflichtfach": "";
+      $moduleSemesters = $module->SG_SE->MI_B->SEMESTER;
     ?>
 
-    <article class="modul modul-<?=$module->KURZBEZ;?>" id="">
-      <p class="modname"><?= $module->BEZEICHNUNG; ?></p>
-      <header class="head" data-toggle="collapse" data-target="#<?=$module->KURZBEZ;?>-content">
-        <h1 class="headline name"><?= $module->BEZEICHNUNG; ?></h1>
+    <article class="modul modul-<?=$module->KURZBEZ;?>" data-props="<?=$module->KURZBEZ;?><?=$typ;?> sem-<?=$semester;?><">
+      <header class="head collapsed" data-toggle="collapse" data-target="#<?=$module->KURZBEZ;?>-content">
+        <h1 class="headline name"><?= $module->BEZEICHNUNG; ?> <i class="indicator pull-right fa fa-angle-up" aria-hidden="true"></i></h1>
+
       </header>
 
       <div class="modulinfos collapse" id="<?=$module->KURZBEZ;?>-content">
-        <p class="modultyp"><?= ($module->PFLICHTFACH === HOPSModules::PF_PFLICHTFACH) ? "Pflichtfach": "" ?></p>
-        <p class="ectsp"><?= $module->MODULCREDITS ?> ECTS-P</p>
-        <p class="sws"><?= $module->MODULSWS ?> SWS</p>
-        <p class="studiensemester"><?=$semester;?></p>
-        <?= implode(', ', $dozentenArr) ?>
-        <?php
-        $moduleSemesters = $module->SG_SE->MI_B->SEMESTER;
-        echo ((is_array($moduleSemesters) && count($moduleSemesters) > 1) ? 'halbjährlich': 'jährlich') . ' angeboten';
-        ?>
+        <dl class="modul-daten">
+          <?php if(sizeof($typ) > 0): ?>
+            <dt>Typ:</dt><dd><?= $typ ?></dd>
+          <?php endif; ?>
+
+          <dt>Creditpoints:</dt><dd><?= $module->MODULCREDITS ?> ECTS-P</dd>
+          <dt>Semesterwochenstunden:</dt><dd><?= $module->MODULSWS ?></dd>
+          <dt>Studiensemester:</dt><dd><?=$semester;?></dd>
+          <dt>Angebot:</dt><dd><?php echo ((is_array($moduleSemesters) && count($moduleSemesters) > 1) ? 'halbjährlich': 'jährlich') . ' angeboten'; ?></dd>
+          <?php
+            $key = (sizeof($dozentenArr) > 1) ? "Dozenten: " : "Dozent: ";
+          ?>
+          <dt><?=$key;?></dt><dd><?= implode(', ', $dozentenArr) ?></dd>
+        </dl>
       </div>
 
     </article>

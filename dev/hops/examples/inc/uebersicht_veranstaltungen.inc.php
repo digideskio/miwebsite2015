@@ -33,8 +33,7 @@ catch(Exception $e) {
  */
 
 $filterFunc = function($moduleObj) {
-    $isPF = $moduleObj->PFLICHTFACH === HOPSModules::PF_PFLICHTFACH;
-
+    $isPF = (isset($moduleObj->PFLICHTFACH) &&  ($moduleObj->PFLICHTFACH === HOPSModules::PF_PFLICHTFACH)) ? true : false;
     return $isPF;
 };
 

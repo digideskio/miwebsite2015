@@ -6355,8 +6355,61 @@ body > section {
 
 /* .Studienverlaufsplan
 =======================================================================================*/
+.modul-filtergroups {
+  padding-top: .6375rem;
+  padding-bottom: .6375rem;
+}
+
+.modul-filtergroups .modul-filter {
+  display: inline-block;
+}
+
 .modul {
-  width: 400px;
+  padding-top: 1rem;
+  padding-bottom: .5rem;
+}
+
+.modul:nth-child(n+2) {
+  border-top: solid 1px #818a91;
+}
+
+.modul .head .headline {
+  font-size: 1.25rem;
+  color: #00ad2f;
+}
+
+.modul .head:hover {
+  cursor: pointer;
+}
+
+.modul .head.collapsed {
+  -webkit-transition: "all 1s";
+       -o-transition: "all 1s";
+          transition: "all 1s";
+}
+
+.modul .head.collapsed .indicator {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+       -o-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.modul .modul-daten dd, .modul .modul-daten dt {
+  display: inline;
+}
+
+.modul .modul-daten dd::after {
+  display: block;
+  content: "";
+}
+
+.modul .modul-daten dt {
+  font-weight: 500;
+}
+
+.modul .modul-daten dt::after {
+  content: " ";
 }
 
 /* .Sections

@@ -119,6 +119,10 @@ body{
   margin-bottom: $basefontsize /2;
 }
 
+
+
+
+
 /* Overrides
 =======================================================================================*/
 
@@ -151,6 +155,9 @@ body{
     //margin-right: -$basemargin;
   }
 }
+
+
+
 
 
 /* .Header & .Navigation
@@ -290,10 +297,61 @@ body{
 }
 
 
+
+
 /* .Studienverlaufsplan
 =======================================================================================*/
+.modul-filtergroups{
+
+  padding-top: $basemargin;
+  padding-bottom: $basemargin;
+
+  .modul-filter{
+    display: inline-block;
+  }
+}
+
+
 .modul{
-  width: 400px;
+
+  padding-top: $basefontsize;
+  padding-bottom: $basefontsize /2;
+
+  &:nth-child(n+2){
+    border-top: solid 1px $gray-light;
+  }
+
+  .head{
+    .headline{
+      font-size: $fs-medium;
+      color: $mi-gruen;
+    }
+    &:hover{
+      cursor: pointer;
+    }
+
+    &.collapsed{
+      @include transition("all 1s");
+      .indicator{
+        transform: rotate(180deg);
+      }
+    }
+  }
+
+  .modul-daten{
+
+    dd, dt{
+      display: inline;
+    }
+    dd::after{
+      content:"";
+      display: block;
+    }
+    dt{
+      font-weight: 500;
+      &::after{ content: " ";}
+    }
+  }
 }
 
 
