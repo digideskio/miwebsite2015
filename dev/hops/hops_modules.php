@@ -71,30 +71,24 @@ class HOPSModules {
             $mIDs[] = $moduleResult->ID;
         }
         $mIDs = array_unique($mIDs);
-#var_dump($mIDs); exit;
+//var_dump($mIDs); exit;
         /* Moduldetails anfordern */
         foreach($mIDs as $mID) {
-echo  "1 -> $mID<hr>";
+print "$mID<br>";
             $paramMID = array("mid" => $mID);
             $moduleDetailsJSONString = $this->request('details', $paramMID);
-echo  "2 -> $mID<hr>";
+
             /* JSON extrahieren und säubern */
             $moduleDetailsJSONString = $this->extractJSONStringFromHTMLBody($moduleDetailsJSONString);
-echo  "3 -> $mID<hr>";
-            $moduleDetailsJSONString = $this->sanitizeJSONString($moduleDetailsJSONString);
-
+//            $moduleDetailsJSONString = $this->sanitizeJSONString($moduleDetailsJSONString);
 
             $moduleParts = json_decode($moduleDetailsJSONString);
 
             if(    is_array($moduleParts)
                 && count($moduleParts) > 0 ) {
-                $moduleParts = $this->handleModuleStruct($moduleParts);
+              $moduleParts = $this->handleModuleStruct($moduleParts);
 
-            }
-            else
-                continue;
-
-            foreach($moduleParts as $modulePart) {
+              foreach($moduleParts as $modulePart) {
                 $currMID = $modulePart->MODUL_ID;
                 $this->moduleIDs[$currMID] = $modulePart->BEZEICHNUNG;
 
@@ -105,11 +99,21 @@ echo  "3 -> $mID<hr>";
                 $modulePart = $this->parseModuleCourseAndSemester($modulePart);
 
                 $this->modules[$currMID] = $modulePart;
-            }
+              }
+            }else{
+
+                $this->modules[$mID] = json_decode($moduleDetailsJSONString);
+              }
+
+
+
+
         }
-exit;
+
         /* Temporäres Array mit Dozenten-Objekten und ihnen zugewiesenen Modulen */
         $this->createLecturerModuleMap();
+print "<pre>";
+        var_dump($this->modules); exit;
     }
 
 
@@ -247,7 +251,7 @@ exit;
 
         $paramsStr  = implode("&", $paramsArr);
         $requestUrl = $this->moduleBaseUrl . "?" . $paramsStr;
-
+print $requestUrl . "<hr>";
         return file_get_contents($requestUrl);
     }
 
