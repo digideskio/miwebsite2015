@@ -222,19 +222,15 @@ $twitter = new TwitterHomeTimelineCache($settings);
             };
 
 
-            /* FIXME: Experimentell */
-            if(size.width < 500) {
-                fontResizeFactor = 5;
-                size.height *= 2;
-            }
-
             var color = d3.scale.linear()
-                    .domain([0, 1, 2, 3, 4, 5, 6, 10, 15, 20, 100])
-                    .range(['#ddd', '#ccc', '#bbb', '#aaa', '#999', '#888', '#777', '#666', '#555', '#444', '#333', '#222']);
+                    .domain([0, 1, 2, 3, 4, 5, 6, 10, 15, 20])
+                    .range(['#ddd', '#ccc', '#bbb', '#aaa', '#999', '#888', '#777', '#666', '#555', '#444', '#333']);
+
 
             var layout = d3.layout.cloud().size([size.width, size.height])
                     .words(freqList)
-                    .padding(0)
+                    .padding(2)
+                    .font('Open Sans')
                     .fontSize(function(d) { return d.cnt * fontResizeFactor; })
                     .rotate(function() { return ~~(Math.random() * 2) * 90; })
                     .on('end', drawVis);
@@ -255,7 +251,7 @@ $twitter = new TwitterHomeTimelineCache($settings);
                         .data(words)
                         .enter().append('text')
                         .style('font-size', function(d) { return (d.cnt * fontResizeFactor) + 'px'; })
-                        .style('fill', function(d, i) { return color(i); })
+                        .style('fill', function(d, i) { return color(d.cnt); })
                         .style('text-anchor', 'middle')
                         .attr('transform', function(d) {
                             return 'translate(' + [d.x, d.y] + ') rotate(' + d.rotate + ')';
