@@ -197,6 +197,7 @@ $twitter = new TwitterHomeTimelineCache($settings);
             // Quelle: https://bl.ocks.org/mbostock/4063269
 
             var format = d3.format(',d');
+            var aspectRatio = (window.screen.height || 9) / (window.screen.width || 16);
 
             var wordsRaw = <?= json_encode($twitter->getWordlist()); ?>,
                 wordsFreq = [];
@@ -206,6 +207,12 @@ $twitter = new TwitterHomeTimelineCache($settings);
                     wird es nicht berücksichtigt */
                 if(wordsRaw[k] < 3)
                   continue;
+
+                /* Bei Wörtern mit nur einem Zeichen,
+                    sollte es sich nicht um Sonderzeichen handeln */
+                if(k.length === 1 && !k.match(/\w/))
+                    continue;
+
 
                 wordsFreq.push(
                     { text: k, cnt: wordsRaw[k] }
@@ -221,20 +228,10 @@ $twitter = new TwitterHomeTimelineCache($settings);
             };
             
 
-            /* FIXME: Experimentell */
-            if(size.width < 500) {
-                size.height *= 2;
-            }
-
             var color = d3.scale.linear()
                     .domain([0, 1, 2, 3, 4, 5, 6, 10, 15, 20, 100])
                     .range(['#ddd', '#ccc', '#bbb', '#aaa', '#999', '#888', '#777', '#666', '#555', '#444', '#333', '#222']);
 
-            var bubble = d3.layout.pack()
-                .sort(null)
-                .size([size.width, size.height])
-                .value(function(d) { return d.cnt; })
-                .padding(1.5);
 
             var svg = d3.select('.twitter_bubblechart_vis').append('svg')
                             .attr('class', 'bubblechart_svg')
@@ -244,9 +241,19 @@ $twitter = new TwitterHomeTimelineCache($settings);
                             .attr('viewBox', '0 0 ' + size.width + ' ' + size.height);
 
             function drawVis(words) {
+
+                var bubble = d3.layout.pack()
+                    .sort(null)
+                    .size([size.width, size.height])
+                    .value(function(d) { return d.cnt; })
+                    .padding(1.5);
+
+
+                var bubbleData = bubble.nodes( { children: wordsFreq } )
+                                    .filter(function(d) { return !d.children; });
+
                 var node = svg.selectAll('.node')
-                    .data(bubble.nodes( { children: wordsFreq } )
-                            .filter(function(d) { return !d.children; }))
+                    .data(bubbleData)
                     .enter().append('g')
                     .attr('class', 'node')
                     .attr('transform', function(d) { return 'translate(' + d.x + ',' + d.y + ')'; });
@@ -261,7 +268,11 @@ $twitter = new TwitterHomeTimelineCache($settings);
                 node.append('text')
                     .attr('dy', '.3em')
                     .style('text-anchor', 'middle')
-                    .text(function(d) { var substr = d.text.substring(0, d.r / 4); return substr + ((substr.length < d.text.length) ? '...': ''); });
+                    .text(function(d) {
+                        /* Textlänge entsprechend der Blasengröße anpassen */
+                        var substr = d.text.substring(0, d.r / 4);
+                        return substr + ((substr.length < d.text.length) ? '...': '');
+                    });
             }
 
 
@@ -271,8 +282,15 @@ $twitter = new TwitterHomeTimelineCache($settings);
                 var divNode = d3.select('.twitter_bubblechart_vis');
                 var divNodeWidth = parseInt(divNode.style('width'));
 
-                svgNode.attr('width', divNodeWidth);
-                svgNode.attr('height', divNodeWidth * aspectRatio);
+                size = {
+                    width: divNodeWidth,
+                    height: divNodeWidth * aspectRatio
+                };
+
+                svgNode.attr('width', size.width);
+                svgNode.attr('height', size.height);
+
+
             });
 
             drawVis();
