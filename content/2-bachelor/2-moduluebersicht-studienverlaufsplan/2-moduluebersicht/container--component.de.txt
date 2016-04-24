@@ -23,3 +23,15 @@ Data:
 ----
 
 Snippet: moduluebersicht-bachelor
+
+----
+
+Headline-position: hide
+
+----
+
+Component: 
+
+- 
+  komponente: moduluebersicht
+  studiengang: bachelor

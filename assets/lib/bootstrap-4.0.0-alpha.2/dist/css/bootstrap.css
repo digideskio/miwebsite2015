@@ -6412,6 +6412,18 @@ body > section {
   content: " ";
 }
 
+.modul .modul-info .modul-info--title {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.modul .modul-info .modul-info--text ul {
+  padding-left: 0;
+  list-style-position: inside;
+}
+
 /* .Sections
 =======================================================================================*/
 section.blau + section,

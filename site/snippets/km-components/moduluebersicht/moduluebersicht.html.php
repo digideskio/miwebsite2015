@@ -1,6 +1,8 @@
 <?php
 
-$classDir = dirname(__FILE__) . '/../..';
+$classDir = dirname(__FILE__) . '/../../../..';
+
+
 require $classDir . '/assets/lib/hops/hops_modules.php';
 
 $nameTmpFile = $classDir . '/modules_dump.tmp.json';
@@ -121,6 +123,48 @@ sort($semesters);
           ?>
           <dt><?=$key;?></dt><dd><?= implode(', ', $dozentenArr) ?></dd>
         </dl>
+
+        <?php if(sizeof($module->LEISTUNGEN) > 0):?>
+        <div class="modul-info">
+          <h2 class="modul-info--title">Leistungen:</h2>
+          <div class="modul-info--text"><?php echo kirbytext($module->LEISTUNGEN); ?></div>
+        </div>
+        <?php endif; ?>
+
+        <?php if(sizeof($module->MODULLEHRFORM) > 0):?>
+        <div class="modul-info">
+          <h2 class="modul-info--title">Lehrform:</h2>
+          <div class="modul-info--text"><?php echo kirbytext($module->MODULLEHRFORM); ?></div>
+        </div>
+        <?php endif; ?>
+
+        <?php if(sizeof($module->MODULVORAUSSETZUNG) > 0):?>
+        <div class="modul-info">
+          <h2 class="modul-info--title">Voraussetzungen:</h2>
+          <div class="modul-info--text"><?php echo kirbytext($module->MODULVORAUSSETZUNG); ?></div>
+        </div>
+        <?php endif; ?>
+
+        <?php if(sizeof($module->MODULLERNZIELE) > 0):?>
+        <div class="modul-info">
+          <h2 class="modul-info--title">Ziele:</h2>
+          <div class="modul-info--text"><?php echo kirbytext($module->MODULLERNZIELE); ?></div>
+        </div>
+        <?php endif; ?>
+
+        <?php if(sizeof($module->MODULINHALT) > 0):?>
+        <div class="modul-info">
+          <h2 class="modul-info--title">Inhalt:</h2>
+          <div class="modul-info--text"><?php echo kirbytext($module->MODULINHALT); ?></div>
+        </div>
+        <?php endif; ?>
+
+        <?php if(sizeof($module->MODULLITERATUR) > 0):?>
+        <div class="modul-info">
+          <h2 class="modul-info--title">Literatur:</h2>
+          <div class="modul-info--text"><?php echo kirbytext($module->MODULLITERATUR); ?></div>
+        </div>
+        <?php endif; ?>
       </div>
 
     </article>

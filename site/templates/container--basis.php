@@ -1,5 +1,5 @@
 <?php
-  include_once("assets/php/functions.php");
+	include_once("assets/php/functions.php");
 	snippet('header', array("content" => $page));
 ?>
 

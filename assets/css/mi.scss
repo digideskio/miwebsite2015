@@ -352,6 +352,22 @@ body{
       &::after{ content: " ";}
     }
   }
+
+  .modul-info{
+    .modul-info--title{
+      font-size: $fs-normal;
+      font-weight: 500;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .modul-info--text{
+      ul{
+        padding-left: 0;
+        list-style-position: inside;
+      }
+    }
+  }
 }
 
 
