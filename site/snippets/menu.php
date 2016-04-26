@@ -24,7 +24,7 @@
           if($hide_in_lang) continue;
         ?>
 
-          <li class="navitem"><a class="navlink" href="<?=$kind->uri();?>"><?php echo html($kind->title()); ?></a></li>
+          <li class="navitem"><a class="navlink" href="/<?=$kind->uri();?>"><?php echo html($kind->title()); ?></a></li>
         <?php endforeach; ?>
         </ul>
     </li>

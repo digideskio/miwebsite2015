@@ -14,7 +14,10 @@ Hide-in-lang: false
 
 ----
 
-Text: Hier finden Sie eine Auflistungen der einzelnen Module pro Studiensemester. Wenn Sie Fragen zu einzelnen Modulen haben, dann wenden Sie sich einfach an den angezeigten Modulverantwortlichen. Bei Fragen dazu wenden Sie sich bitte an (shortcut: manager-bachelor).
+Text: 
+
+(illustration: girl size: m)
+Hier finden Sie eine Auflistungen der einzelnen Module pro Studiensemester. Wenn Sie Fragen zu einzelnen Modulen haben, dann wenden Sie sich einfach an den angezeigten Modulverantwortlichen. Bei Fragen dazu wenden Sie sich bitte an (shortcut: manager-bachelor).
 
 ----
 
@@ -23,7 +26,9 @@ Columns:
 - 
   noc: "1"
   text2: ""
+  text2_class: ""
   text3: ""
+  text3_class: ""
 
 ----
 
@@ -50,7 +55,6 @@ Headline-position: hide
 Layout-switcher: 
 
 - 
-  notc: "1"
   otc: left
   appearance: normal
 

@@ -207,8 +207,6 @@ function get_images_from_article( $article, $prop = false, $images = false ){
 			continue;
 		}
 
-
-
 		if( preg_match("=teaserpool/=", $url )){
 			//$url = preg_replace("=.*teaserpool/=", "/_partner/_shared/content/uebergreifende-informationen/", $url);
 		}

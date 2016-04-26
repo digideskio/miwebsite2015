@@ -102,6 +102,19 @@ c::set('icons', array(
 
 
 
+
+/*
+---------------------------------------
+Illustrationen
+---------------------------------------
+*/
+
+c::set('illustrations', array(
+  "base-url" => "/assets/img/illustrations"
+));
+
+
+
 /*
 ---------------------------------------
 Zentrale Links

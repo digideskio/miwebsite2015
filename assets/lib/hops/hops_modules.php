@@ -80,7 +80,7 @@ class HOPSModules {
 
             /* JSON extrahieren und säubern */
             $moduleDetailsJSONString = $this->extractJSONStringFromHTMLBody($moduleDetailsJSONString);
-//            $moduleDetailsJSONString = $this->sanitizeJSONString($moduleDetailsJSONString);
+            $moduleDetailsJSONString = $this->sanitizeJSONString($moduleDetailsJSONString);
 
             $moduleParts = json_decode($moduleDetailsJSONString);
 
@@ -396,8 +396,11 @@ class HOPSModules {
      */
     private function sanitizeJSONString($JSONString) {
 
-        $JSONString = preg_replace("/(\\s*style=\\\\\".*?\\\\\")|(&nbsp;)/", "", $JSONString);
-        $JSONString = preg_replace("/(<br.*?>)/", "\n", $JSONString);
+        /*$JSONString = preg_replace("/(\\s*style=\\\\\".*?\\\\\")|(&nbsp;)/", "", $JSONString);
+        $JSONString = preg_replace("/(<br.*?>)/", "\n", $JSONString);*/
+
+        $JSONString = preg_replace("=<style.*?style>=is", "", $JSONString);
+        $JSONString = preg_replace("=style\=\".*?\"=", "", $JSONString);
 
         return $JSONString;
     }

@@ -4,7 +4,6 @@ $classDir = dirname(__FILE__) . '/../../../..';
 
 
 require $classDir . '/assets/lib/hops/hops_modules.php';
-
 $nameTmpFile = $classDir . '/modules_dump.tmp.json';
 
 try{
@@ -86,13 +85,9 @@ sort($semesters);
     </div>
 
   <?php foreach($semesters as $semester): ?>
-  <!--div class="semester semester-<?=$semester;?>"-->
 
     <?php foreach($semesterArr[$semester] as $module):
       $dozentenArr = array();
-
-
-      //var_dump($module); exit;
 
       foreach($module->DOZENTEN as $dozent){
         $dozentenArr[] = '<a href="#">' . $dozent->NAME . '</a>';
@@ -105,7 +100,6 @@ sort($semesters);
     <article class="modul modul-<?=$module->KURZBEZ;?>" data-props="<?=$module->KURZBEZ;?><?=$typ;?> sem-<?=$semester;?><">
       <header class="head collapsed" data-toggle="collapse" data-target="#<?=$module->KURZBEZ;?>-content">
         <h1 class="headline name"><?= $module->BEZEICHNUNG; ?> <i class="indicator pull-right fa fa-angle-up" aria-hidden="true"></i></h1>
-
       </header>
 
       <div class="modulinfos collapse" id="<?=$module->KURZBEZ;?>-content">
