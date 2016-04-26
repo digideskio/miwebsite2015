@@ -159,20 +159,24 @@ $weekdayMeals = $feed->getWeekdayMeals();
         </header>
 
         <main>
-            <?php $indices = array('thisweek', 'nextweek'); ?>
+            <?php
+                $indices = array('thisweek', 'nextweek');
+                $todayStr = (new DateTime())->format('Y-m-d');
+            ?>
             <?php foreach($indices as $week): ?>
                 <?php $currentWeekMeals = $weekdayMeals->$week; ?>
 
                 <section class="week_overview">
                     <h2 class="week_type"><?= ($week === 'thisweek') ? "Diese Woche": "Nächste Woche" ?></h2>
                     <?php foreach($currentWeekMeals->weekdays as $weekday):  ?>
+                        <?php
+                            $date = DateTime::createFromFormat('Y-m-d', $weekday->date);
+                            $dateStr = $date->format('d.m.Y');
+                            $additionalClass = ($todayStr === $weekday->date) ? 'today': '';
+                        ?>
 
-                        <section class="weekday_overview">
+                        <section class="weekday_overview <?= $additionalClass ?>">
                                 <div class="block day_indicator">
-                                    <?php
-                                        $date = DateTime::createFromFormat('Y-m-d', $weekday->date);
-                                        $dateStr = $date->format('d.m.Y');
-                                    ?>
                                     <h3><?= $weekday->weekdayName ?></h3>
                                     <time datetime="<?= $weekday->date ?>"><?= $dateStr ?></time>
                                 </div>
